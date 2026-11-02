@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TYPE — мужская парикмахерская на Остоженке</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0e0e0d; --ink: #efeae1; --muted: #8d877c; --line: #2a2926; --acc: #d9b26a; }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font: 17px/1.6 "Inter Tight", system-ui, sans-serif; padding-bottom: 56px; }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .os { font-family: Oswald, Impact, sans-serif; text-transform: uppercase; }
+
+  nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 28px; padding: 18px 0; background: rgba(14,14,13,.85);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav .logo { font: 700 22px Oswald, sans-serif; letter-spacing: .12em; text-decoration: none; }
+  nav .links { display: flex; gap: 26px; margin-left: auto; font: 500 14px Oswald, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  nav .links a { text-decoration: none; }
+
+  /* letter swap: буквы уезжают вверх, снизу въезжают дубликаты */
+  .swap { display: inline-flex; overflow: hidden; line-height: 1.2; vertical-align: bottom; }
+  .swap > span { display: inline-block; position: relative; transition: transform .45s cubic-bezier(.7,0,.2,1); white-space: pre; }
+  .swap > span::after { content: attr(data-c); position: absolute; left: 0; top: 100%; color: var(--acc); }
+  a:hover .swap > span, .swap:hover > span { transform: translateY(-100%); }
+
+  .btn { display: inline-flex; padding: 14px 26px; border: 1.5px solid var(--ink); text-decoration: none; font: 500 14px Oswald, sans-serif;
+         letter-spacing: .14em; text-transform: uppercase; transition: background .25s, color .25s; }
+  .btn:hover { background: var(--ink); color: var(--bg); }
+  .btn.fill { background: var(--acc); border-color: var(--acc); color: var(--bg); }
+  .btn.fill:hover { background: var(--ink); border-color: var(--ink); }
+
+  .hero { padding: 60px 0 20px; }
+  .mega { font: 700 clamp(120px, 27vw, 380px)/.8 Oswald, sans-serif; letter-spacing: -.02em; display: flex; justify-content: space-between; }
+  .mega span { display: inline-block; animation: up 1s cubic-bezier(.2,.8,.2,1) both; }
+  .mega span:nth-child(2) { animation-delay: .07s; -webkit-text-stroke: 2px var(--ink); color: transparent; }
+  .mega span:nth-child(3) { animation-delay: .14s; }
+  .mega span:nth-child(4) { animation-delay: .21s; color: var(--acc); }
+  @keyframes up { from { transform: translateY(30%); opacity: 0; } }
+  .lead { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .lead h1 { font: 500 clamp(26px, 3.4vw, 42px)/1.15 Oswald, sans-serif; text-transform: uppercase; letter-spacing: .01em; }
+  .lead p { color: var(--muted); }
+  .lead .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+  section { padding: 100px 0 0; }
+  .label { font: 500 13px Oswald, sans-serif; letter-spacing: .2em; color: var(--acc); text-transform: uppercase; }
+  h2 { font: 700 clamp(40px, 6vw, 80px)/1 Oswald, sans-serif; text-transform: uppercase; margin: 10px 0 36px; }
+
+  /* услуги как образцы шрифта */
+  .specimen { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+  .sp { padding: 30px 24px 30px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; }
+  .sp:nth-child(odd) { border-right: 1px solid var(--line); }
+  .sp:nth-child(even) { padding-left: 24px; }
+  .sp .name { font: 500 clamp(26px, 3vw, 38px)/1.05 Oswald, sans-serif; text-transform: uppercase; }
+  .sp .w300 { font-weight: 300; } .sp .w700 { font-weight: 700; }
+  .sp .price { font: 500 20px Oswald, sans-serif; color: var(--acc); }
+  .sp p { color: var(--muted); font-size: 15px; grid-column: 1 / -1; }
+  .sp.full { grid-column: 1 / -1; border-right: 0; padding-left: 0; background: linear-gradient(90deg, rgba(217,178,106,.08), transparent); }
+
+  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .q { background: var(--bg); padding: 30px; }
+  .q p { font: 300 24px/1.25 Oswald, sans-serif; text-transform: uppercase; }
+  .q small { display: block; color: var(--muted); margin-top: 16px; font-size: 13px; }
+
+  .addr { margin-top: 100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; padding: 50px 0; border-top: 1px solid var(--line); }
+  .addr .big { font: 700 clamp(44px, 7vw, 96px)/.95 Oswald, sans-serif; text-transform: uppercase; }
+  .addr .big em { font-style: normal; color: var(--acc); }
+  .addr ul { list-style: none; padding: 0; display: grid; gap: 10px; color: var(--muted); }
+  .addr ul a { color: var(--ink); }
+  footer { color: var(--muted); font-size: 13px; padding-bottom: 30px; }
+
+  .demo { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--acc); color: var(--bg); font-size: 13px; padding: 10px 16px; text-align: center; font-weight: 500; }
+
+  @media (max-width: 860px) {
+    nav .links { display: none; } nav .btn { margin-left: auto; }
+    .lead, .addr, .specimen { grid-template-columns: 1fr; }
+    .sp:nth-child(odd) { border-right: 0; } .sp:nth-child(even) { padding-left: 0; }
+    .quotes { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">TYPE</a>
+    <div class="links">
+      <a href="#uslugi" class="sw">Услуги</a><a href="#otzyvy" class="sw">Отзывы</a><a href="#adres" class="sw">Адрес</a>
+    </div>
+    <a class="btn fill" href="https://n120635.yclients.ru/" target="_blank" rel="noopener"><span class="sw">Записаться</span></a>
+  </nav>
+
+  <header class="hero">
+    <div class="mega" aria-hidden="true"><span>T</span><span>Y</span><span>P</span><span>E</span></div>
+    <div class="lead">
+      <h1>У каждого свой шрифт.<br>Мы подбираем ваш.</h1>
+      <div>
+        <p>Мужская парикмахерская на Остоженке. Перед стрижкой мастер обсуждает с вами варианты и только потом берёт ножницы. Стрижки, борода, бритьё и уход за кожей.</p>
+        <div class="cta">
+          <a class="btn fill" href="https://n120635.yclients.ru/" target="_blank" rel="noopener">Онлайн-запись</a>
+          <a class="btn" href="https://wa.me/79653131315" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="uslugi">
+    <div class="label">Образцы</div>
+    <h2>Услуги</h2>
+    <div class="specimen">
+      <div class="sp"><span class="name w700">Мужская стрижка</span><span class="price">от 3 500 ₽</span><p>Консультация, мытьё, стрижка, укладка. У топ-мастера 5 000 ₽.</p></div>
+      <div class="sp"><span class="name w300">Стрижка бороды</span><span class="price">3 000 ₽</span><p>Форма под овал лица, моделирование с Davines.</p></div>
+      <div class="sp"><span class="name">Стрижка + борода</span><span class="price">8 000 ₽</span><p>Полный образ за один визит.</p></div>
+      <div class="sp"><span class="name w300">Бритьё</span><span class="price">4 000 ₽</span><p>Классическое бритьё с уходом Davines.</p></div>
+      <div class="sp"><span class="name w300">Детская стрижка</span><span class="price">от 4 000 ₽</span><p>Для юных гостей.</p></div>
+      <div class="sp"><span class="name">Уход за кожей</span><span class="price">от 2 000 ₽</span><p>Кожа головы и лица, Constant Delight. Патчи 500 ₽.</p></div>
+      <div class="sp full"><span class="name w700">«Полный фарш»</span><span class="price">15 000 ₽</span><p>Всё сразу: стрижка, борода, бритьё и уход. Для особого случая или просто так.</p></div>
+    </div>
+  </section>
+
+  <section id="otzyvy">
+    <div class="label">★ 5,0 в 2ГИС</div>
+    <h2>Отзывы</h2>
+    <div class="quotes">
+      <div class="q"><p>«Я бы назвал это высшим пилотажем»</p><small>Обсудили варианты стрижки, пришли к консенсусу. Отзыв в 2ГИС</small></div>
+      <div class="q"><p>«Год хожу сюда стричься, очень доволен»</p><small>Отзыв в 2ГИС</small></div>
+      <div class="q"><p>«Классный интерьер и адекватные для Москвы цены»</p><small>Отзыв в 2ГИС</small></div>
+    </div>
+  </section>
+
+  <div class="addr" id="adres">
+    <div class="big">Остоженка, <em>47</em></div>
+    <ul>
+      <li>1 этаж · ежедневно 10:00–22:00, по записи</li>
+      <li><a href="tel:+79653131315">+7 965 313-13-15</a></li>
+      <li><a href="https://t.me/typebarbershop" target="_blank" rel="noopener">Telegram</a> · <a href="https://vk.com/typebarbershop" target="_blank" rel="noopener">ВКонтакте</a> · <a href="https://2gis.ru/moscow/firm/70000001029526876" target="_blank" rel="noopener">2ГИС</a></li>
+      <li style="margin-top:12px"><a class="btn fill" href="https://n120635.yclients.ru/" target="_blank" rel="noopener">Выбрать мастера</a></li>
+    </ul>
+  </div>
+  <footer>Цены ориентировочные, по данным 2ГИС на ноябрь 2026.</footer>
+</div>
+
+<div class="demo">Демо-концепт сайта для TYPE. Это не официальный сайт. Сделал Михаил Глазунов. <a href="/">Обо мне</a></div>
+
+<script>
+  // letter swap: каждую букву в отдельный span с дубликатом в ::after
+  for (const el of document.querySelectorAll('.sw')) {
+    const t = el.textContent;
+    el.textContent = '';
+    el.setAttribute('aria-label', t);
+    const box = document.createElement('span');
+    box.className = 'swap';
+    box.setAttribute('aria-hidden', 'true');
+    [...t].forEach((c, i) => {
+      const s = document.createElement('span');
+      s.textContent = c; s.dataset.c = c;
+      s.style.transitionDelay = (i * 18) + 'ms';
+      box.append(s);
+    });
+    el.append(box);
+  }
+</script>
+</body>
+</html>

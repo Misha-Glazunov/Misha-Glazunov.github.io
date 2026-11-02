@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Михаил Глазунов — сайты для небольшого бизнеса</title>
+<meta name="description" content="Частный разработчик. Делаю быстрые сайты для салонов, мастерских и студий в Москве.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f5f4f1; --ink: #18181b; --muted: #6b6b70; --acc: #d82d7e; --card: #fff; --line: #e4e2dd; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #121214; --ink: #f1f0ee; --muted: #9a9aa0; --card: #1b1b1e; --line: #2b2b2f; } }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 17px/1.6 Manrope, system-ui, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 72px 20px; }
+  h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.05; letter-spacing: -.03em; font-weight: 800; }
+  h1 span { color: var(--acc); }
+  p.lead { color: var(--muted); font-size: 19px; margin-top: 18px; }
+  h2 { font-size: 22px; margin: 56px 0 16px; }
+  .cards { display: grid; gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; }
+  .card b { display: block; }
+  .card span { color: var(--muted); font-size: 15px; }
+  ul { padding-left: 20px; color: var(--muted); display: grid; gap: 6px; }
+  .contacts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .btn { display: inline-flex; padding: 12px 22px; border-radius: 999px; background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 600; font-size: 15px; }
+  .btn.o { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  footer { margin-top: 64px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Михаил Глазунов.<br>Делаю сайты для <span>небольшого бизнеса</span></h1>
+  <p class="lead">Частный разработчик. Помогаю салонам, мастерским и студиям в Москве получить свой сайт: с онлайн-записью, ценами, отзывами и адресом, быстрый и удобный с телефона.</p>
+
+  <h2>Как я работаю</h2>
+  <ul>
+    <li>Сначала делаю бесплатный демо-концепт по открытым данным вашей карточки в 2ГИС, чтобы было видно, как это может выглядеть.</li>
+    <li>Если нравится — дорабатываем под вас: тексты, фото, домен, онлайн-запись.</li>
+    <li>Беру на себя хостинг и поддержку, а изменения вношу по сообщению в мессенджере.</li>
+  </ul>
+
+  <h2>Проекты</h2>
+  <div class="cards">
+    <a class="card" href="https://animemory.ru" target="_blank" rel="noopener" style="text-decoration:none">
+      <b>Ancen — animemory.ru</b>
+      <span>Мой собственный сервис для просмотра аниме с реакциями в реальном времени. Бэкенд на Go, видео, платежи, своя инфраструктура.</span>
+    </a>
+  </div>
+
+  <h2>Демо-концепты</h2>
+  <p style="color:var(--muted)">Демо-страницы делаются для конкретного бизнеса и удаляются по первой просьбе владельца или через 30 дней.</p>
+
+  <h2>Связаться</h2>
+  <div class="contacts">
+    <!-- TODO: контакты Михаила -->
+    <a class="btn" href="#">Telegram</a>
+    <a class="btn o" href="#">WhatsApp</a>
+  </div>
+
+  <footer>© 2026 Михаил Глазунов</footer>
+</div>
+</body>
+</html>
