@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IM your space — салон красоты на Большой Филёвской</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero.jpg">
+<style>
+  :root {
+    --paper: #fff7f4; --blush: #f9e1dc; --rose: #f2b9b1; --coral: #e9806b; --ink: #3a2128; --muted: #8e7076;
+    --leaf: #4f7a3a; --leaf2: #dfe9cf; --gold: #c9a35e; --line: rgba(58,33,40,.12);
+    --ease: cubic-bezier(.22,1,.36,1);
+    --arch: 999px 999px 28px 28px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font: 400 17px/1.6 Nunito, system-ui, sans-serif; overflow-x: hidden; padding-top: 38px; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .y { font-family: "Yeseva One", serif; font-weight: 400; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+  /* плашка демо сверху */
+  .demo { position: fixed; top: 0; left: 0; right: 0; z-index: 40; background: var(--ink); color: #d9c3c7; font-size: 13px; padding: 9px 16px; text-align: center; }
+  .demo a { color: var(--rose); }
+
+  /* ── навбар-«док» внизу, стекло (navbar.gallery) ── */
+  nav { position: fixed; z-index: 30; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; padding: 7px;
+        border-radius: 999px; background: rgba(255,247,244,.6); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6);
+        border: 1px solid rgba(255,255,255,.7); box-shadow: 0 16px 50px rgba(58,33,40,.18); animation: dock 1s 1.4s var(--ease) both; }
+  @keyframes dock { from { opacity: 0; transform: translate(-50%, 30px); } }
+  .logo { width: 46px; height: 46px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font: 800 19px/1 Nunito; letter-spacing: -.05em; }
+  nav > a:not(.logo):not(.btn) { padding: 11px 16px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: background .3s; }
+  nav > a:not(.logo):not(.btn):hover { background: rgba(58,33,40,.07); }
+
+  /* letter-swap */
+  .ls { display: inline-flex; overflow: hidden; line-height: 1.25; vertical-align: bottom; }
+  .ls > span { display: inline-block; position: relative; transition: transform .45s var(--ease); white-space: pre; }
+  .ls > span::after { content: attr(data-c); position: absolute; left: 0; top: 100%; }
+  a:hover .ls > span, button:hover .ls > span { transform: translateY(-100%); }
+
+  /* кнопка с эллипсом снизу (incredibles.dev) */
+  .btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; padding: 13px 24px; border-radius: 999px;
+         background: var(--ink); color: #fff; font: 800 15px Nunito; border: 0; cursor: pointer; }
+  .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--coral); clip-path: ellipse(0% 0% at 50% 100%); transition: clip-path .55s var(--ease); }
+  .btn:hover::before { clip-path: ellipse(120% 140% at 50% 100%); }
+  .btn.alt { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .btn.alt:hover { color: #fff; }
+  .btn.cor { background: var(--coral); } .btn.cor::before { background: var(--ink); }
+
+  /* ── hero: арка по центру (motionsites.ai) ── */
+  .hero { position: relative; min-height: calc(100svh - 38px); padding: 40px 20px 110px; display: grid; grid-template-columns: 1fr minmax(300px, 430px) 1fr; gap: 36px; align-items: end; max-width: 1400px; margin: 0 auto; }
+  .hero h1 { position: absolute; z-index: 3; left: 20px; right: 20px; top: clamp(30px, 6vh, 70px); font: 400 clamp(64px, 12.5vw, 210px)/.86 "Yeseva One", serif; letter-spacing: -.02em; pointer-events: none; }
+  .hero h1 .row { display: block; overflow: hidden; padding: 0 .04em .06em; }
+  .hero h1 .row:last-child { text-align: right; margin-top: clamp(150px, 30vh, 330px); }
+  .hero h1 .row > span { display: inline-block; transform: translateY(110%); animation: up 1.1s .5s var(--ease) forwards; }
+  .hero h1 .row:last-child > span { animation-delay: .65s; }
+  .hero h1 i { font-style: normal; color: var(--coral); }
+  @keyframes up { to { transform: none; } }
+  .arch { grid-column: 2; position: relative; height: min(74svh, 660px); border-radius: var(--arch); overflow: hidden; background: var(--blush);
+          clip-path: inset(100% 0 0 0); animation: rise 1.5s .1s var(--ease) forwards; }
+  .arch img { transform: scale(1.25); animation: zoom 14s .1s ease-out forwards; }
+  @keyframes rise { to { clip-path: inset(0 0 0 0); } }
+  @keyframes zoom { to { transform: scale(1.03); } }
+  .h-left, .h-right { position: relative; z-index: 4; opacity: 0; animation: fade 1s 1.1s var(--ease) forwards; }
+  .h-left p { font-size: 18px; max-width: 330px; margin: 14px 0 22px; }
+  .h-left .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .eyebrow { font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--coral); }
+  .h-right { justify-self: end; align-self: start; margin-top: 10px; display: grid; gap: 10px; width: min(100%, 260px); }
+  .fact { background: #fff; border-radius: 22px; padding: 14px 18px; box-shadow: 0 10px 30px rgba(58,33,40,.07); display: flex; align-items: center; gap: 14px; }
+  .fact b { font: 400 30px/1 "Yeseva One"; color: var(--coral); }
+  .fact span { font-size: 14px; line-height: 1.35; color: var(--muted); }
+  .fact.kid { background: var(--leaf2); } .fact.kid b { color: var(--leaf); }
+  @keyframes fade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+  section { padding: clamp(80px, 11vw, 140px) 0; }
+  .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 40px; }
+  h2 { font: 400 clamp(40px, 6vw, 86px)/1 "Yeseva One", serif; letter-spacing: -.01em; }
+  h2 i { font-style: normal; color: var(--coral); }
+  .head p { max-width: 380px; color: var(--muted); }
+
+  /* ── экскурсия по залам: горизонтальная лента арок ── */
+  .tour { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 50px 20px 20px; scrollbar-width: none;
+          scroll-padding-left: max(20px, calc((100vw - 1200px) / 2)); }
+  .tour::-webkit-scrollbar { display: none; }
+  .tour::before, .tour::after { content: ""; flex: 0 0 max(0px, calc((100vw - 1240px) / 2)); }
+  .room { flex: 0 0 clamp(250px, 26vw, 330px); scroll-snap-align: start; }
+  .room .ph { height: clamp(340px, 36vw, 460px); border-radius: var(--arch); overflow: hidden; background: var(--blush); }
+  .room img { transition: transform 1.2s var(--ease); }
+  .room:hover img { transform: scale(1.07); }
+  .room .n { display: flex; gap: 12px; align-items: baseline; margin-top: 16px; }
+  .room .n b { font: 400 15px "Yeseva One"; color: var(--coral); }
+  .room h3 { font: 400 24px/1.1 "Yeseva One"; }
+  .room p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+  .arrows { display: flex; gap: 8px; }
+  .arrows button { width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); font-size: 20px; cursor: pointer; transition: background .3s, color .3s, transform .3s var(--ease); }
+  .arrows button:hover { background: var(--ink); color: #fff; }
+  .arrows button:active { transform: scale(.92); }
+
+  /* ── bento из фигур (bentogrids.com) ── */
+  .shapes { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; gap: 14px; margin-top: 50px; }
+  .sh { position: relative; overflow: hidden; background: var(--blush); border-radius: 28px; transition: transform .6s var(--ease); }
+  .sh img { transition: transform 1.2s var(--ease); }
+  .sh:hover img { transform: scale(1.06); }
+  .sh.rv.in:hover { transform: rotate(-1.2deg) scale(1.01); transition-delay: 0s; }
+  .s1 { grid-column: span 2; grid-row: span 4; border-radius: var(--arch); }
+  .s2 { grid-column: span 2; grid-row: span 2; border-radius: 999px; aspect-ratio: 1; grid-row: span 2; justify-self: center; height: 100%; }
+  .s3 { grid-column: span 2; grid-row: span 2; background: var(--ink); display: grid; place-items: center; text-align: center; padding: 20px; }
+  .s3 p { font: 400 clamp(32px, 3.6vw, 52px)/1.02 "Yeseva One"; color: #ffe4ee; text-shadow: 0 0 6px #ff9fc6, 0 0 20px #ff5fa2, 0 0 44px #ff3d8e; animation: flick 7s infinite; }
+  @keyframes flick { 0%, 90%, 100% { opacity: 1; } 91% { opacity: .5; } 93% { opacity: 1; } 94% { opacity: .7; } }
+  .s4 { grid-column: span 3; grid-row: span 2; border-radius: 999px; }
+  .s5 { grid-column: span 1; grid-row: span 2; background: var(--leaf); color: #fff; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+  .s5 b { font: 400 44px/1 "Yeseva One"; }
+  .s5 span { font-size: 14px; line-height: 1.35; opacity: .85; }
+  .tag { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); white-space: nowrap; padding: 7px 14px; border-radius: 999px; background: rgba(255,247,244,.9); font-weight: 700; font-size: 13px;
+         backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+  /* ── «пока вы у мастера»: две дорожки времени ── */
+  .plan { display: grid; grid-template-columns: 380px 1fr; gap: 20px; margin-top: 50px; }
+  .svc { display: grid; gap: 8px; align-content: start; }
+  .svc button { display: flex; justify-content: space-between; align-items: center; gap: 12px; text-align: left; padding: 16px 20px; border-radius: 20px; border: 1.5px solid var(--line); background: #fff;
+                font: 700 16px Nunito; color: var(--ink); cursor: pointer; transition: border-color .3s, background .3s, transform .3s var(--ease); }
+  .svc button small { font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .svc button:active { transform: scale(.98); }
+  .svc button[aria-pressed=true] { border-color: var(--coral); background: var(--blush); }
+  .svc button[aria-pressed=true]::before { content: "✓"; color: var(--coral); margin-right: -4px; }
+  .board { background: #fff; border-radius: 32px; padding: clamp(22px, 4vw, 44px); display: flex; flex-direction: column; gap: 22px; box-shadow: 0 20px 60px rgba(58,33,40,.06); }
+  .axis { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); border-bottom: 1px dashed var(--line); padding-bottom: 8px; margin-left: 96px; }
+  .lane { display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center; transition: opacity .5s; }
+  .lane > b { font: 400 18px "Yeseva One"; }
+  .track { position: relative; height: 64px; border-radius: 18px; background: var(--paper); }
+  .seg { position: absolute; top: 6px; bottom: 6px; border-radius: 13px; padding: 0 12px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: block; line-height: 52px; font-weight: 800; font-size: 13px; color: #fff;
+         transform-origin: left; animation: grow .7s var(--ease) both; }
+  @keyframes grow { from { transform: scaleX(0); opacity: 0; } }
+  .seg.m { background: var(--coral); } .seg.m:nth-child(even) { background: #d7667f; }
+  .seg.k { background: var(--leaf); }
+  .lane.off { opacity: .25; }
+  .total { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .total b { font: 400 clamp(40px, 5vw, 60px)/1 "Yeseva One"; }
+  .total small { display: block; color: var(--muted); font-size: 14px; }
+  .switch { display: inline-flex; align-items: center; gap: 12px; font: 700 15px Nunito; background: none; border: 0; color: var(--ink); cursor: pointer; padding: 0; }
+  .switch i { width: 50px; height: 30px; border-radius: 99px; background: rgba(58,33,40,.18); position: relative; transition: background .3s; }
+  .switch i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; transition: transform .35s var(--ease); }
+  .switch[aria-checked=true] i { background: var(--leaf); }
+  .switch[aria-checked=true] i::after { transform: translateX(20px); }
+  .note { color: var(--muted); font-size: 15px; min-height: 3em; }
+
+  /* ── прайс: три карточки-меню ── */
+  .menus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 50px; }
+  .menu { background: #fff; border-radius: 220px 220px 32px 32px; padding: 70px 30px 30px; text-align: center; box-shadow: 0 20px 60px rgba(58,33,40,.06); }
+  .menu:nth-child(2) { background: var(--blush); }
+  .menu .ic { font: 400 15px "Yeseva One"; color: var(--coral); letter-spacing: .1em; }
+  .menu h3 { font: 400 34px/1 "Yeseva One"; margin: 8px 0 22px; }
+  .menu ul { list-style: none; padding: 0; text-align: left; }
+  .menu li { display: flex; justify-content: space-between; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .menu li b { white-space: nowrap; font-weight: 800; }
+  .menu li small { display: block; color: var(--muted); font-size: 13px; }
+
+  /* ── отзывы: одна цитата + метки ── */
+  .say { position: relative; margin-top: 40px; display: grid; grid-template-columns: 1fr auto; gap: 30px; align-items: end; }
+  .q { position: relative; min-height: 2.6em; font: 400 clamp(30px, 4.2vw, 58px)/1.12 "Yeseva One"; }
+  .q p { position: absolute; inset: 0 0 auto; opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .q p.on { position: relative; opacity: 1; transform: none; }
+  .q p::before { content: "«"; color: var(--coral); } .q p::after { content: "»"; color: var(--coral); }
+  .count { color: var(--muted); font-weight: 700; margin-top: 18px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 50px; }
+  .chips span { padding: 10px 18px; border-radius: 999px; background: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 6px 20px rgba(58,33,40,.06); }
+  .chips span:nth-child(3n+1) { background: var(--blush); } .chips span:nth-child(3n+2) { background: var(--leaf2); }
+
+  /* ── финальный CTA (cta.gallery) ── */
+  .final { background: var(--coral); color: #fff; border-radius: 44px; overflow: hidden; display: grid; grid-template-columns: 1.3fr 1fr; gap: 30px; align-items: center; padding: clamp(28px, 6vw, 80px); }
+  .final .neon { font: 400 clamp(60px, 10vw, 150px)/.9 "Yeseva One"; color: #fff; text-shadow: 0 0 8px rgba(255,255,255,.7), 0 0 30px rgba(255,200,220,.9); }
+  .final p { margin: 22px 0 26px; font-size: 18px; max-width: 470px; }
+  .final p a { border-bottom: 1.5px solid rgba(255,255,255,.55); }
+  .final .ph { height: clamp(320px, 40vw, 520px); border-radius: var(--arch); overflow: hidden; border: 8px solid rgba(255,255,255,.35); }
+  .final .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  footer { color: var(--muted); font-size: 13px; padding: 26px 0 120px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
+
+  .rv { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .rv.in { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav > a.hide-m { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 24px; min-height: 0; }
+    .hero h1 { position: relative; left: 0; right: 0; top: 0; font-size: clamp(64px, 19vw, 120px); }
+    .hero h1 .row:last-child { margin-top: 0; }
+    .arch { grid-column: 1; grid-row: 2; height: 62svh; margin-top: -10vw; }
+    .h-left { grid-row: 3; } .h-right { grid-row: 4; justify-self: stretch; width: 100%; grid-template-columns: 1fr 1fr; }
+    .fact.kid { grid-column: span 2; }
+    .shapes { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 110px; }
+    .s1 { grid-column: span 1; grid-row: span 3; } .s2 { grid-column: span 1; grid-row: span 2; aspect-ratio: auto; width: 100%; }
+    .s3 { grid-column: span 2; grid-row: span 2; } .s4 { grid-column: span 2; grid-row: span 2; } .s5 { grid-column: span 1; grid-row: span 1; }
+    .s5 b { font-size: 30px; } .s5 span { font-size: 12px; }
+    .plan { grid-template-columns: 1fr; }
+    .axis { margin-left: 0; } .lane { grid-template-columns: 1fr; gap: 6px; }
+    .menus { grid-template-columns: 1fr; }
+    .say { grid-template-columns: 1fr; }
+    .final { grid-template-columns: 1fr; } .final .ph { order: -1; height: 300px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
+    .rv { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Демо-концепт сайта для IM your space. Это не официальный сайт. Сделал Михаил Глазунов. <a href="/">Обо мне</a></div>
+
+<nav aria-label="Главное меню">
+  <a class="logo" href="#top" aria-label="IM your space, наверх">im</a>
+  <a class="hide-m" href="#tour"><span class="ls">Салон</span></a>
+  <a href="#kids"><span class="ls">С малышом</span></a>
+  <a href="#prices"><span class="ls">Цены</span></a>
+  <a class="btn" href="https://n203784.yclients.ru/" target="_blank" rel="noopener"><span class="ls">Записаться</span></a>
+</nav>
+
+<header class="hero" id="top">
+  <h1><span class="row"><span>IM your</span></span><span class="row"><span>space<i>.</i></span></span></h1>
+  <div class="h-left">
+    <div class="eyebrow">Салон красоты · Фили</div>
+    <p>Ногти, волосы, брови и spa в доме на Большой Филёвской. Пока вы у мастера, ребёнок играет в детской комнате.</p>
+    <div class="cta">
+      <a class="btn" href="https://n203784.yclients.ru/" target="_blank" rel="noopener"><span class="ls">Выбрать время</span></a>
+      <a class="btn alt" href="#kids"><span class="ls">Я с малышом</span></a>
+    </div>
+  </div>
+  <div class="arch"><img src="img/hero.jpg" alt="Розовое кресло-клетка под неоновой аркой с логотипом im" fetchpriority="high"></div>
+  <div class="h-right">
+    <a class="fact" href="https://2gis.ru/moscow/firm/70000001039249171" target="_blank" rel="noopener"><b>4,9</b><span>★★★★★<br>49 отзывов в 2ГИС</span></a>
+    <div class="fact"><b>10–22</b><span>ежедневно,<br>по записи</span></div>
+    <div class="fact kid"><b>✿</b><span>Детская игровая прямо в салоне</span></div>
+  </div>
+</header>
+
+<section id="tour" style="padding-bottom:0">
+  <div class="wrap head">
+    <h2 class="rv">Экскурсия<br>по <i>салону</i></h2>
+    <div class="arrows rv"><button type="button" id="prev" aria-label="Назад">←</button><button type="button" id="next" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="tour" id="tourList">
+    <article class="room"><div class="ph"><img src="img/manicure.jpg" alt="Маникюрная зона с бархатными стульями и полками лаков в арках" loading="lazy"></div><div class="n"><b>01</b><h3>Manicure zone</h3></div><p>Стол на несколько мастеров, лаки Luxio и Fedua</p></article>
+    <article class="room"><div class="ph"><img src="img/pedicure.jpg" alt="Педикюрная зона с бархатными креслами" loading="lazy"></div><div class="n"><b>02</b><h3>Pedicure zone</h3></div><p>Бархатные кресла на подиуме</p></article>
+    <article class="room"><div class="ph"><img src="img/neon.jpg" alt="Зал стилиста с неоновой надписью I'm your dream" loading="lazy"></div><div class="n"><b>03</b><h3>Hair & make-up</h3></div><p>Стрижки, окрашивание, причёски и макияж</p></article>
+    <article class="room"><div class="ph"><img src="img/spa.jpg" alt="Розовый кабинет spa с кушеткой" loading="lazy"></div><div class="n"><b>04</b><h3>Кабинет spa</h3></div><p>Spa head, эндосфера, массаж и чистка лица</p></article>
+    <article class="room"><div class="ph"><img src="img/house.jpg" alt="Детская игровая с домиком и лесенкой" loading="lazy"></div><div class="n"><b>05</b><h3>Игровая</h3></div><p>Домик, сухой бассейн, машинки</p></article>
+    <article class="room"><div class="ph"><img src="img/lounge.jpg" alt="Лаунж с розовым диваном и мраморными столиками" loading="lazy"></div><div class="n"><b>06</b><h3>Лаунж</h3></div><p>Кофе с конфетами, пока ждёте</p></article>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><h2 class="rv">Детали, которые<br><i>запоминают</i></h2><p class="rv">Зелень под потолком, золото, бархат и неоновые надписи. Гости пишут, что сначала их зацепил дизайн, а потом мастера.</p></div>
+    <div class="shapes">
+      <div class="sh s1 rv"><img src="img/reception.jpg" alt="Ресепшен с логотипом im и золотыми стеллажами" loading="lazy"><span class="tag">For you</span></div>
+      <div class="sh s2 rv"><img src="img/feathers.jpg" alt="Люстра из белых перьев" loading="lazy"></div>
+      <div class="sh s3 rv"><p>I'm your<br>dream!</p></div>
+      <div class="sh s4 rv"><img src="img/coffee.jpg" alt="Кофе с круассаном на мраморном столике" loading="lazy"><span class="tag">Кофе и десерт</span></div>
+      <div class="sh s5 rv"><b>3 года</b><span>«коллектив почти не менялся, это стабильность»</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="kids" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2 class="rv">Пока вы<br>у <i>мастера</i></h2><p class="rv">Выберите услуги и посмотрите, как пройдёт визит. Ребёнка можно взять с собой: в салоне есть детская игровая.</p></div>
+    <div class="plan rv">
+      <div class="svc" id="svc"></div>
+      <div class="board">
+        <div class="axis"><span>0</span><span>1 ч</span><span>2 ч</span><span>3 ч</span></div>
+        <div class="lane"><b>Вы</b><div class="track" id="mom"></div></div>
+        <div class="lane" id="kidLane"><b>Малыш</b><div class="track" id="kid"></div></div>
+        <button class="switch" id="sw" role="switch" aria-checked="true"><i></i>Беру с собой ребёнка</button>
+        <p class="note" id="note"></p>
+        <div class="total">
+          <div><small>Ориентировочно, по прайсу 2ГИС</small><b id="sum">3 190 ₽</b></div>
+          <a class="btn cor" href="https://n203784.yclients.ru/" target="_blank" rel="noopener"><span class="ls">Записаться онлайн</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prices" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><h2 class="rv">Меню <i>салона</i></h2><p class="rv">Главное из прайса. Полный список, больше 200 позиций, есть в онлайн-записи.</p></div>
+    <div class="menus">
+      <div class="menu rv"><div class="ic">01</div><h3>Ногти</h3><ul>
+        <li><span>Маникюр + гель-лак</span><b>3 190 ₽</b></li>
+        <li><span>То же у ТОП-мастера</span><b>3 490 ₽</b></li>
+        <li><span>Педикюр + гель-лак</span><b>3 800 ₽</b></li>
+        <li><span>Экспресс-педикюр<small>только пальчики</small></span><b>2 000 ₽</b></li>
+        <li><span>Френч гель-лаком</span><b>2 400 ₽</b></li>
+        <li><span>Парафин для рук или ног</span><b>1 000 ₽</b></li></ul></div>
+      <div class="menu rv"><div class="ic">02</div><h3>Волосы</h3><ul>
+        <li><span>Авторская стрижка<small>с мытьём и укладкой, по длине</small></span><b>3 500–4 400 ₽</b></li>
+        <li><span>Стрижка одним срезом</span><b>2 100 ₽</b></li>
+        <li><span>Стрижка чёлки</span><b>1 300 ₽</b></li>
+        <li><span>Балаяж, шатуш, омбре</span><b>от 8 000 ₽</b></li>
+        <li><span>Air Touch «Бразильский блонд»</span><b>от 10 000 ₽</b></li></ul></div>
+      <div class="menu rv"><div class="ic">03</div><h3>SPA и тело</h3><ul>
+        <li><span>Spa head «Перезагрузка души»<small>2 часа, уход Davines и чай</small></span><b>9 500 ₽</b></li>
+        <li><span>«Перезагрузка 2.0»<small>3 часа, с массажем тела</small></span><b>14 000 ₽</b></li>
+        <li><span>Эндосфера, лицо<small>тест-драйв, 35 мин</small></span><b>4 500 ₽</b></li>
+        <li><span>Эндосфера, тело<small>тест-драйв, 75 мин</small></span><b>5 500 ₽</b></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow rv">Отзывы · 4,9 из 5</div>
+    <div class="say">
+      <div>
+        <div class="q" id="q" aria-live="polite">
+          <p class="on">Могу прийти с ребёнком и при этом расслабиться. Выйти красивой и счастливой.</p>
+          <p>Маникюр держится минимум три недели без единого скола.</p>
+          <p>Исправила все огрехи стрижки из дорогого салона на Тверской.</p>
+          <p>Собиралась здесь на свадьбу и была самой красивой невестой.</p>
+          <p>Спа с массажем — выходишь, как будто из отпуска.</p>
+        </div>
+        <div class="count" id="qc">1 / 5 · 2ГИС</div>
+      </div>
+      <div class="arrows"><button type="button" id="qp" aria-label="Предыдущий отзыв">←</button><button type="button" id="qn" aria-label="Следующий отзыв">→</button></div>
+    </div>
+    <div class="chips rv" aria-label="О чём пишут в 2ГИС">
+      <span>Детская комната</span><span>Качественный маникюр</span><span>Приятная атмосфера</span><span>Отличный персонал</span><span>Быстро и качественно</span><span>Большой выбор услуг</span><span>Кофе с конфетами</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="final rv">
+      <div>
+        <div class="neon">Hi, girls!</div>
+        <p>Большая Филёвская ул., 4, 1 этаж. Ежедневно 10:00–22:00, по записи.<br>
+          <a href="tel:+74993222073">+7 499 322-20-73</a> · <a href="https://wa.me/79588094252" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://t.me/imyourspace7" target="_blank" rel="noopener">Telegram</a></p>
+        <div class="btns">
+          <a class="btn" href="https://n203784.yclients.ru/" target="_blank" rel="noopener"><span class="ls">Онлайн-запись</span></a>
+          <a class="btn alt" href="https://2gis.ru/moscow/firm/70000001039249171" target="_blank" rel="noopener"><span class="ls">Как добраться</span></a>
+        </div>
+      </div>
+      <div class="ph"><img src="img/playroom.jpg" alt="Детская игровая с мягкими игрушками" loading="lazy"></div>
+    </div>
+    <footer><span>© IM your space</span><span>Цены ориентировочные, по данным 2ГИС на ноябрь 2026. Фото из карточки салона в 2ГИС.</span></footer>
+  </div>
+</section>
+
+<script>
+  // letter-swap
+  document.querySelectorAll('.ls').forEach(el => {
+    const t = el.textContent; el.setAttribute('aria-label', t); el.textContent = '';
+    [...t].forEach((c, i) => { const s = document.createElement('span'); s.textContent = c; s.dataset.c = c; s.setAttribute('aria-hidden', 'true'); s.style.transitionDelay = i * 18 + 'ms'; el.append(s); });
+  });
+  const rub = v => v.toLocaleString('ru-RU') + ' ₽';
+
+  // экскурсия: стрелки
+  const tour = document.getElementById('tourList');
+  const step = () => tour.querySelector('.room').offsetWidth + 18;
+  document.getElementById('prev').onclick = () => tour.scrollBy({ left: -step(), behavior: 'smooth' });
+  document.getElementById('next').onclick = () => tour.scrollBy({ left: step(), behavior: 'smooth' });
+
+  // визит: цены из 2ГИС; время у spa и эндосферы из прайса, остальное примерно
+  const S = [['Маникюр + гель-лак', 3190, 90], ['Педикюр + гель-лак', 3800, 90], ['Авторская стрижка', 3500, 60, 1], ['Spa head', 9500, 120], ['Эндосфера, лицо', 4500, 35]];
+  const KID = ['домик с лесенкой', 'сухой бассейн', 'машинки и дорожка', 'книжки и игрушки'];
+  const on = [0]; let kid = true;
+  const svc = document.getElementById('svc'), sw = document.getElementById('sw');
+  S.forEach(([n, p, , from], i) => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.innerHTML = `<span>${n}</span><small>${from ? 'от ' : ''}${rub(p)}</small>`;
+    b.onclick = () => { const k = on.indexOf(i); k > -1 ? on.splice(k, 1) : on.push(i); draw(); };
+    svc.append(b);
+  });
+  sw.onclick = () => { kid = !kid; draw(); };
+  let scale = 180;
+  const pct = m => m / scale * 100;
+  function draw() {
+    [...svc.children].forEach((b, i) => b.setAttribute('aria-pressed', on.includes(i)));
+    scale = Math.max(180, Math.ceil(on.reduce((a, i) => a + S[i][2], 0) / 60) * 60);
+    document.querySelector('.axis').innerHTML = Array.from({ length: scale / 60 + 1 }, (_, h) => `<span>${h ? h + ' ч' : 0}</span>`).join('');
+    let t = 0, sum = 0, from = false, mom = '';
+    on.forEach((i, k) => {
+      const [n, p, m, f] = S[i];
+      mom += `<div class="seg m" style="left:${pct(t)}%;width:calc(${pct(m)}% - 4px);animation-delay:${k * 120}ms">${n}</div>`;
+      t += m; sum += p; from = from || f;
+    });
+    document.getElementById('mom').innerHTML = mom;
+    let kh = '', kt = 0;
+    if (t) for (let j = 0; kt < t; j++) { const d = Math.min(Math.max(45, Math.ceil(t / 3)), t - kt); kh += `<div class="seg k" style="left:${pct(kt)}%;width:calc(${pct(d)}% - 4px);animation-delay:${200 + j * 120}ms">${KID[j % KID.length]}</div>`; kt += d; }
+    document.getElementById('kid').innerHTML = kid ? kh : '';
+    document.getElementById('kidLane').classList.toggle('off', !kid);
+    sw.setAttribute('aria-checked', kid);
+    document.getElementById('sum').textContent = t ? (from ? 'от ' : '') + rub(sum) : '0 ₽';
+    const h = Math.floor(t / 60), mm = t % 60, dur = t ? `≈ ${h ? h + ' ч' : ''}${h && mm ? ' ' : ''}${mm ? mm + ' мин' : ''}` : '';
+    document.getElementById('note').textContent = !t ? 'Отметьте хотя бы одну услугу.'
+      : kid ? `${dur} для вас — и столько же игры для малыша. ${t > 180 ? 'Длинный визит: уточните у администратора, что можно сделать параллельно.' : ''}`
+      : `${dur}. Кофе или чай с конфетами — пока ждёте.`;
+  }
+  draw();
+
+  // отзывы
+  const qs = [...document.querySelectorAll('#q p')]; let qi = 0;
+  const showQ = d => { qs[qi].classList.remove('on'); qi = (qi + d + qs.length) % qs.length; qs[qi].classList.add('on'); document.getElementById('qc').textContent = `${qi + 1} / ${qs.length} · 2ГИС`; };
+  document.getElementById('qp').onclick = () => showQ(-1);
+  document.getElementById('qn').onclick = () => showQ(1);
+
+  // появление при скролле
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + 'ms'; io.observe(el); });
+</script>
+</body>
+</html>
