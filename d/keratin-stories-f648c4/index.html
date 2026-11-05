@@ -145,10 +145,11 @@
   .pc:hover img, .pc:focus-visible img { transform: scale(1.08); }
   .pc .vn { position: absolute; z-index: 2; left: 18px; bottom: 22px; writing-mode: vertical-rl; transform: rotate(180deg); font: 400 30px/1 Prata; white-space: nowrap; transition: opacity .4s var(--ease), transform .5s var(--ease); }
   .pc .no { position: absolute; z-index: 2; top: 16px; left: 18px; font-size: 13px; letter-spacing: .14em; color: #e9e2da; }
-  .pc .inf { position: absolute; z-index: 2; left: 18px; right: 18px; bottom: 20px; opacity: 0; transform: translateY(26px); transition: opacity .5s var(--ease), transform .6s var(--ease); }
+  .pc .inf { position: absolute; z-index: 2; left: 14px; right: 12px; bottom: 20px; opacity: 0; transform: translateY(26px); transition: opacity .5s var(--ease), transform .6s var(--ease); }
   .pc:hover .vn, .pc:focus-visible .vn { opacity: 0; transform: rotate(180deg) translateY(-20px); }
   .pc:hover .inf, .pc:focus-visible .inf { opacity: 1; transform: none; }
-  .inf h3 { font: 400 24px/1.1 Prata; margin-bottom: 10px; }
+  .inf h3 { font: 400 clamp(17px, 1.42vw, 23px)/1.12 Prata; margin-bottom: 10px; }
+  .inf h3 small { display: block; margin-top: 4px; font: 500 12px/1.3 Onest; letter-spacing: .04em; color: var(--gloss2); }
   .inf p { font-size: 14px; line-height: 1.45; color: #dcd6cf; margin-bottom: 12px; }
   .inf dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 13px; margin-bottom: 12px; }
   .inf dt { color: var(--mute); } .inf dd { font-weight: 600; }
@@ -311,7 +312,7 @@
     .pc .vn { display: none; }
     .pc .inf { opacity: 1; transform: none; }
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1240px) {
     .pcs { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -20px; padding: 0 20px; }
     .pcs::-webkit-scrollbar { display: none; }
     .pc, .pc:nth-child(n) { flex: 0 0 min(78vw, 340px); height: 500px; margin-top: 0; scroll-snap-align: start; }
@@ -436,17 +437,17 @@
     <div class="head"><h2 class="rv">Шесть историй<br>про <em>гладкость</em></h2><p class="rv">Горячие процедуры делают волосы прямыми и гладкими. Холодные восстанавливают их качество. Нажмите на прядь — посчитаем цену под вашу длину.</p></div>
     <div class="pcs">
       <button class="pc rv" type="button" data-p="keratin"><img src="img/keratin.jpg" alt="Длинные прямые волосы после кератина" loading="lazy"><span class="no">01</span><span class="vn">Кератин</span>
-        <span class="inf"><h3>Кератиновое выпрямление</h3><p>Выпрямит от лёгкой волны до тугого завитка и уберёт пористость.</p><dl><dt>держится</dt><dd>3–6 мес., эффект копится</dd><dt>цена</dt><dd>от 7 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
+        <span class="inf"><h3>Кератиновое выпрямление</h3><p>Выпрямит от лёгкой волны до тугого завитка и уберёт пористость. Эффект накапливается.</p><dl><dt>держится</dt><dd>3–6 мес.</dd><dt>цена</dt><dd>от 7 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
       <button class="pc rv" type="button" data-p="botox"><img src="img/botox.jpg" alt="Блестящие волосы после ботокса" loading="lazy"><span class="no">02</span><span class="vn">Ботокс</span>
         <span class="inf"><h3>Ботокс для волос</h3><p>Уберёт пушистость, разгладит и сделает волосы послушными. Справится с лёгким завитком.</p><dl><dt>держится</dt><dd>до 3 месяцев</dd><dt>цена</dt><dd>от 7 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
       <button class="pc rv" type="button" data-p="nano"><img src="img/nano.jpg" alt="Гладкие волосы после нанопластики" loading="lazy"><span class="no">03</span><span class="vn">Нанопластика</span>
-        <span class="inf"><h3>Нанопластика «полуперманент»</h3><p>Самое сильное выпрямление — для тугого завитка и гормональной волны. Только для неосветлённых волос.</p><dl><dt>эффект</dt><dd>отрастают только корни</dd><dt>цена</dt><dd>от 11 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
+        <span class="inf"><h3>Нанопластика<small>в технике «полуперманент»</small></h3><p>Самое сильное выпрямление — для тугого завитка и гормональной волны. Только для неосветлённых волос.</p><dl><dt>эффект</dt><dd>отрастают корни</dd><dt>цена</dt><dd>от 11 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
       <button class="pc rv" type="button" data-p="total"><img src="img/total.jpg" alt="Платиновый блонд после реконструкции" loading="lazy"><span class="no">04</span><span class="vn">Реконструкция</span>
         <span class="inf"><h3>Тотальная реконструкция</h3><p>Для блонда и сильно повреждённых волос: холодное восстановление и кератин или ботокс за один визит.</p><dl><dt>держится</dt><dd>3–6 месяцев</dd><dt>цена</dt><dd>от 11 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
       <button class="pc rv" type="button" data-p="lebel"><img src="img/cold.jpg" alt="Составы для холодного ухода" loading="lazy"><span class="no">05</span><span class="vn">Холодные уходы</span>
         <span class="inf"><h3>Холодные уходы</h3><p>«Абсолютное счастье» Lebel в 12 шагов, холодное восстановление и холодный ботокс. Без утюжка, лучше курсом.</p><dl><dt>держится</dt><dd>2–6 недель</dd><dt>цена</dt><dd>от 4 000 ₽</dd></dl><span class="go">Рассчитать по длине →</span></span></button>
       <button class="pc rv" type="button" data-p="afro"><img src="img/afro.jpg" alt="Афрокудри до выпрямления" loading="lazy"><span class="no">06</span><span class="vn">Афро</span>
-        <span class="inf"><h3>Выпрямление афро</h3><p>В технике «полуперманент», по желанию в 4 руки — двумя мастерами одновременно, чтобы было быстрее.</p><dl><dt>расчёт</dt><dd>после консультации или по фото</dd><dt>цена</dt><dd>от 20 000 ₽</dd></dl><span class="go">Подробнее в калькуляторе →</span></span></button>
+        <span class="inf"><h3>Выпрямление афро</h3><p>В технике «полуперманент», по желанию в 4 руки — двумя мастерами одновременно, чтобы было быстрее.</p><dl><dt>расчёт</dt><dd>по фото или очно</dd><dt>цена</dt><dd>от 20 000 ₽</dd></dl><span class="go">Подробнее в калькуляторе →</span></span></button>
     </div>
   </div>
 </section>
