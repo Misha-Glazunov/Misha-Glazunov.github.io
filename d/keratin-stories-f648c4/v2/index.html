@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- превью на demo.animemory.ru; при переносе на keratinstories.ru убрать noindex -->
+<meta name="robots" content="noindex, nofollow">
+<title>Кератин Сторис — студия выпрямления и реконструкции волос в Москве</title>
+<meta name="description" content="Кератиновое выпрямление, ботокс, нанопластика и реконструкция волос у м. Баррикадная. 5,0 на Яндекс Картах. Калькулятор стоимости по прайсу студии.">
+<link rel="icon" href="favicon.ico" sizes="any" media="(prefers-color-scheme: light)">
+<link rel="icon" href="img/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<style>
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 500;font-display:swap;src:url(fonts/cormorant-normal-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300 500;font-display:swap;src:url(fonts/cormorant-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/cormorant-italic-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/cormorant-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:300 600;font-display:swap;src:url(fonts/montserrat-normal-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:300 600;font-display:swap;src:url(fonts/montserrat-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root { --bg: #161616; --card: #212121; --card2: #2a2a2a; --tx: #f2efea; --mute: #a19c96; --line: rgba(242,239,234,.16); --ease: cubic-bezier(.22,1,.36,1); }
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { background: var(--bg); color: var(--tx); font: 300 16px/1.65 Montserrat, system-ui, sans-serif; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--tx); outline-offset: 3px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.serif, h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; }
+h2 { font-size: clamp(40px, 7vw, 68px); line-height: 1.05; text-align: center; margin-bottom: clamp(28px, 4vw, 48px); padding-bottom: .08em; }
+section { padding: clamp(64px, 9vw, 110px) 0; }
+.lead { max-width: 640px; margin: -20px auto 36px; text-align: center; color: var(--mute); }
+
+/* кнопки — прямоугольные с белой обводкой, как на текущем сайте */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 26px; border: 1px solid var(--tx); background: transparent; cursor: pointer;
+       font: 600 15px/1.2 'Cormorant Garamond', Georgia, serif; font-size: 18px; letter-spacing: .02em; text-align: center; transition: background .35s var(--ease), color .35s var(--ease); }
+.btn:hover { background: var(--tx); color: var(--bg); }
+.btn.fill { background: var(--tx); color: var(--bg); }
+.btn.fill:hover { background: transparent; color: var(--tx); }
+.btn.sm { min-height: 40px; padding: 8px 16px; font-size: 16px; }
+.link { font-size: 14px; border-bottom: 1px solid var(--line); padding-bottom: 2px; cursor: pointer; background: none; border-top: 0; border-left: 0; border-right: 0; transition: border-color .3s; }
+.link:hover { border-bottom-color: var(--tx); }
+
+/* ── шапка ── */
+.top { position: fixed; z-index: 40; inset: 0 0 auto; transition: background .4s, backdrop-filter .4s; }
+.top.solid { background: rgba(22,22,22,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 24px; height: 64px; }
+.logo { width: 64px; flex: none; } .logo img { height: auto; }
+.top nav { display: flex; gap: 22px; margin-left: auto; font-size: 14px; }
+.top nav a { opacity: .85; transition: opacity .3s; } .top nav a:hover { opacity: 1; }
+.burger { display: none; width: 44px; height: 44px; margin-left: auto; background: none; border: 0; cursor: pointer; position: relative; }
+.burger i { position: absolute; left: 10px; right: 10px; height: 1px; background: currentColor; transition: transform .4s var(--ease); }
+.burger i:first-child { top: 18px; } .burger i:last-child { top: 25px; }
+.burger[aria-expanded=true] i:first-child { transform: translateY(3.5px) rotate(45deg); } .burger[aria-expanded=true] i:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* ── первый экран ── */
+.hero { position: relative; min-height: 100svh; display: grid; grid-template-columns: 1.15fr 1fr; background: #1b1b1b; }
+.hero .ph { position: relative; overflow: hidden; order: 2; }
+.hero .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; animation: zoom 9s ease-out both; }
+@keyframes zoom { from { transform: scale(1.08); } }
+.hero .tx { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 24px 60px; }
+h1 { font-weight: 300; font-size: clamp(34px, 4.6vw, 70px); line-height: 1.1; letter-spacing: .06em; white-space: nowrap; padding-bottom: .06em; }
+.hero .sub { margin: 10px 0 34px; font-size: clamp(14px, 1.3vw, 17px); letter-spacing: .08em; color: #d8d3cd; }
+.hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.ya { display: inline-flex; align-items: center; gap: 12px; margin-top: 34px; padding: 8px 16px 8px 8px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; line-height: 1.35; text-align: left; transition: border-color .3s; }
+.ya:hover { border-color: var(--tx); }
+.ya b { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--tx); font: 500 18px 'Cormorant Garamond', serif; }
+.ya small { display: block; color: var(--mute); font-size: 12px; }
+.fadein { animation: fade 1s .2s var(--ease) both; }
+@keyframes fade { from { opacity: 0; transform: translateY(16px); } }
+
+/* ── карусели (услуги, видео, мастера) ── */
+.car { position: relative; }
+.track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 16px; padding: 0 16px 6px; scrollbar-width: none; overscroll-behavior-x: contain; }
+.track::-webkit-scrollbar { display: none; }
+.track > * { scroll-snap-align: start; flex: none; }
+@media (min-width: 1232px) { .track { padding-inline: calc((100vw - 1200px) / 2 + 16px); scroll-padding-left: calc((100vw - 1200px) / 2 + 16px); } }
+.arrows { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
+.arrows button { width: 48px; height: 48px; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 20px; transition: border-color .3s, opacity .3s; }
+.arrows button:hover { border-color: var(--tx); }
+.arrows button:disabled { opacity: .3; cursor: default; }
+
+/* услуги */
+.svc { width: min(78vw, 320px); background: var(--card); padding: 14px 14px 20px; display: flex; flex-direction: column; }
+.svc .im { aspect-ratio: 1; overflow: hidden; border-radius: 22px; margin-bottom: 18px; }
+.svc .im img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.svc:hover .im img { transform: scale(1.05); }
+.svc h3 { font-size: 26px; line-height: 1.1; margin-bottom: 8px; padding-bottom: .05em; }
+.svc h3 small { display: block; font-size: 18px; color: var(--mute); margin-top: 2px; }
+.svc p { font-size: 14px; color: #cfcac4; margin-bottom: 14px; }
+.svc .pr { font: 400 24px 'Cormorant Garamond', serif; margin-top: auto; margin-bottom: 14px; }
+.svc .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.svc .new { position: absolute; margin: 12px; padding: 3px 10px; background: var(--tx); color: var(--bg); font-size: 11px; font-weight: 600; letter-spacing: .14em; }
+.svc .im { position: relative; }
+.after { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px; }
+
+/* модалка «Подробнее» */
+dialog { width: min(640px, calc(100vw - 24px)); max-height: calc(100svh - 40px); padding: 0; border: 1px solid var(--line); background: var(--card); color: var(--tx); }
+dialog::backdrop { background: rgba(0,0,0,.72); backdrop-filter: blur(4px); }
+dialog[open] { animation: fade .45s var(--ease); }
+.dlg { padding: clamp(24px, 4vw, 40px); display: grid; gap: 14px; }
+.dlg h3 { font-size: clamp(30px, 4vw, 40px); line-height: 1.05; padding-right: 40px; }
+.dlg p, .dlg li { color: #dcd7d1; font-size: 15px; }
+.dlg ul { padding-left: 18px; display: grid; gap: 4px; }
+.dlg b { font-weight: 600; color: var(--tx); }
+.dlg .pr { font: 400 26px 'Cormorant Garamond', serif; border-top: 1px solid var(--line); padding-top: 14px; }
+.dlg .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+.x { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; background: none; border: 0; cursor: pointer; font-size: 28px; line-height: 1; }
+
+/* видео */
+.vid { width: 160px; aspect-ratio: 3 / 4; position: relative; overflow: hidden; background: var(--card); }
+.vid img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.vid:hover img { transform: scale(1.06); }
+.vid::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px; background: rgba(22,22,22,.7) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/22px no-repeat; }
+
+/* ── калькулятор ── */
+#calc { background: #1b1b1b; }
+.calc { display: grid; grid-template-columns: minmax(280px, 440px) 1fr; gap: clamp(24px, 5vw, 64px); align-items: start; }
+.hairbox { position: sticky; top: 90px; aspect-ratio: 2 / 3; overflow: hidden; background: var(--card); cursor: ns-resize; touch-action: none; user-select: none; border-radius: 22px; }
+.hairbox img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; pointer-events: none; }
+.shade { position: absolute; left: 0; right: 0; top: 0; height: 100%; background: rgba(27,27,27,.86); transform: translateY(var(--y, 60%)); transition: transform .45s var(--ease); }
+.hairbox.drag .shade { transition: none; }
+.shade::before { content: ""; position: absolute; left: 0; right: 0; top: 0; border-top: 1.5px dashed var(--tx); }
+.tag { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); padding: 7px 16px; background: var(--tx); color: var(--bg); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.ticks { position: absolute; right: 10px; top: 0; bottom: 0; pointer-events: none; }
+.ticks span { position: absolute; right: 0; font-size: 11px; color: #fff; text-shadow: 0 1px 4px #000; transform: translateY(-50%); display: flex; align-items: center; gap: 6px; }
+.ticks span::after { content: ""; width: 12px; height: 1px; background: rgba(255,255,255,.7); }
+.hint { position: absolute; left: 14px; top: 14px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: rgba(22,22,22,.6); padding: 5px 10px; }
+.ctrl { display: grid; gap: 26px; }
+.ctrl fieldset { border: 0; padding: 0; min-width: 0; }
+.ctrl legend { font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; display: flex; justify-content: space-between; width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips button { min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 14px; transition: background .3s, color .3s, border-color .3s, opacity .3s; }
+.chips button:hover { border-color: rgba(242,239,234,.55); }
+.chips button[aria-pressed=true] { background: var(--tx); color: var(--bg); border-color: var(--tx); }
+.chips button:disabled { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+.chips.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.chips.seg button + button { border-left: 0; }
+.chips.seg button small { display: block; font-size: 12px; opacity: .7; }
+input[type=range] { width: 100%; accent-color: var(--tx); height: 28px; }
+.res { border-top: 1px solid var(--line); padding-top: 22px; display: grid; gap: 12px; }
+.sum { font: 400 clamp(46px, 6vw, 72px)/1 'Cormorant Garamond', serif; }
+.sum small { display: block; font: 400 14px Montserrat; color: var(--mute); margin-bottom: 6px; }
+.lines { list-style: none; padding: 0; font-size: 14px; color: #d4cfc9; display: grid; gap: 4px; }
+.lines li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
+.note { font-size: 14px; min-height: 1.6em; }
+.fine { color: var(--mute); font-size: 13px; }
+.res .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ── акции ── */
+.offer { max-width: 760px; margin: 0 auto; background: var(--card); padding: clamp(26px, 5vw, 50px); text-align: center; }
+.offer .eb { font: italic 400 26px 'Cormorant Garamond', serif; color: var(--mute); }
+.offer h3 { font-size: clamp(34px, 5vw, 48px); letter-spacing: .06em; margin: 2px 0 12px; }
+.offer > p { max-width: 520px; margin: 0 auto 22px; color: #dcd7d1; }
+.offer table { width: 100%; border-collapse: collapse; text-align: left; }
+.offer td { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.offer td:last-child { text-align: right; white-space: nowrap; }
+.offer s { color: var(--mute); margin-right: 8px; }
+.offer td b { font-weight: 600; }
+.offer .fine { margin-top: 16px; }
+
+/* ── о студии: три варианта раскладки ── */
+.about-t { text-align: center; max-width: 640px; margin: 0 auto; }
+.about-t .k { font: 500 clamp(22px, 2.6vw, 28px)/1.25 'Cormorant Garamond', serif; margin-bottom: 30px; }
+.about-t p { color: #dcd7d1; margin-bottom: 14px; }
+.gal img { width: 100%; height: 100%; object-fit: cover; }
+.gal figure { overflow: hidden; border-radius: 18px; background: var(--card); }
+/* A — стопка, как в наброске Юлии */
+.gal[data-v=a] { display: grid; gap: 14px; max-width: 960px; margin: 0 auto 40px; }
+.gal[data-v=a] figure { aspect-ratio: 16 / 9; }
+/* B — большое фото + два рядом */
+.gal[data-v=b] { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 auto 40px; }
+.gal[data-v=b] figure { aspect-ratio: 16 / 9; }
+.gal[data-v=b] figure:first-child { grid-column: span 2; aspect-ratio: 21 / 9; }
+/* C — лента на всю ширину */
+.gal[data-v=c] { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -16px 40px; padding: 0 16px; }
+.gal[data-v=c]::-webkit-scrollbar { display: none; }
+.gal[data-v=c] figure { flex: 0 0 min(86vw, 1000px); aspect-ratio: 16 / 9; scroll-snap-align: center; }
+/* D — вертикальные фото шахматкой: каждая вторая колонка ниже */
+.gal:not([data-v=d]) .t, .gal[data-v=d] .w { display: none; }
+.gal[data-v=d] { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding-bottom: 60px; margin: 0 auto 40px; }
+.gal[data-v=d] figure { aspect-ratio: 9 / 16; }
+/* первые 3 ребёнка — скрытые широкие фото, поэтому колонки 2 и 4 = дети 4n+5 и 4n+7; на десктопе 8 фото */
+.gal[data-v=d] .t:nth-child(4n+5), .gal[data-v=d] .t:nth-child(4n+7) { transform: translateY(60px); }
+.gal[data-v=d] .t:nth-child(n+12) { display: none; }
+@media (max-width: 900px) { .gal[data-v=d] { grid-template-columns: 1fr 1fr; gap: 10px; padding-bottom: 40px; }
+  .gal[data-v=d] .t:nth-child(n) { transform: none; } .gal[data-v=d] .t:nth-child(odd) { transform: translateY(40px); } .gal[data-v=d] .t:nth-child(n+10) { display: none; } }
+.pick { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin: -16px auto 26px; padding: 10px 14px; border: 1px dashed rgba(242,239,234,.35); width: fit-content; font-size: 13px; color: var(--mute); }
+.pick button { min-height: 36px; padding: 4px 14px; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 13px; }
+.pick button[aria-pressed=true] { background: var(--tx); color: var(--bg); }
+
+/* ── почему мы ── */
+.why { background: var(--card); max-width: 1000px; margin: 0 auto; padding: clamp(36px, 6vw, 70px) clamp(18px, 5vw, 60px); }
+.why ol { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 50px; }
+.why li { display: grid; grid-template-columns: 1.25em 1fr; grid-template-rows: auto 1fr; gap: 0 18px; align-items: start; font-size: clamp(56px, 7vw, 84px); }
+.why .n { font: 300 1em/.9 'Cormorant Garamond', serif; grid-row: span 2; }
+.why h3 { font-size: clamp(25px, 2.6vw, 32px); line-height: 1.1; margin-bottom: 8px; padding-bottom: .05em; }
+.why p { color: #cfcac4; font-size: 15px; }
+
+/* мастера */
+.ms { width: min(70vw, 260px); }
+.ms .im { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px; background: var(--card); margin-bottom: 14px; }
+.ms .im img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; transition: transform 1.2s var(--ease); }
+.ms:hover .im img { transform: scale(1.05); }
+.ms h3 { font-size: 26px; line-height: 1.1; padding-bottom: .05em; }
+.ms .r { font-size: 13px; color: var(--mute); margin: 2px 0 8px; }
+.ms p { font-size: 14px; color: #d4cfc9; }
+.ms .top-m { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--tx); padding: 2px 8px; margin-bottom: 8px; }
+
+/* ── Яндекс ── */
+.yx { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+.yx .big { font: 300 clamp(110px, 14vw, 170px)/.85 'Cormorant Garamond', serif; }
+.yx .stars { letter-spacing: .2em; font-size: 20px; margin: 10px 0 4px; }
+.yx .sub { color: var(--mute); margin-bottom: 22px; }
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 130px 1fr 44px; gap: 12px; align-items: center; font-size: 14px; }
+.bar i { height: 2px; background: var(--card2); position: relative; }
+.bar i::after { content: ""; position: absolute; inset: 0; right: auto; width: var(--v); background: var(--tx); }
+.bar b { font-weight: 500; text-align: right; }
+.yx .aw { display: inline-block; margin-top: 22px; font-size: 14px; }
+.quotes { display: grid; gap: 12px; }
+.quotes figure { background: var(--card); padding: 18px 22px; }
+.quotes p { font: italic 400 21px/1.35 'Cormorant Garamond', serif; }
+.yx .more { margin-top: 18px; }
+
+/* ── FAQ ── */
+.faq { max-width: 860px; margin: 0 auto; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font: 400 clamp(21px, 2.4vw, 26px)/1.25 'Cormorant Garamond', serif; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { flex: 0 0 36px; height: 36px; border: 1px solid var(--line); position: relative; transition: transform .4s var(--ease); }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 11px; right: 11px; top: 50%; height: 1px; background: currentColor; }
+.faq summary i::after { transform: rotate(90deg); }
+.faq details[open] summary i { transform: rotate(45deg); }
+.faq .a { padding: 0 0 22px; color: #d4cfc9; display: grid; gap: 8px; font-size: 15px; }
+.faq .a ul { padding-left: 18px; }
+
+/* ── контакты ── */
+.contacts { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(24px, 4vw, 50px); align-items: stretch; }
+.contacts .info { display: grid; gap: 20px; align-content: start; }
+.contacts h4 { font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
+.contacts .info p, .contacts .info a:not(.btn) { font-size: 17px; }
+.contacts .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.soc { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.soc a { border-bottom: 1px solid var(--line); }
+.map { min-height: 380px; background: var(--card); overflow: hidden; }
+.map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; }
+footer { border-top: 1px solid var(--line); padding: 30px 0 40px; font-size: 13px; color: var(--mute); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 30px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+footer a:hover { color: var(--tx); }
+
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+
+@media (max-width: 1000px) {
+  .top nav { display: none; position: fixed; inset: 64px 0 auto; flex-direction: column; gap: 0; padding: 8px 16px 20px; background: rgba(22,22,22,.97); font-size: 18px; }
+  .top nav.open { display: flex; }
+  .top nav a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .burger { display: block; }
+  .top .wrap > .btn { display: none; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero .ph { position: absolute; inset: 0; }
+  .hero .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(22,22,22,.35), rgba(22,22,22,.1) 35%, rgba(22,22,22,.55) 70%, rgba(22,22,22,.9)); }
+  .hero .tx { position: relative; justify-content: flex-end; padding: 100px 16px 40px; min-height: 100svh; }
+  h1 { font-size: min(8.4vw, 52px); letter-spacing: .04em; }
+  .hero .sub { font-size: 13px; letter-spacing: .04em; }
+  .ya { margin-top: 22px; background: rgba(22,22,22,.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .calc { grid-template-columns: 1fr; }
+  .hairbox { position: relative; top: 0; }
+  .why ol { grid-template-columns: 1fr; gap: 30px; }
+  .gal[data-v=b] { grid-template-columns: 1fr; } .gal[data-v=b] figure:first-child { grid-column: auto; aspect-ratio: 16 / 9; }
+  .yx { grid-template-columns: 1fr; }
+  .contacts { grid-template-columns: 1fr; }
+  .arrows { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .rv { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#hero" aria-label="Кератин Сторис, наверх"><img src="img/logo.png" alt="KS Keratin Stories" width="700" height="461"></a>
+    <nav id="nav" aria-label="Разделы">
+      <a href="#services">Услуги</a><a href="#calc">Стоимость</a><a href="#offers">Акции</a><a href="#about">О студии</a><a href="#team">Команда</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a><a href="price/">Прайс</a>
+    </nav>
+    <a class="btn sm" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню"><i></i><i></i></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero" style="padding:0">
+  <div class="ph"><img src="img/hero.jpg" alt="Юлия Матковская, основательница студии" width="959" height="1280" fetchpriority="high"></div>
+  <div class="tx">
+    <h1 class="fadein">КЕРАТИН СТОРИС</h1>
+    <p class="sub fadein">Студия выпрямления и реконструкции волос</p>
+    <div class="cta fadein">
+      <a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться в студию</a>
+      <a class="btn" href="#calc">Рассчитать стоимость</a>
+    </div>
+    <a class="ya fadein" href="https://yandex.ru/maps/org/keratin_stories/187969935132/reviews/" target="_blank" rel="noopener"><b>5,0</b><span>Яндекс Карты · 252 отзыва<small>«Хорошее место 2026»</small></span></a>
+  </div>
+</section>
+
+<section id="services">
+  <h2 class="rv">Услуги</h2>
+  <div class="car">
+    <div class="track" id="svcTrack"></div>
+    <div class="arrows"><button type="button" data-dir="-1" aria-label="Назад">←</button><button type="button" data-dir="1" aria-label="Вперёд">→</button></div>
+  </div>
+  <div class="wrap after">
+    <a class="btn" href="https://wa.me/79057025612" target="_blank" rel="noopener">Получить консультацию</a>
+    <a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться онлайн</a>
+  </div>
+</section>
+
+<dialog id="dlg" aria-labelledby="dlgT"><button class="x" type="button" aria-label="Закрыть" data-close>×</button><div class="dlg" id="dlgB"></div></dialog>
+
+<section id="calc">
+  <div class="wrap">
+    <h2 class="rv">Стоимость процедуры</h2>
+    <p class="lead rv">Цена зависит от длины и густоты волос. Потяните линию среза на фото или ползунок — посчитаем по прайсу студии.</p>
+    <div class="calc">
+      <div class="hairbox" id="hair" aria-hidden="true">
+        <img src="img/calc2.jpg" alt="" loading="lazy">
+        <span class="hint">↕ тяните</span>
+        <div class="ticks" id="ticks"></div>
+        <div class="shade" id="shade"><span class="tag" id="tag">✂ 50 см</span></div>
+      </div>
+      <div class="ctrl">
+        <fieldset><legend>Процедура</legend><div class="chips" id="cP"></div></fieldset>
+        <fieldset><legend><span>Длина волос</span><output id="lenOut" for="len">до 50 см</output></legend>
+          <input type="range" id="len" min="30" max="70" step="5" value="50" aria-label="Длина волос в сантиметрах"></fieldset>
+        <fieldset><legend>Ваши волосы</legend><div class="chips" id="cT"></div></fieldset>
+        <fieldset><legend>Густота · обхват хвоста</legend><div class="chips" id="cD"></div></fieldset>
+        <fieldset><legend>Мастер</legend><div class="chips seg" id="cM"></div></fieldset>
+        <div class="res" aria-live="polite">
+          <div class="sum" id="sum"><small>Ориентировочно</small>9 000 ₽</div>
+          <ul class="lines" id="lines"></ul>
+          <p class="note" id="note"></p>
+          <p class="fine">Перед процедурой мастер измерит длину и густоту и назовёт точную цену до начала работы. Выбор составов на цену не влияет. Свыше 70 см и наращённые волосы — по <a class="link" href="price/">прайсу</a>.</p>
+          <div class="cta"><a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a><a class="btn" id="wa" href="https://wa.me/79057025612" target="_blank" rel="noopener">Спросить в WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <h2 class="rv">Видео наших работ</h2>
+  <div class="car">
+    <div class="track" id="vidTrack"></div>
+    <div class="arrows"><button type="button" data-dir="-1" aria-label="Назад">←</button><button type="button" data-dir="1" aria-label="Вперёд">→</button></div>
+  </div>
+</section>
+
+<section id="offers">
+  <div class="wrap">
+    <h2 class="rv">Акции</h2>
+    <div class="offer rv">
+      <div class="eb">Акция</div>
+      <h3>«КОМПЛЕКС»</h3>
+      <p>Скидка на полировку волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами</p>
+      <table><tbody>
+        <tr><td>Полировка, до 50 см</td><td><s>4 000 ₽</s><b>2 000 ₽</b></td></tr>
+        <tr><td>Полировка, свыше 50 см</td><td><s>5 000 ₽</s><b>2 500 ₽</b></td></tr>
+        <tr><td>Пилинг кожи головы</td><td><s>3 500 ₽</s><b>2 000 ₽</b></td></tr>
+      </tbody></table>
+      <p class="fine">Цены полировки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="rv">О студии</h2>
+    <!-- ВЫБОР ВАРИАНТА: только для согласования с Юлией, после выбора удалить .pick -->
+    <div class="pick" id="pick">Вариант раскладки фото:
+      <button type="button" data-v="d" aria-pressed="true">D · вертикальные</button><button type="button" data-v="a" aria-pressed="false">A · стопкой</button><button type="button" data-v="b" aria-pressed="false">B · большое + два</button><button type="button" data-v="c" aria-pressed="false">C · лента</button>
+    </div>
+    <div class="about-t"><p class="k">Кератин Сторис — профессиональная студия выпрямления и реконструкции волос</p></div>
+    <div class="gal" id="gal" data-v="d">
+      <figure class="w"><img src="img/studio1.jpg" alt="Рабочие места с круглыми зеркалами и логотип KS на стене" loading="lazy" width="1670" height="941"></figure>
+      <figure class="w"><img src="img/studio2.jpg" alt="Общий вид зала студии" loading="lazy" width="1672" height="941"></figure>
+      <figure class="w"><img src="img/studio3.jpg" alt="Стеллаж с декором и зеркало-арка с подсветкой" loading="lazy" width="1671" height="941"></figure>
+      <figure class="t"><img src="img/a1.jpg" alt="Зал студии с рабочими местами" loading="lazy"></figure>
+      <figure class="t"><img src="img/a3.jpg" alt="Круглое зеркало с подсветкой и логотипом" loading="lazy"></figure>
+      <figure class="t"><img src="img/a4.jpg" alt="Блестящие волосы в кресле мастера" loading="lazy"></figure>
+      <figure class="t"><img src="img/a5.jpg" alt="Стеллаж с пампасной травой и зеркало-арка" loading="lazy"></figure>
+      <figure class="t"><img src="img/a6.jpg" alt="Гладкие волосы после выпрямления" loading="lazy"></figure>
+      <figure class="t"><img src="img/a7.jpg" alt="Кресла и зеркала вдоль стены студии" loading="lazy"></figure>
+      <figure class="t"><img src="img/a8.jpg" alt="Результат процедуры у зеркала" loading="lazy"></figure>
+      <figure class="t"><img src="img/a9.jpg" alt="Рабочее место: зеркало, лаванда, меню напитков" loading="lazy"></figure>
+      <figure class="t"><img src="img/a10.jpg" alt="Общий вид студии" loading="lazy"></figure>
+    </div>
+    <div class="about-t rv">
+      <p>Мы работаем уже более 9 лет, за это время мы смогли осчастливить тысячи клиентов!</p>
+      <p>С заботой о ваших волосах мы добиваемся «своего идеального результата» для каждой девушки: проводим подробные консультации, отвечаем на ваши вопросы, бережно подбираем процедуру и составы для неё, с любовью выполняем процедуру так, что каждая наша гостья ощущает себя «особенной».</p>
+      <p>Приглашаем вас в наши стены ощутить всё волшебство наших мастеров!</p>
+      <p style="margin-top:24px"><a class="btn" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться в студию</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="why rv">
+      <h2>Почему мы?</h2>
+      <ol>
+        <li><span class="n">01</span><h3>Занимаемся реконструкцией волос с 2016 года</h3><p>Мы знаем всё о волосах, об их структуре и работаем с волосами любой степени повреждения</p></li>
+        <li><span class="n">02</span><h3>Не ограничиваемся составами одного бренда</h3><p>В нашей студии представлено более 40 различных составов ведущих брендов, что позволяет нам подобрать подходящий продукт для любого типа волос</p></li>
+        <li><span class="n">03</span><h3>Сервис</h3><p>Меню напитков, приятная музыка, персональные вентиляторы на пультах управления, онлайн-запись 24/7, Wi-Fi, зарядки для телефонов, напитки с собой — мы работаем для вас</p></li>
+        <li><span class="n">04</span><h3>4000+</h3><p>Довольных клиентов доказывают наш профессионализм и высший класс каждой оказанной услуги</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="team" style="padding-top:0">
+  <h2 class="rv">Команда</h2>
+  <div class="car">
+    <div class="track" id="teamTrack"></div>
+    <div class="arrows"><button type="button" data-dir="-1" aria-label="Назад">←</button><button type="button" data-dir="1" aria-label="Вперёд">→</button></div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap yx">
+    <div class="rv">
+      <div class="big">5,0</div>
+      <div class="stars" aria-label="5 из 5">★★★★★</div>
+      <p class="sub">Яндекс Карты · 320 оценок · 252 отзыва</p>
+      <div class="bars">
+        <div class="bar"><span>Персонал</span><i style="--v:99%"></i><b>99%</b></div>
+        <div class="bar"><span>Компетентность</span><i style="--v:98%"></i><b>98%</b></div>
+        <div class="bar"><span>Атмосфера</span><i style="--v:100%"></i><b>100%</b></div>
+        <div class="bar"><span>Кофе</span><i style="--v:100%"></i><b>100%</b></div>
+      </div>
+      <p class="aw">🏅 «Хорошее место 2026»</p>
+    </div>
+    <div class="rv">
+      <div class="quotes">
+        <figure><p>«Волосы мягкие, гладкие, шелковистые. Даже уходить не хотелось!»</p></figure>
+        <figure><p>«Мастер внимательно оценила состояние волос и подобрала подходящие составы.»</p></figure>
+        <figure><p>«Заранее рассчитали стоимость и рассказывали о каждом этапе.»</p></figure>
+        <figure><p>«От природы пушистые и кучерявые волосы — нанопластика облегчила мне жизнь.»</p></figure>
+      </div>
+      <a class="btn more" href="https://yandex.ru/maps/org/keratin_stories/187969935132/reviews/" target="_blank" rel="noopener">Все отзывы на Яндекс Картах</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="rv">Часто задаваемые вопросы</h2>
+    <div class="faq">
+      <details><summary>Выпрямление волос — это безопасно?<i></i></summary><div class="a"><p>Да, процедуры по выпрямлению волос в руках опытного мастера не принесут волосам никакого вреда, зато подарят вам красивые и ухоженные волосы без укладок и утюжка сроком до 6 месяцев.</p></div></details>
+      <details><summary>Кератин — это лечение/восстановление волос?<i></i></summary><div class="a"><p>Выпрямления волос (горячие процедуры) — это не лечение и не восстановление. Основная задача этих процедур — визуал, красивый внешний вид волос, комфорт и удобство в повседневной жизни: нет необходимости в укладке и ежедневном выпрямлении, волосы всегда идеальны после простой сушки феном даже без расчёски и при любой погоде.</p><p>Если необходимо именно восстановление волос — это холодные процедуры без использования утюжка.</p></div></details>
+      <details><summary>Какую процедуру выбрать?<i></i></summary><div class="a"><p>Зависит от желаемого результата и состояния волос. Наши мастера проведут диагностику состояния волос перед процедурой и подберут для вас наиболее подходящую процедуру и состав.</p></div></details>
+      <details><summary>Что такое подложка?<i></i></summary><div class="a"><p>Подложка — это дополнительный уход перед горячими процедурами (кератиновое выпрямление и ботокс), который укрепляет и уплотняет повреждённые волосы, а также создаёт дополнительную защиту при термической обработке. Наносится непосредственно перед выпрямлением и прогревается под термошапкой.</p><p>Применяется на повреждённые, осветлённые и окрашенные волосы, если им требуется дополнительный уход и подготовка к выпрямлению, и позволяет выполнить горячую процедуру наиболее мягко.</p></div></details>
+      <details><summary>Сколько держится результат?<i></i></summary><div class="a"><p>Индивидуально и зависит от выбранной процедуры и последующего домашнего ухода, но в среднем срок носки процедур следующий:</p><ul><li>кератиновое выпрямление — 3–6 месяцев</li><li>ботокс для волос — 1–3 месяца</li><li>нанопластика — 4–6 месяцев</li><li>холодное восстановление — 4–6 недель</li></ul></div></details>
+      <details><summary>Остаются ли заломы на волосах?<i></i></summary><div class="a"><p>Кератин — это не цемент, ваши волосы сохраняют все те же свойства. Поэтому на волосах могут оставаться заломы от резинок и заколок, замятия после сна — это абсолютно нормально.</p><p>Чтобы убрать залом, слегка намочите прядь и высушите её феном. Волосы снова станут прямыми.</p></div></details>
+      <details><summary>Есть ли противопоказания?<i></i></summary><div class="a"><p>Противопоказания к горячим процедурам:</p><ul><li>механические повреждения кожного покрова головы</li><li>заболевания кожи головы</li><li>заболевания онкологического характера</li><li>склонность к частой и обильной потере волос</li><li>астматические заболевания</li><li>аллергические реакции</li><li>беременность и период кормления грудью</li></ul><p>Если имеется хотя бы одно из противопоказаний, от процедуры кератинового выпрямления лучше отказаться. Напишите нам для консультации, и, если возможно, мы предложим варианты альтернативных процедур.</p></div></details>
+      <details><summary>Обязательно ли пользоваться бессульфатным шампунем после процедуры?<i></i></summary><div class="a"><p>Нет, использование бессульфатного шампуня не обязательно. Вы подбираете шампунь по типу вашей кожи головы.</p></div></details>
+      <details><summary>Сколько будет стоить моя процедура?<i></i></summary><div class="a"><p>Ориентир — в <a class="link" href="#calc">калькуляторе</a>, все цены — в <a class="link" href="price/">прайсе</a>. В кресле перед началом процедуры мастер измерит длину и густоту ваших волос, обсудит с вами пожелания и что будет включать в себя процедура, и обязательно озвучит полную точную стоимость до начала работы.</p></div></details>
+      <details><summary>Есть ли гарантия на процедуры?<i></i></summary><div class="a"><p>На все горячие процедуры (ботокс для волос, кератиновое выпрямление, тотальная реконструкция, нанопластика) гарантия — 1 месяц со дня выполнения процедуры.</p><p>Если в течение месяца появилась волна или пух после сушки волос, напишите нам: мы пригласим вас в студию, и если действительно выявится недочёт в работе, переделаем работу полностью бесплатно.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<section id="contacts" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="rv">Контакты</h2>
+    <div class="contacts">
+      <div class="info rv">
+        <div><h4>Адрес</h4><p>г. Москва, ул. Большая Грузинская, 12. Вход со двора.<br>м. Баррикадная / Краснопресненская</p></div>
+        <div><h4>Телефон</h4><a href="tel:+79057025612">+7 (905) 702-56-12</a></div>
+        <div><h4>График работы</h4><p>Ежедневно с 10:00 до 22:00</p></div>
+        <div><h4>Написать</h4><div class="soc"><a href="https://wa.me/79057025612" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/keratinstories" target="_blank" rel="noopener">Telegram</a><a href="https://vk.com/hbk_keratinstudio" target="_blank" rel="noopener">ВКонтакте</a></div></div>
+        <div class="cta"><a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться онлайн</a><a class="btn" href="https://yandex.ru/maps/org/keratin_stories/187969935132/" target="_blank" rel="noopener">Маршрут</a></div>
+      </div>
+      <div class="map rv"><iframe title="Кератин Сторис на Яндекс Картах" src="https://yandex.ru/map-widget/v1/?oid=187969935132&amp;z=16" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+    <nav aria-label="Документы"><a href="price/">Прайс</a><a href="policy/">Политика конфиденциальности</a><a href="offer/">Оферта</a></nav>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const DIKIDI = 'https://dikidi.net/1005604';
+
+// ── шапка и меню ──
+const top_ = $('top'), nav = $('nav'), burger = $('burger');
+addEventListener('scroll', () => top_.classList.toggle('solid', scrollY > 40), { passive: true });
+const setNav = o => { nav.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); };
+burger.onclick = () => setNav(!nav.classList.contains('open'));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
+
+// ── услуги: тексты с текущего сайта, цены «от» — из прайса 01.03.2026 ──
+// calc: ключ процедуры в калькуляторе; 'afro' — тип волос; null — без калькулятора
+const SVC = [
+  { img: 'keratin', t: 'Кератиновое выпрямление', t2: 'Ботокс для волос', from: 7000, calc: 'keratin',
+    short: 'Самые популярные процедуры: выраженный визуал, блеск и мягкость, максимальный срок носки.',
+    full: `<p>Кератиновое выпрямление и ботокс для волос — самые популярные процедуры в нашей студии. Именно они обладают самым выраженным визуалом, дарят волосам яркий блеск и мягкость, выпрямляют и разглаживают волосы и имеют максимальный срок носки.</p>
+      <p><b>Кератиновое выпрямление</b> — процедура, которая выпрямит волосы от лёгких волн до тугих завитков и избавит от пористости. Срок носки после первой процедуры 3–4 месяца, при накопительном эффекте — до 6 месяцев.</p>
+      <p><b>Ботокс для волос</b> — процедура, которая поможет избавиться от пушистости, разгладит волосы и сделает их более послушными, возможно выпрямление лёгкого завитка. Срок носки — до 3 месяцев.</p>` },
+  { img: 'disc', t: 'Разглаживание и дисциплина', from: 6000, calc: 'disc', isNew: 1,
+    short: 'Облегчённая процедура на базе ботокса — натуральный эффект ухоженных волос без утяжеления.',
+    full: `<p>Облегчённая процедура на базе ботокса с минимальными испарениями. Подойдёт тем, кому не нужна идеальная гладкость, кто предпочитает более натуральный эффект ухоженных волос без утяжеления, а также тем, кто любит объёмные укладки на стайлеры.</p>
+      <p>Разглаживает лёгкую волну, устраняет несильную пушистость. Придаёт волосам мягкость, блеск, рассыпчатость и послушность. Срок носки 1,5–3 месяца в зависимости от типа волос. Имеет накопительный эффект.</p>` },
+  { img: 'nano', t: 'Нанопластика', sub: 'в технике «Полуперманент»', from: 11000, calc: 'nano',
+    short: 'Самое сильное выпрямление — для тугого завитка и гормональной волны.',
+    full: `<p>Нанопластика — процедура с самым сильным эффектом выпрямления, достигаемым за счёт кислотных активов в составе. Её задача — работа с тугим завитком, который плохо поддаётся выпрямлению классическим кератином.</p>
+      <p>Подходит только для волос хорошего качества, кудрявых волос, волос с гормональной волной. Допустимо на не очень тугой завиток на натуральные волосы. Категорически не подходит для осветлённых и повреждённых волос.</p>
+      <p>В нашей студии мы выполняем нанопластику в технике «Полуперманент» (с применением составов с двумя разными типами активов). Волосы выпрямляются навсегда, кудрявыми будут отрастать только корни, а более плотная плёнка дольше сохраняет мягкость и гладкость волос.</p>` },
+  { img: 'total', t: 'Тотальная реконструкция', sub: 'осветлённые и повреждённые волосы', from: 11000, calc: 'total',
+    short: 'Холодное восстановление и кератин или ботокс за одно посещение.',
+    full: `<p>Тотальная реконструкция волос — процедура для осветлённых и повреждённых волос. Она состоит из предварительного холодного восстановления волос (двух, иногда трёх восстанавливающих подложек, которые заполняют и выравнивают структуру волос) и после — кератина или ботокса для визуала, выпрямления волос или устранения пушистости. Всё выполняется за одно посещение.</p>
+      <p>На сегодняшний день это самый безопасный и эффективный способ выпрямления и дисциплинирования повреждённых волос, позволяющий работать и с качеством волос, и с их внешним видом.</p>` },
+  { img: 'lebel', t: 'Счастье для волос', sub: 'от японского бренда Lebel', from: 5000, calc: 'lebel',
+    short: 'Спа-программа из 12 шагов для волос и кожи головы, полностью холодная.',
+    full: `<p>Абсолютное счастье для волос от Lebel — одна из самых популярных спа-программ для волос и кожи головы, которая получила признание по всему миру. Уход включает в себя 12 шагов, каждый из которых выполняет свою задачу: от ухода за кожей головы до восстановления, питания и увлажнения структуры волос. Результат процедуры — мягкие, гладкие, плотные и послушные волосы, которые легко расчёсываются и поддаются укладке.</p>
+      <p>Процедура является полностью холодной, выполняется без термических обработок и не имеет противопоказаний, а приятные ароматы, массаж кожи головы и ритуал заботы о своей красоте подарят вам расслабление и отличное настроение.</p>` },
+  { img: 'cold', t: 'Холодные уходы', from: 4000, calc: 'cold',
+    short: 'Комплексное холодное восстановление и холодный ботокс — питание и увлажнение без утюжка.',
+    full: `<p>Помимо Счастья для волос от Lebel, в нашей студии представлены следующие холодные уходы:</p>
+      <p><b>Комплексное холодное восстановление.</b> Это трёхэтапный холодный уход, направленный на реконструкцию осветлённых и повреждённых волос. Первые 2 этапа процедуры последовательно восстанавливают внутренний и внешний слой волоса — кортекс и кутикулу, а финальный третий этап фиксирует результат и делает волосы более гладкими и послушными.</p>
+      <p><b>Холодный ботокс.</b> Холодный уход, который подходит для любого типа волос: натуральных, окрашенных и осветлённых. Насыщает волосы липидами и увлажняющими компонентами, делая их более упругими, плотными и блестящими.</p>
+      <p>Холодные уходы направлены не на изменение структуры волос, а на качество волос, питание и увлажнение, поэтому визуально не меняют внешний вид волос и не выпрямляют их, но помогают восстанавливать волосы и сохранять их качество. Для лучшего эффекта рекомендуется делать холодные уходы курсами от 3 процедур с интервалом в 2 недели или повторять регулярно раз в 1–1,5 месяца.</p>` },
+  { img: 'afro', t: 'Выпрямление АФРО', from: 20000, calc: 'afro',
+    short: 'В технике «Полуперманент», по желанию в 4 руки — двумя мастерами одновременно.',
+    full: `<p>Выпрямление афрокудрей — трудоёмкая и технологически сложная работа, но выпрямленные волосы типа афро выглядят прекрасно и очень облегчают жизнь своим обладательницам. Мы проводим выпрямление афроволос в технике «Полуперманент» для получения максимально эффективного и прогнозируемого результата.</p>
+      <p>Чтобы сократить время работы, предлагаем выполнение данной услуги в 4 руки двумя мастерами одновременно — это включено в стоимость по вашему желанию.</p>
+      <p>Стоимость рассчитывается индивидуально после очной консультации в студии либо по актуальной фотографии ваших волос: от 20 000 ₽ на короткие волосы (до 30 см).</p>` },
+  { img: 'extra', t: 'Дополнительные услуги', from: null, calc: null,
+    short: 'Пилинг кожи головы, полировка против сечения, услуга «в 4 руки», подложки.',
+    full: `<p><b>Пилинг кожи головы.</b> Процедура глубокого очищения кожи головы, позволяющая удалить ороговевший слой эпидермиса, а вместе с ним излишки себума, пыли, пота и остатки укладочных и уходовых средств. Способствует профилактике сальных пробок, излишней жирности кожи головы и стимуляции роста волос.</p>
+      <p><b>Комплексная стрижка / полировка против сечения</b> — комплекс мер, направленный на устранение сечения и ломкости по полотну без потери длины и густоты.</p>
+      <p><b>Услуга «в 4 руки»</b> — для обладательниц густых и очень длинных волос, если желаете ускорить время выполнения процедуры.</p>` },
+];
+const rub = v => v.toLocaleString('ru-RU') + ' ₽';
+$('svcTrack').innerHTML = SVC.map((s, i) => `<article class="svc">
+  <div class="im">${s.isNew ? '<span class="new">NEW</span>' : ''}<img src="img/s-${s.img}.jpg" alt="${s.t}" loading="lazy" width="900" height="900"></div>
+  <h3>${s.t}${s.t2 ? '<br>' + s.t2 : ''}${s.sub ? `<small>${s.sub}</small>` : ''}</h3>
+  <p>${s.short}</p>
+  <div class="pr">${s.from ? 'от ' + rub(s.from) : 'по прайсу'}</div>
+  <div class="acts"><button class="btn sm" type="button" data-more="${i}">Подробнее</button>${s.calc ? `<button class="link" type="button" data-calc="${s.calc}">Рассчитать стоимость</button>` : '<a class="link" href="price/#extra">Смотреть прайс</a>'}</div>
+</article>`).join('');
+
+// модалка
+const dlg = $('dlg');
+document.addEventListener('click', e => {
+  const m = e.target.closest('[data-more]'), c = e.target.closest('[data-calc]');
+  if (m) {
+    const s = SVC[+m.dataset.more];
+    $('dlgB').innerHTML = `<h3 id="dlgT">${s.t}${s.t2 ? ' · ' + s.t2 : ''}</h3>${s.full}
+      <div class="pr">${s.from ? 'от ' + rub(s.from) : 'Цены — в прайсе'}</div>
+      <div class="acts"><a class="btn fill" href="${DIKIDI}" target="_blank" rel="noopener">Записаться</a>${s.calc ? `<button class="btn" type="button" data-calc="${s.calc}">Рассчитать стоимость</button>` : '<a class="btn" href="price/">Открыть прайс</a>'}</div>`;
+    dlg.showModal();
+  }
+  if (c) { if (dlg.open) dlg.close(); toCalc(c.dataset.calc); }
+  if (e.target.closest('[data-close]') || e.target === dlg) dlg.close();
+});
+
+// ── видео (VK клипы студии) ──
+const VK = [5, 4, 3, 2, 10, 9, 8, 7, 6, 1].map((n, i) => ({ img: `img/v${i + 1}.jpg`, id: [, 391, 390, 388, 387, 385, 384, 393, 392, 394, 395][n] }));
+$('vidTrack').innerHTML = VK.map(v => `<a class="vid" href="https://vk.com/clip-76757312_456239${v.id}" target="_blank" rel="noopener" aria-label="Видео работы во ВКонтакте"><img src="${v.img}" alt="" loading="lazy"></a>`).join('');
+
+// ── команда (все актуальны на 05.11.2026) ──
+const TEAM = [
+  ['yulia', 'Юлия Матковская', 'Топ-мастер · технолог-преподаватель', 'В реконструкции волос с 2016 года. Более 3000 клиентов и сотни учеников, в том числе из США, Италии, Чехии и Ирана.', 'Основатель'],
+  ['yana', 'Яна Бондаренко', 'Технолог · с 2020 года', 'Все виды выпрямления и восстановления, диагностика и пилинг кожи головы. Эксперт по домашнему уходу.', 'ТОП-мастер'],
+  ['polina', 'Полина Ибрагимова', 'Колорист · с 2016 года', 'Все техники выпрямления, в том числе афро. Полировка, холодные уходы, пилинги.', 'ТОП-мастер'],
+  ['ekaterina', 'Екатерина Гайдукова', 'Трит-эксперт · с 2022 года', 'От работы с блондом до тугого завитка и афро. Натуральные, наращённые, тонкие волосы.'],
+  ['milena', 'Милена Арутюнян', 'Трит-эксперт · с 2022 года', 'Все виды выпрямления, в том числе сложные случаи. Осветлённые и повреждённые волосы.'],
+  ['kristina', 'Кристина Сизова', 'Трит-эксперт · с 2022 года', 'Выпрямление и реконструкция, полировка. Знает по себе, как отрастить и сохранить длину.'],
+  ['ulyana', 'Ульяна Ташкова', 'Трит-эксперт · с 2022 года', 'Все техники выпрямления и реконструкции — качественно и быстро.'],
+];
+$('teamTrack').innerHTML = TEAM.map(([k, n, r, p, b]) => `<article class="ms"><div class="im"><img src="img/t-${k}.jpg" alt="${n}" loading="lazy"></div>${b ? `<span class="top-m">${b}</span>` : ''}<h3>${n}</h3><div class="r">${r}</div><p>${p}</p></article>`).join('');
+
+// стрелки каруселей
+document.querySelectorAll('.car').forEach(c => {
+  const t = c.querySelector('.track'), [prev, next] = c.querySelectorAll('.arrows button');
+  const upd = () => { prev.disabled = t.scrollLeft < 4; next.disabled = t.scrollLeft + t.clientWidth > t.scrollWidth - 4; };
+  [prev, next].forEach(b => b.onclick = () => t.scrollBy({ left: +b.dataset.dir * t.clientWidth * .8, behavior: 'smooth' }));
+  t.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+});
+
+// ── о студии: переключатель вариантов (только на время выбора) ──
+$('pick').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $('gal').dataset.v = b.dataset.v; $('pick').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+
+// ── калькулятор по прайсу студии (действует с 01.03.2026; сверено с notes/keratin_price_2026-03.md) ──
+const LEN = [30, 35, 40, 45, 50, 55, 60, 65, 70];
+const step = (a, d, n = 9) => Array.from({ length: n }, (_, i) => a + i * d);
+const T = {
+  A: [[7000, 7500, 8000, 8500, 9000, 10000, 11000, 12000, 13000], [8500, 9000, 9500, 10000, 11000, 12000, 13000, 14000, 15000], step(11000, 1000)],
+  B: [step(11000, 1000), step(13000, 1000), step(16000, 1000)],
+  C: [[6000, 6500, 7000, 7500, 8000, 8500, 9000, 10000, 11000], [7500, 8000, 8500, 9000, 9500, 10000, 11000, 12000, 13000], [10000, 10500, 11000, 11500, 12000, 13000, 14000, 15000, 16000]],
+  D: [[5000, 7000, 9000, 10000], [6000, 8000, 10000, 11000], [7000, 9000, 11500, 13000]], // до 30 / 45 / 60 / 70 см
+  E: [[4000, 6000, 8000, 9000], [5000, 7000, 9000, 10000], [6000, 8000, 10000, 12000]],
+};
+const P = {
+  keratin: { n: 'Кератин', t: 'A', g: 'hot', sub: 1 },
+  botox: { n: 'Ботокс', t: 'A', g: 'hot', sub: 1 },
+  disc: { n: 'Разглаживание и дисциплина', t: 'C', g: 'hot', sub: 1 },
+  nano: { n: 'Нанопластика', t: 'B', g: 'hot', noBlond: 1 },
+  total: { n: 'Тотальная реконструкция', t: 'B', g: 'hot' },
+  cold: { n: 'Холодное восстановление', t: 'C', g: 'soft', cool: 1 },
+  lebel: { n: 'Счастье для волос Lebel', t: 'D', g: 'soft', cool: 1 },
+  cbotox: { n: 'Холодный ботокс', t: 'E', g: 'soft', cool: 1 },
+};
+const TYPES = [['nat', 'Натуральные'], ['blond', 'Окрашенные, осветлённые'], ['curl', 'Кудрявые, гормональная волна'], ['afro', 'Афро']];
+const DENS = ['до 6 см', '7–8 см', '9–10 см', '11–12 см', 'от 13 см'];
+const DADD = { hot: [0, 1000, 1500, 2000, 3000], soft: [0, 0, 500, 1000, 1000] };
+const LVL = [['Мастер', ''], ['ТОП-мастер', 'Яна, Полина'], ['Основатель', 'Юлия']];
+const s = { p: 'keratin', len: 50, type: 'nat', d: 0, m: 0 };
+const mk = (box, items, key) => items.forEach(([v, label, sub]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.dataset.v = v;
+  b.innerHTML = label + (sub ? `<small>${sub}</small>` : '');
+  b.onclick = () => { s[key] = key === 'd' || key === 'm' ? +v : v; draw(); };
+  box.append(b);
+});
+const cP = $('cP'), cT = $('cT'), cD = $('cD'), cM = $('cM'), len = $('len'), hair = $('hair'), shade = $('shade');
+mk(cP, Object.entries(P).map(([k, o]) => [k, o.n]), 'p');
+mk(cT, TYPES, 'type');
+mk(cD, DENS.map((l, i) => [i, l]), 'd');
+mk(cM, LVL.map(([l, sub], i) => [i, l, sub]), 'm');
+const yOf = L => 23.3 + L * .9307; // фото IMG_6226: макушка на 23,3% высоты, кончики (≈75 см, со слов Юлии) на 93,1%
+$('ticks').innerHTML = [30, 40, 50, 60, 70].map(L => `<span style="top:${yOf(L)}%">${L}</span>`).join('');
+len.oninput = () => { s.len = +len.value; draw(); };
+const fromY = e => { const r = hair.getBoundingClientRect(); const L = Math.round(((e.clientY - r.top) / r.height * 100 - 23.3) / .9307 / 5) * 5; s.len = Math.min(70, Math.max(30, L)); draw(); };
+hair.addEventListener('pointerdown', e => { hair.setPointerCapture(e.pointerId); hair.classList.add('drag'); fromY(e); });
+hair.addEventListener('pointermove', e => { if (hair.hasPointerCapture(e.pointerId)) fromY(e); });
+['pointerup', 'pointercancel'].forEach(t => hair.addEventListener(t, () => hair.classList.remove('drag')));
+
+function draw() {
+  if (s.type === 'blond' && s.p === 'nano') s.p = 'total';
+  const o = P[s.p], afro = s.type === 'afro';
+  [...cP.children].forEach(b => { b.setAttribute('aria-pressed', b.dataset.v === s.p); b.disabled = s.type === 'blond' && P[b.dataset.v].noBlond; });
+  [...cT.children].forEach(b => b.setAttribute('aria-pressed', b.dataset.v === s.type));
+  [...cD.children].forEach(b => b.setAttribute('aria-pressed', +b.dataset.v === s.d));
+  [...cM.children].forEach(b => b.setAttribute('aria-pressed', +b.dataset.v === s.m));
+  len.value = s.len;
+  $('lenOut').textContent = 'до ' + s.len + ' см';
+  shade.style.setProperty('--y', yOf(s.len) + '%');
+  $('tag').textContent = '✂ ' + s.len + ' см';
+  const tab = T[o.t][s.m];
+  const i = tab.length === 9 ? LEN.indexOf(s.len) : (s.len <= 30 ? 0 : s.len <= 45 ? 1 : s.len <= 60 ? 2 : 3);
+  const base = tab[i], dens = DADD[o.g][s.d], sub = o.sub && s.type === 'blond' ? (s.len <= 50 ? 2000 : 3000) : 0;
+  const lines = [[o.n + (tab.length === 4 ? ` (до ${[30, 45, 60, 70][i]} см)` : ''), base]];
+  if (dens) lines.push(['Доплата за густоту', dens]);
+  if (sub) lines.push(['Подложка для осветлённых волос', sub]);
+  if (afro) {
+    $('sum').innerHTML = '<small>Выпрямление афро</small>от 20 000 ₽';
+    $('lines').innerHTML = '<li><span>Короткие волосы, до 30 см</span><span>от 20 000 ₽</span></li><li><span>Услуга в 4 руки</span><span>включена по желанию</span></li>';
+  } else {
+    $('sum').innerHTML = '<small>Ориентировочно</small>' + rub(lines.reduce((a, l) => a + l[1], 0));
+    $('lines').innerHTML = lines.map(([n, v]) => `<li><span>${n}</span><span>${rub(v)}</span></li>`).join('');
+  }
+  const notes = [];
+  if (afro) notes.push('Выполняем в технике «полуперманент». Точную цену назовём после очной консультации или по актуальному фото волос.');
+  else {
+    if (s.type === 'blond') notes.push('Нанопластика не подходит для осветлённых и повреждённых волос — для них тотальная реконструкция.');
+    if (s.type === 'curl' && o.cool) notes.push('Холодные уходы не выпрямляют волосы — они про питание и восстановление.');
+    if (s.type === 'curl' && s.p === 'botox') notes.push('Ботокс справится с лёгким завитком; для тугого — кератин или нанопластика.');
+    if (s.type === 'curl' && s.p === 'nano') notes.push('Нанопластика — самое сильное выпрямление, как раз для тугого завитка и гормональной волны.');
+    if (s.p === 'total') notes.push('Подложки уже включены: белковая и липидная, затем кератин или ботокс — за одно посещение.');
+    if (s.m === 2) notes.push('К Юлии — только по предварительному бронированию.');
+  }
+  $('note').textContent = notes.join(' ');
+  const msg = afro ? 'Здравствуйте! Хочу узнать стоимость выпрямления афро.' : `Здравствуйте! Хочу записаться: ${o.n}, длина до ${s.len} см.`;
+  $('wa').href = 'https://wa.me/79057025612?text=' + encodeURIComponent(msg);
+}
+function toCalc(p) {
+  if (p === 'afro') s.type = 'afro'; else { s.p = p; if (s.type === 'afro') s.type = 'nat'; }
+  draw(); $('calc').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
+draw();
+
+// появление при скролле
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
