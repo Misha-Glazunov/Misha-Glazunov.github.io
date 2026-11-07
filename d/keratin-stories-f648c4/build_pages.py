@@ -223,16 +223,34 @@ h1 { font-style: italic; } .p h2 { letter-spacing: -.01em; }'''),
 
 # прайс обеих версий — build_price() ниже
 
-# 404 — только v2; пути от корня домена (сервер отдаёт её с любого адреса), в превью картинки не грузятся
-v = V['v2']
-faces = '\n'.join(l for l in v['fonts'].splitlines() if l.startswith('@font-face')).replace('url(fonts/', 'url(/fonts/')
-NF = '''<main class="wrap nf"><h1>Страница не найдена</h1>
+# 404/offer/policy — для обеих версий; пути от корня домена (сервер отдаёт с любого адреса),
+# в превью под /d/.../v2|v3/ картинки/фонты по этим путям не грузятся — это ок, страницы не для превью.
+# offer/policy — временная заглушка (та же 404), пока не добыт юридический текст с Tilda.
+ROBOTS = 'User-agent: *\nDisallow:\n\nSitemap: https://www.keratinstories.ru/sitemap.xml\n'
+SITEMAP = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.keratinstories.ru/</loc></url>
+  <url><loc>https://www.keratinstories.ru/price/</loc></url>
+  <url><loc>https://www.keratinstories.ru/offer/</loc></url>
+  <url><loc>https://www.keratinstories.ru/policy/</loc></url>
+</urlset>
+'''
+for name, v in V.items():
+    faces = '\n'.join(l for l in v['fonts'].splitlines() if l.startswith('@font-face')).replace('url(fonts/', 'url(/fonts/')
+    NF = '''<main class="wrap nf"><h1>Страница не найдена</h1>
 <p class="lead">Возможно, адрес изменился — сайт студии обновился. Все услуги и цены теперь на главной и в прайсе.</p>
 <div class="cta"><a class="btn fill" href="/">На главную</a><a class="btn" href="/price/">Прайс-лист</a></div></main>
 <style>.nf { padding: 80px 16px 40px; min-height: 60vh; } .nf .lead { color: var(--soft); max-width: 560px; margin-top: 16px; }</style>'''
-html = HEAD.format(fonts=faces, base=BASE, skin=v['skin'], img='/img/', home='/', title='Страница не найдена — Кератин Сторис', desc='Страница не найдена', icons=ICONS.format(img='/img/', root='/')) + NF + '\n' + FOOT.replace('../', '/') + '\n</body>\n</html>\n'
-(ROOT / 'v2' / '404.html').write_text(html, encoding='utf-8')
-print(ROOT / 'v2' / '404.html', len(html))
+    html = HEAD.format(fonts=faces, base=BASE, skin=v['skin'], img='/img/', home='/', title='Страница не найдена — Кератин Сторис', desc='Страница не найдена', icons=ICONS.format(img='/img/', root='/')) + NF + '\n' + FOOT.replace('../', '/') + '\n</body>\n</html>\n'
+    (ROOT / name / '404.html').write_text(html, encoding='utf-8')
+    print(ROOT / name / '404.html', len(html))
+    for stub in ('offer', 'policy'):
+        d = ROOT / name / stub
+        d.mkdir(exist_ok=True)
+        (d / 'index.html').write_text(html, encoding='utf-8')
+        print(d / 'index.html', len(html))
+    (ROOT / name / 'robots.txt').write_text(ROBOTS, encoding='utf-8')
+    (ROOT / name / 'sitemap.xml').write_text(SITEMAP, encoding='utf-8')
 
 # ═══════════ v2: прайс, новый дизайн (2026-11-06) ═══════════
 # Одна шкала «Мастер / ТОП-мастер / Юлия» на всю страницу вместо трёх колонок в каждой таблице;
