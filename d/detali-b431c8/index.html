@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Детали beauty lab — салон красоты у метро Коньково</title>
+<meta name="description" content="Маникюр, педикюр, брови и ресницы, волосы, эпиляция. Профсоюзная ул., 126 к3, ежедневно 10:00–21:00. Рейтинг 5,0.">
+<style>
+@font-face{font-family:Tenor;src:url(fonts/TenorSans-cyrillic.woff2) format('woff2');font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Tenor;src:url(fonts/TenorSans-latin.woff2) format('woff2');font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Jura;src:url(fonts/Jura-cyrillic.woff2) format('woff2');font-weight:300 700;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Jura;src:url(fonts/Jura-latin.woff2) format('woff2');font-weight:300 700;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --paper:#f5f2ea; --paper2:#ece7da; --ink:#17393b; --teal:#1f5c60; --gold:#b48f52; --gold2:#d6b57a;
+  --green:#12332c; --green2:#1a4438; --pink:#e0718d; --line:rgba(23,57,59,.22); --line2:rgba(23,57,59,.1);
+  --d:'Tenor',Georgia,serif; --t:'Jura',system-ui,sans-serif; --pad:clamp(16px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:500 17px/1.55 var(--t);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--t);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+.h2{font:400 clamp(44px,7.4vw,108px)/.98 var(--d);letter-spacing:-.02em}
+.h2 em{font-style:normal;color:var(--gold)}
+.kicker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.kicker::before{content:"";width:34px;height:1px;background:currentColor}
+.dark{background:var(--green);color:var(--paper)}
+.dark .line,.dark{--line:rgba(245,242,234,.2);--line2:rgba(245,242,234,.08)}
+/* чертёжная сетка */
+.grid-bg{background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:32px 32px}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.row{display:block;overflow:hidden;padding-bottom:.2em;margin-bottom:-.16em}
+.row>span{display:inline-block;transform:translateY(105%);transition:transform 1.1s cubic-bezier(.2,.75,.15,1)}
+.on .row>span,.row.in>span{transform:none}
+.drawx{transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+.in .drawx,.drawx.in{transform:scaleX(1)}
+
+/* ===== кнопки: эллипс снизу + letter-swap ===== */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;border:1px solid var(--ink);overflow:hidden;isolation:isolate;font:700 14px/1 var(--t);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;flex:none}
+.btn::before{content:"";position:absolute;left:-10%;right:-10%;top:0;height:220%;border-radius:50%;background:var(--ink);transform:translateY(100%);transition:transform .55s cubic-bezier(.6,0,.2,1);z-index:-1}
+.btn:hover::before{transform:translateY(-20%)}
+.btn:hover{color:var(--paper)}
+.btn.fill{background:var(--ink);color:var(--paper)}
+.btn.fill::before{background:var(--gold)}
+.btn.fill:hover{color:var(--ink)}
+.dark .btn{border-color:var(--paper)} .dark .btn::before{background:var(--paper)} .dark .btn:hover{color:var(--green)}
+.dark .btn.fill{background:var(--gold);color:var(--green);border-color:var(--gold)} .dark .btn.fill::before{background:var(--paper)}
+.ls{display:inline-flex;overflow:hidden;height:1.1em;line-height:1.1}
+.ls i{font-style:normal;display:inline-block;white-space:pre;transition:transform .45s cubic-bezier(.6,0,.2,1);text-shadow:0 1.1em 0 currentColor}
+.btn:hover .ls i{transform:translateY(-1.1em)}
+
+/* ===== навбар ===== */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:6px;padding:6px 6px 6px 18px;border-radius:999px;background:rgba(245,242,234,.62);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(23,57,59,.14);box-shadow:0 10px 40px rgba(18,51,44,.12);width:max-content;max-width:calc(100% - 24px)}
+.logo{display:flex;align-items:center;gap:10px;font:400 19px/1 var(--d);letter-spacing:.06em;margin-right:12px;flex:none}
+.logo svg{width:26px;height:24px;flex:none}
+.logo small{font:600 9px/1 var(--t);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-top:3px}
+.nav a.l{padding:10px 14px;border-radius:999px;font:600 13px/1 var(--t);letter-spacing:.08em;text-transform:uppercase;transition:background .3s}
+.nav a.l:hover{background:rgba(23,57,59,.08)}
+.nav .btn{height:42px;padding:0 20px;font-size:12px}
+.status{display:inline-flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:#3aa776;box-shadow:0 0 0 0 rgba(58,167,118,.6);animation:ping 2s infinite}
+.dot.off{background:var(--pink);animation:none}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(58,167,118,0)}100%{box-shadow:0 0 0 0 rgba(58,167,118,0)}}
+#burger{display:none;width:42px;height:42px;border-radius:50%;background:var(--ink);position:relative;flex:none}
+#burger i{position:absolute;left:13px;right:13px;height:1.5px;background:var(--paper);transition:transform .35s}
+#burger i:first-child{top:17px}#burger i:last-child{top:24px}
+.menu-open #burger i:first-child{transform:translateY(3.5px) rotate(45deg)}
+.menu-open #burger i:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+#mnu{position:fixed;inset:0;z-index:45;background:var(--paper);padding:110px var(--pad) 40px;display:flex;flex-direction:column;gap:6px;opacity:0;pointer-events:none;transition:opacity .4s}
+#mnu a{font:400 44px/1.2 var(--d);border-bottom:1px solid var(--line);padding:8px 0;display:flex;justify-content:space-between;align-items:baseline}
+#mnu a span{font:600 12px var(--t);letter-spacing:.16em;color:var(--gold)}
+.menu-open #mnu{opacity:1;pointer-events:auto}
+
+/* ===== HERO: лист чертежа ===== */
+.hero{position:relative;overflow:hidden;min-height:100svh;padding:96px var(--pad) 28px;display:flex}
+.sheet{position:relative;flex:1;border:1.5px solid var(--ink);outline:1px solid var(--line);outline-offset:-10px;display:grid;grid-template-columns:1.05fr 1fr;gap:0;min-height:calc(100svh - 124px)}
+.sheet::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:32px 32px;z-index:-1}
+.zones{position:absolute;pointer-events:none;font:600 10px/1 var(--t);letter-spacing:.1em;color:rgba(23,57,59,.5)}
+.zones.top{left:0;right:0;top:-16px;display:flex;justify-content:space-around}
+.zones.side{top:0;bottom:0;left:-15px;display:flex;flex-direction:column;justify-content:space-around}
+.h-text{position:relative;padding:clamp(28px,4vw,64px);display:flex;flex-direction:column;justify-content:center;z-index:2}
+.h1{font:400 clamp(58px,8.4vw,128px)/.94 var(--d);letter-spacing:-.025em;margin:18px 0 26px}
+.h1 .g{color:var(--gold)}
+.h-sub{max-width:470px;font-size:18px;color:rgba(23,57,59,.82)}
+.h-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.h-fig{position:relative;padding:clamp(20px,3vw,44px);display:flex;align-items:center;justify-content:center}
+.photo{position:relative;width:100%;max-width:620px;aspect-ratio:1;overflow:hidden;clip-path:inset(0 0 100% 0);transition:clip-path 1.5s cubic-bezier(.7,0,.2,1) .2s}
+.on .photo{clip-path:inset(0 0 0 0)}
+.photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transition:transform 9s cubic-bezier(.2,.6,.2,1)}
+.on .photo img{transform:scale(1.0)}
+.photo-frame{position:relative;width:100%;max-width:620px}
+.photo-frame::before{content:"";position:absolute;inset:-12px;border:1px solid var(--line);pointer-events:none}
+.mark{position:absolute;left:0;top:0;width:96px;height:96px;margin:-48px 0 0 -48px;border:1.5px dashed var(--paper);border-radius:50%;z-index:3;pointer-events:none;box-shadow:0 0 0 1px rgba(23,57,59,.3);opacity:0;transition:opacity .6s 1.6s}
+.on .mark{opacity:1}
+.mark b{position:absolute;right:-26px;top:-24px;font:400 26px/1 var(--d);color:var(--paper);text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.view{position:absolute;z-index:4;width:clamp(170px,19vw,280px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:1.5px solid var(--ink);background:var(--paper);box-shadow:0 0 0 8px var(--paper),0 0 0 9px var(--line),0 30px 60px rgba(18,51,44,.25);left:-6%;bottom:-8%;opacity:0;transform:scale(.6);transition:opacity .8s 1.7s,transform 1s cubic-bezier(.2,.8,.2,1) 1.7s}
+.on .view{opacity:1;transform:none}
+.view .zoom{position:absolute;left:0;top:0;transform-origin:0 0}
+.view .zoom img{width:100%;height:100%;object-fit:cover}
+.view::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--paper),var(--paper)) 50% 0/1px 18% no-repeat,linear-gradient(var(--paper),var(--paper)) 50% 100%/1px 18% no-repeat,linear-gradient(var(--paper),var(--paper)) 0 50%/18% 1px no-repeat,linear-gradient(var(--paper),var(--paper)) 100% 50%/18% 1px no-repeat;opacity:.8}
+.view-lbl{position:absolute;z-index:5;left:-6%;bottom:calc(-8% - 40px);font:600 12px/1 var(--t);letter-spacing:.16em;text-transform:uppercase;opacity:0;transition:opacity .6s 2s}
+.view-lbl b{font:400 20px var(--d);letter-spacing:0;margin-right:6px}
+.on .view-lbl{opacity:1}
+.leader{position:absolute;left:0;top:0;width:100px;height:0;border-top:1.5px solid var(--ink);transform-origin:0 0;z-index:3;pointer-events:none;opacity:0;transition:opacity .6s 1.8s}
+.on .leader{opacity:.85}
+.tri{position:absolute;z-index:0;pointer-events:none;width:min(46vw,640px);right:-4%;top:6%;opacity:.95}
+.tri path{fill:none;stroke:var(--gold);stroke-width:2.2}
+/* штамп */
+.stamp{position:absolute;right:-1px;bottom:-1px;z-index:6;display:grid;grid-template-columns:repeat(4,auto);border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);background:var(--paper);font:600 11px/1.25 var(--t);letter-spacing:.06em}
+.stamp>div{padding:7px 12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stamp>div:nth-child(4n){border-right:0}
+.stamp small{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:2px}
+.stamp .nm{grid-column:span 2;font:400 18px/1.1 var(--d);letter-spacing:.02em}
+
+/* ===== размерные линии (цифры) ===== */
+.dims{padding:clamp(70px,9vw,130px) 0 clamp(60px,8vw,110px)}
+.dims .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.dim{position:relative;padding:28px 18px 0;min-width:0}
+.dim .ar{position:relative;height:14px;margin-bottom:22px}
+.dim .ar::before{content:"";position:absolute;left:0;right:0;top:7px;border-top:1px solid var(--ink);transform:scaleX(0);transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+.dim .ar::after{content:"";position:absolute;inset:0;border-left:1px solid var(--ink);border-right:1px solid var(--ink)}
+.dim.in .ar::before{transform:scaleX(1)}
+.dim .ar i{position:absolute;top:3px;width:8px;height:8px;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.dim .ar i:first-child{left:1px;transform:rotate(-45deg)} .dim .ar i:last-child{right:1px;transform:rotate(135deg)}
+.dim .n{font:400 clamp(42px,5.4vw,82px)/1 var(--d);letter-spacing:-.03em;white-space:nowrap}
+.dim .n sup{font-size:.36em;vertical-align:.9em;color:var(--gold);margin-left:2px}
+.dim p{margin-top:10px;font-size:14px;line-height:1.35;color:rgba(23,57,59,.75);max-width:200px}
+
+/* ===== sticky сборочный чертёж ===== */
+.asm{position:relative}
+.asm .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px)}
+.asm-l{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.asm-fig{position:relative;width:100%;max-width:560px;aspect-ratio:1}
+.asm-fig img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.asm-fig::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line);pointer-events:none}
+.bal{position:absolute;width:0;height:0;z-index:2}
+.bal i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(214,181,122,.3);transform:scale(0);transition:transform .5s cubic-bezier(.2,1.6,.4,1)}
+.asm-fig{--k:1}
+.bal s{position:absolute;left:0;top:0;width:calc(var(--len)*1px*var(--k));border-top:1px solid var(--paper);transform-origin:0 0;transform:rotate(var(--a,-30deg)) scaleX(0);transition:transform .6s cubic-bezier(.6,0,.2,1) .1s}
+.bal b{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:1.5px solid var(--paper);background:var(--green);display:grid;place-items:center;font:400 20px/1 var(--d);left:calc(var(--bx)*1px*var(--k));top:calc(var(--by)*1px*var(--k));opacity:0;transform:scale(.4);transition:opacity .4s .45s,transform .5s cubic-bezier(.2,1.4,.4,1) .45s}
+.bal.on i{transform:scale(1)} .bal.on s{transform:rotate(var(--a,-30deg)) scaleX(1)} .bal.on b{opacity:1;transform:none}
+.bal.cur b{background:var(--gold);color:var(--green);border-color:var(--gold)}
+.asm-r{padding:22vh 0 26vh}
+.asm-r .h2{margin-bottom:24px}
+.step{display:grid;grid-template-columns:62px 1fr;gap:18px;padding:34px 0;border-top:1px solid var(--line);opacity:.35;transition:opacity .5s}
+.step.on{opacity:1}
+.step .no{width:52px;height:52px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font:400 22px/1 var(--d)}
+.step.on .no{border-color:var(--gold);color:var(--gold)}
+.step h3{font:400 clamp(26px,2.6vw,36px)/1.1 var(--d);margin-bottom:8px}
+.step p{color:rgba(245,242,234,.72);font-size:16px}
+.price-tag{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.pt{border:1px solid var(--line);padding:16px 20px;min-width:0}
+.pt small{display:block;font:600 11px var(--t);letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-bottom:6px}
+.pt b{font:400 34px/1 var(--d);color:var(--gold2)}
+
+/* ===== детали вне прайса ===== */
+.extra{padding:clamp(80px,10vw,150px) 0}
+.extra .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.ex-fig{position:relative;aspect-ratio:3/4;max-width:520px}
+.ex-fig img{width:100%;height:100%;object-fit:cover}
+.ex-fig .pin{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);display:grid;place-items:center;font:700 13px var(--t);transition:transform .35s cubic-bezier(.2,1.4,.4,1),background .3s;cursor:default}
+.ex-fig .pin::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px dashed var(--paper);opacity:.9}
+.ex-fig .pin.hi{transform:scale(1.35);background:var(--gold);border-color:var(--gold)}
+.legend{list-style:none;margin-top:36px;border-top:1.5px solid var(--ink)}
+.legend li{display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);transition:background .3s,padding .3s}
+.legend li:hover{background:rgba(180,143,82,.1);padding-left:10px}
+.legend .p{font:700 13px var(--t);letter-spacing:.1em;color:var(--gold)}
+.legend .t{font:400 clamp(21px,2vw,27px)/1.2 var(--d)}
+.legend .t small{display:block;font:500 14px/1.4 var(--t);color:rgba(23,57,59,.66);margin-top:3px}
+.legend .q{font:600 11px var(--t);letter-spacing:.14em;text-transform:uppercase;opacity:.5;white-space:nowrap}
+
+/* ===== спецификация (главный интерактив) ===== */
+.spec{padding:clamp(80px,10vw,150px) 0;background:var(--paper2)}
+.spec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:48px}
+.spec-head p{max-width:420px;color:rgba(23,57,59,.78)}
+.spec-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,3vw,44px);align-items:start}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tab{height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);font:700 13px var(--t);letter-spacing:.08em;text-transform:uppercase;transition:background .3s,color .3s,border-color .3s;display:inline-flex;align-items:center;gap:8px}
+.tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab .c{display:none;min-width:20px;height:20px;border-radius:10px;background:var(--gold);color:var(--green);font-size:11px;place-items:center;padding:0 5px}
+.tab .c.v{display:inline-grid}
+.parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.part{position:relative;text-align:left;padding:16px 16px 16px 46px;border:1px solid var(--line);background:var(--paper);min-height:86px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;transition:border-color .3s,transform .3s}
+.part:hover{border-color:var(--ink);transform:translateY(-2px)}
+.part::before{content:"";position:absolute;left:16px;top:18px;width:16px;height:16px;border:1.5px solid var(--ink);transform:rotate(0);transition:transform .35s,background .3s}
+.part.on::before{background:var(--gold);border-color:var(--gold);transform:rotate(45deg)}
+.part.on{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.part span{font:500 15px/1.3 var(--t)}
+.part b{font:400 21px/1 var(--d)}
+.drawing{position:sticky;top:90px;background:var(--paper);border:1.5px solid var(--ink);outline:1px solid var(--line);outline-offset:-8px;padding:22px 22px 0;min-width:0}
+.dr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.dr-top .mono{opacity:.6}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{font:700 10px var(--t);letter-spacing:.16em;text-transform:uppercase;text-align:left;padding:8px 6px;border-bottom:1.5px solid var(--ink);opacity:.7}
+.tbl td{padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl td:first-child{width:44px;font-weight:700;color:var(--gold)}
+.tbl td:last-child,.tbl th:last-child{text-align:right;white-space:nowrap}
+.tbl tr.new{animation:rowin .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes rowin{from{opacity:0;transform:translateX(-14px)}}
+.tbl .empty td{color:rgba(23,57,59,.45);font-style:italic;text-align:left;font-weight:500}
+.tblw{min-height:250px;max-height:380px;overflow:auto}
+.dr-foot{display:grid;grid-template-columns:1fr auto;margin:18px -22px 0;border-top:1.5px solid var(--ink)}
+.dr-foot>div{padding:14px 22px;border-right:1px solid var(--line)}
+.dr-foot>div:last-child{border-right:0}
+.dr-foot small{display:block;font:600 10px var(--t);letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:4px}
+.total{font:400 clamp(34px,3.4vw,48px)/1 var(--d);white-space:nowrap}
+.dr-tri{width:64px;height:58px}
+.dr-tri line{stroke:var(--gold);stroke-width:3;stroke-linecap:round;transition:opacity .5s;opacity:.15}
+.dr-tri line.on{opacity:1}
+.dr-act{display:flex;flex-wrap:wrap;gap:10px;padding:16px 22px 20px;margin:0 -22px;border-top:1px solid var(--line)}
+.dr-act .btn{height:46px;font-size:12px}
+.seal{position:absolute;right:120px;bottom:118px;mix-blend-mode:multiply;width:118px;height:118px;border-radius:50%;border:2px solid var(--pink);color:var(--pink);display:grid;place-items:center;text-align:center;font:700 11px/1.25 var(--t);letter-spacing:.12em;text-transform:uppercase;transform:rotate(-14deg) scale(1.6);opacity:0;transition:opacity .25s,transform .4s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.seal::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px solid var(--pink)}
+.seal.on{opacity:.92;transform:rotate(-14deg) scale(1)}
+.mbar{display:none}
+.copied{font:600 12px var(--t);letter-spacing:.1em;color:var(--teal);opacity:0;transition:opacity .3s;align-self:center}
+.copied.on{opacity:1}
+
+/* ===== виды и разрезы: bento по зонам ===== */
+.views{padding:clamp(80px,10vw,150px) 0}
+.views-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+.views-head p{max-width:400px;color:rgba(245,242,234,.7)}
+.zgrid{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(190px,18vw,260px);gap:0;border:1.5px solid rgba(245,242,234,.7);outline:1px solid var(--line);outline-offset:-8px}
+.zgrid .zl{position:absolute;font:600 10px var(--t);letter-spacing:.1em;color:rgba(245,242,234,.45)}
+.cell{position:relative;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 14px 38px;display:flex;align-items:center;justify-content:center;min-width:0}
+.cell .vlbl{position:absolute;left:14px;top:12px;font:600 10px/1 var(--t);letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,234,.6);z-index:2}
+.cell .vlbl b{font:400 16px var(--d);letter-spacing:0;color:var(--gold2);margin-right:4px}
+.cell .cap{position:absolute;left:14px;bottom:11px;right:14px;font:400 17px/1.15 var(--d);z-index:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph{position:relative;width:100%;height:100%;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cell:hover .ph img{transform:scale(1.5)}
+.ph.circle{border-radius:50%;width:auto;height:100%;aspect-ratio:1;max-width:100%;box-shadow:0 0 0 6px var(--green),0 0 0 7px rgba(245,242,234,.35)}
+.ph.circle::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(rgba(245,242,234,.7),rgba(245,242,234,.7)) 50% 0/1px 12% no-repeat,linear-gradient(rgba(245,242,234,.7),rgba(245,242,234,.7)) 50% 100%/1px 12% no-repeat,linear-gradient(rgba(245,242,234,.7),rgba(245,242,234,.7)) 0 50%/12% 1px no-repeat,linear-gradient(rgba(245,242,234,.7),rgba(245,242,234,.7)) 100% 50%/12% 1px no-repeat}
+.c2{grid-column:span 2}.c3{grid-column:span 3}.r2{grid-row:span 2}
+.cell.txt{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;padding:22px}
+.cell.txt b{font:400 clamp(44px,5vw,72px)/1 var(--d);color:var(--gold2)}
+.cell.txt span{font-size:14px;color:rgba(245,242,234,.7);line-height:1.35}
+
+/* ===== технические требования (отзывы) ===== */
+.req{padding:clamp(80px,10vw,150px) 0}
+.req-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,100px);align-items:start}
+.req-l{position:sticky;top:110px}
+.req-l p{margin-top:20px;color:rgba(23,57,59,.75);max-width:380px}
+.ya{position:relative;margin-top:44px;display:flex;gap:16px;align-items:center}
+.ya-badge{width:120px;height:120px;border-radius:50%;border:2px solid var(--teal);color:var(--teal);display:grid;place-items:center;text-align:center;font:700 10px/1.3 var(--t);letter-spacing:.12em;text-transform:uppercase;transform:rotate(-10deg);position:relative;flex:none}
+.ya-badge::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px dashed var(--teal)}
+.ya-badge b{display:block;font:400 26px/1 var(--d);letter-spacing:0;margin:3px 0}
+.ya p{margin:0;font-size:14px}
+.reqs{list-style:none;counter-reset:r}
+.reqs li{counter-increment:r;position:relative;padding:26px 0 26px 70px;border-top:1px solid var(--line)}
+.reqs li::before{content:counter(r) ".";position:absolute;left:0;top:24px;font:400 34px/1 var(--d);color:var(--gold)}
+.reqs li::after{content:"";position:absolute;left:0;top:-1px;width:100%;border-top:1.5px solid var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.6,0,.2,1)}
+.reqs li.in::after{transform:scaleX(1)}
+.reqs q{font:400 clamp(22px,2.2vw,30px)/1.25 var(--d);quotes:none;display:block}
+.reqs small{display:block;margin-top:10px;font:600 11px var(--t);letter-spacing:.14em;text-transform:uppercase;opacity:.5}
+
+/* ===== ведомость цен ===== */
+.prices{padding:clamp(80px,10vw,150px) 0;background:var(--paper2)}
+.prices .h2{margin-bottom:14px}
+.pr-note{color:rgba(23,57,59,.65);margin-bottom:50px}
+.pr-cols{columns:2 420px;column-gap:clamp(30px,5vw,80px)}
+.pr-block{break-inside:avoid;margin-bottom:46px}
+.pr-block h3{display:flex;justify-content:space-between;align-items:baseline;font:400 clamp(30px,3vw,40px)/1 var(--d);padding-bottom:12px;border-bottom:1.5px solid var(--ink)}
+.pr-block h3 span{font:700 11px var(--t);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.pr-row{display:grid;grid-template-columns:40px 1fr auto;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.35}
+.pr-row i{font-style:normal;font-weight:700;color:rgba(23,57,59,.4);font-size:12px;padding-top:2px}
+.pr-row b{font-weight:700;white-space:nowrap}
+
+/* ===== финал ===== */
+.final{position:relative;padding:clamp(90px,12vw,170px) 0 clamp(60px,8vw,100px);overflow:hidden}
+.final .tri2{position:absolute;left:50%;top:48%;width:min(1100px,130vw);transform:translate(-50%,-50%);opacity:.5;pointer-events:none}
+.final .tri2 path{fill:none;stroke:var(--gold);stroke-width:1.2}
+.final .inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center}
+.final .big{font:400 clamp(54px,10vw,150px)/.95 var(--d);letter-spacing:-.03em}
+.final .big .g{color:var(--gold2)}
+.final .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:44px}
+.contacts{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(70px,9vw,120px);border-top:1.5px solid rgba(245,242,234,.7);text-align:left}
+.contacts>div{padding:24px 20px 10px 0;border-right:1px solid var(--line);padding-left:20px;min-width:0}
+.contacts>div:first-child{padding-left:0}
+.contacts>div:last-child{border-right:0}
+.contacts small{display:block;font:600 10px var(--t);letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:8px}
+.contacts p,.contacts a{font:400 21px/1.3 var(--d)}
+.contacts a{border-bottom:1px solid rgba(214,181,122,.5)}
+footer{background:var(--green);color:rgba(245,242,234,.6);font-size:13px;padding:22px 0 30px;border-top:1px solid rgba(245,242,234,.12)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ===== адаптив ===== */
+@media (max-width:1100px){
+  .nav a.l{display:none}
+  #burger{display:block}
+  .sheet{grid-template-columns:1fr}
+  .h-fig{padding:10px 20px 150px}
+  .tri{width:80vw;right:-10%;top:auto;bottom:10%}
+  .dims .wrap{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}
+  .asm .wrap{grid-template-columns:1fr}
+  .asm-l{position:relative;height:auto;padding-top:80px}
+  .asm-r{padding:40px 0 90px}
+  .step{opacity:1}
+  .extra .wrap,.spec-grid,.req-grid{grid-template-columns:1fr}
+  .drawing,.req-l{position:relative;top:0}
+  .zgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .contacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contacts>div:nth-child(3){padding-left:0}
+  .contacts>div:nth-child(2){border-right:0}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .nav{padding-left:14px;gap:4px}
+  .logo span{display:none}
+  .nav .btn{padding:0 16px}
+  .hero{padding:84px 12px 16px}
+  .zones{display:none}
+  .h-text{padding:30px 18px 10px}
+  .h1{font-size:clamp(50px,15vw,64px)}
+  .h-fig{padding:10px 18px 120px}
+  .view{width:150px;left:-4px;bottom:-96px}
+  .view-lbl{left:160px;bottom:-60px}
+  .stamp{position:relative;grid-column:1;grid-template-columns:1fr 1fr;right:auto;bottom:auto;border-left:0}
+  .stamp>div:nth-child(4n){border-right:1px solid var(--line)}
+  .stamp>div:nth-child(2n){border-right:0}
+  .stamp .nm{grid-column:span 2}
+  .dims .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dim{padding:20px 10px 0}
+  .dim:last-child{grid-column:span 2}
+  .parts{grid-template-columns:1fr}
+  .asm-fig{--k:.55}
+  .bal b{width:36px;height:36px;margin:-18px 0 0 -18px;font-size:17px}
+  .legend li{grid-template-columns:44px 1fr}
+  .legend .q{grid-column:2}
+  .zgrid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:170px}
+  .zgrid .cell{grid-column:span 1;grid-row:span 1;padding:32px 10px 36px}
+  .zgrid .cell.c3,.zgrid .cell.r2{grid-column:span 2}
+  .cell .cap{font-size:15px}
+  .reqs li{padding-left:50px}
+  .reqs li::before{font-size:28px}
+  .pr-cols{columns:1}
+  .contacts{grid-template-columns:1fr}
+  .contacts>div{padding-left:0;border-right:0;border-bottom:1px solid var(--line)}
+  .seal{width:96px;height:96px;font-size:9px;right:84px;bottom:112px}
+  .mbar{position:sticky;bottom:12px;z-index:5;margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--paper);box-shadow:0 12px 30px rgba(18,51,44,.3)}
+  .mbar small{display:block;font:600 10px var(--t);letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+  .mbar b{font:400 22px/1.1 var(--d)}
+  .mbar .mono{color:var(--gold2);font-size:11px}
+  .zgrid{grid-auto-rows:210px}
+  .dr-foot{grid-template-columns:1fr auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .row>span,.drawx,.photo img{transform:none}
+  .photo{clip-path:none}
+  .mark,.view,.view-lbl,.leader{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Детали beauty lab"><svg viewBox="0 0 26 24"><path d="M13 1.5 24.5 22.5H1.5Z" fill="none" stroke="#b48f52" stroke-width="1.8"/></svg><span>Детали<small>beauty lab</small></span></a>
+  <a class="l" href="#asm">Комплекс</a><a class="l" href="#spec">Спецификация</a><a class="l" href="#views">Работы</a><a class="l" href="#prices">Цены</a><a class="l" href="#contacts">Контакты</a>
+  <a class="btn fill" href="tel:+79680035860"><span class="ls" data-ls>Записаться</span></a>
+  <button id="burger" aria-label="Меню"><i></i><i></i></button>
+</nav>
+<div id="mnu">
+  <a href="#asm">Комплекс <span>01</span></a><a href="#spec">Спецификация <span>02</span></a><a href="#views">Работы <span>03</span></a><a href="#req">Отзывы <span>04</span></a><a href="#prices">Цены <span>05</span></a><a href="#contacts">Контакты <span>06</span></a>
+</div>
+
+<header class="hero" id="top">
+  <div class="sheet" id="sheet">
+    <div class="zones top"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+    <div class="zones side"><span>А</span><span>Б</span><span>В</span><span>Г</span></div>
+    <svg class="tri" id="tri" viewBox="0 0 600 540" aria-hidden="true"><path d="M300 8 592 532H8Z"/><path d="M300 92 518 488H82Z" style="stroke-width:1;opacity:.5"/></svg>
+    <div class="h-text">
+      <div class="mono kicker">Салон красоты · у метро Коньково</div>
+      <h1 class="h1"><span class="row"><span>Красота</span></span><span class="row"><span>в&nbsp;<span class="g">деталях</span></span></span></h1>
+      <p class="h-sub rv">Маникюр, педикюр, брови и ресницы, волосы, эпиляция. Профсоюзная, 126 к3 — ежедневно с 10 до 21.</p>
+      <div class="h-cta rv"><a class="btn fill" href="tel:+79680035860"><span class="ls" data-ls>Записаться</span></a><a class="btn" href="#spec"><span class="ls" data-ls>Собрать визит</span></a></div>
+    </div>
+    <div class="h-fig">
+      <div class="photo-frame" id="pf">
+        <div class="photo" id="photo"><img src="img/tulips.jpg" alt="Маникюр: нюдовый миндаль с красным акцентом, в руках букет тюльпанов"></div>
+        <div class="mark" id="mark"><b>А</b></div>
+        <div class="leader" id="leader"></div>
+        <div class="view" id="view"><div class="zoom" id="zoom"><img src="img/tulips.jpg" alt=""></div></div>
+        <div class="view-lbl mono"><b>А</b>Вид&nbsp;А · 3:1</div>
+      </div>
+    </div>
+    <div class="stamp">
+      <div class="nm">Детали beauty lab</div><div><small>Лист</small>1</div><div><small>Масштаб</small>1:1</div>
+      <div><small>Рейтинг</small>5,0 · 70 оценок</div><div><small>Отзывов</small>55</div><div class="nm" style="font:600 12px/1.3 var(--t)"><small>Статус</small><span class="status"><i class="dot" data-dot></i><span data-st>…</span></span></div>
+    </div>
+  </div>
+</header>
+
+<section class="dims">
+  <div class="wrap">
+    <div class="dim rv"><div class="ar"><i></i><i></i></div><div class="n">5,0</div><p>средняя оценка в 2ГИС, 70 оценок</p></div>
+    <div class="dim rv"><div class="ar"><i></i><i></i></div><div class="n">55</div><p>отзывов с подробностями — от бровей до кофе</p></div>
+    <div class="dim rv"><div class="ar"><i></i><i></i></div><div class="n">57</div><p>позиций в прайсе: руки, ноги, брови, волосы, эпиляция</p></div>
+    <div class="dim rv"><div class="ar"><i></i><i></i></div><div class="n">10–21</div><p>ежедневно, без выходных</p></div>
+    <div class="dim rv"><div class="ar"><i></i><i></i></div><div class="n">2018<sup>·19</sup></div><p>«Хорошее место» — выбор пользователей Яндекса</p></div>
+  </div>
+</section>
+
+<section class="asm dark grid-bg" id="asm">
+  <div class="wrap">
+    <div class="asm-l">
+      <div class="asm-fig" id="asmfig">
+        <img src="img/heart.jpg" alt="Нежно-розовый маникюр с сердечком" loading="lazy">
+        <div class="bal" style="left:62%;top:30%;--a:-35deg;--len:130;--bx:106;--by:-75"><i></i><s></s><b>1</b></div>
+        <div class="bal" style="left:53%;top:49%;--a:-150deg;--len:140;--bx:-121;--by:-70"><i></i><s></s><b>2</b></div>
+        <div class="bal" style="left:59%;top:65%;--a:10deg;--len:150;--bx:148;--by:26"><i></i><s></s><b>3</b></div>
+        <div class="bal" style="left:57%;top:85%;--a:160deg;--len:140;--bx:-132;--by:48"><i></i><s></s><b>4</b></div>
+        <div class="bal" style="left:58%;top:39%;--a:-5deg;--len:170;--bx:169;--by:-15"><i></i><s></s><b>5</b></div>
+      </div>
+    </div>
+    <div class="asm-r">
+      <div class="mono kicker" style="color:var(--gold2)">Сборочный чертёж · комплекс</div>
+      <h2 class="h2"><span class="row"><span>Маникюр</span></span><span class="row"><span>по <em>позициям</em></span></span></h2>
+      <p style="color:rgba(245,242,234,.72);max-width:440px">Самая частая услуга в прайсе — комплекс. Разбираем, из чего он собран.</p>
+      <div class="step" data-step="0"><div class="no">1</div><div><h3>Снятие старого покрытия</h3><p>Входит в комплекс — отдельно доплачивать не нужно.</p></div></div>
+      <div class="step" data-step="1"><div class="no">2</div><div><h3>Маникюр</h3><p>Аккуратная обработка. Из отзыва: «маникюр сделали без единой царапины».</p></div></div>
+      <div class="step" data-step="2"><div class="no">3</div><div><h3>Выравнивание</h3><p>Ровная архитектура ногтя под покрытие — тоже часть комплекса.</p></div></div>
+      <div class="step" data-step="3"><div class="no">4</div><div><h3>Гель-лак на выбор</h3><p>Две линейки: Luxio | ONIQ или Klio | Kalipso. «Хорошая палитра цветов, есть из чего выбрать».</p></div></div>
+      <div class="step" data-step="4"><div class="no">5</div><div><h3>Дизайн — по желанию</h3><p>Простой — 50 ₽ за палец, сложный — 150 ₽. Сердечко на одном ногте как раз из таких.</p></div></div>
+      <div class="price-tag rv"><div class="pt"><small>Комплекс · Luxio | ONIQ</small><b>2 850 ₽</b></div><div class="pt"><small>Комплекс · Klio | Kalipso</small><b>2 650 ₽</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="extra">
+  <div class="wrap">
+    <div class="ex-fig rv" id="exfig">
+      <img src="img/coffee.jpg" alt="Кофе, зефир и стакан воды на столике, за ним зелёное бархатное кресло" loading="lazy">
+      <span class="pin" data-pin="1" style="left:24%;top:73%">1</span>
+      <span class="pin" data-pin="2" style="left:52%;top:76%">2</span>
+      <span class="pin" data-pin="3" style="left:62%;top:33%">3</span>
+    </div>
+    <div>
+      <div class="mono kicker">Примечание к прайсу</div>
+      <h2 class="h2"><span class="row"><span>Детали,</span></span><span class="row"><span>которых <em>нет</em></span></span><span class="row"><span>в прайсе</span></span></h2>
+      <ul class="legend" id="legend">
+        <li data-pin="1"><span class="p">Поз. 1</span><span class="t">Кофе с разными вкусами и чай<small>«Предложат на выбор чай и кофе с разными вкусами»</small></span><span class="q">в кадре</span></li>
+        <li data-pin="2"><span class="p">Поз. 2</span><span class="t">Зефир к кофе<small>«…и обязательно дадут вкуснейшую зефирку»</small></span><span class="q">в кадре</span></li>
+        <li data-pin="3"><span class="p">Поз. 3</span><span class="t">Удобные кресла<small>«Очень удобные кресла для педикюра, это радует»</small></span><span class="q">в кадре</span></li>
+        <li><span class="p">Поз. 4</span><span class="t">Фильм на время процедуры<small>«Всегда включают крутые фильмы»</small></span><span class="q">вне кадра</span></li>
+        <li><span class="p">Поз. 5</span><span class="t">Плед и подушечка под спину<small>«…подушечку под спину, плед, если вдруг мне холодно»</small></span><span class="q">вне кадра</span></li>
+        <li><span class="p">Поз. 6</span><span class="t">Капибара-антистресс<small>«И капибара антистресс — отличная задумка»</small></span><span class="q">вне кадра</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="spec" id="spec">
+  <div class="wrap">
+    <div class="spec-head">
+      <div><div class="mono kicker">Главный инструмент</div><h2 class="h2"><span class="row"><span>Спецификация</span></span><span class="row"><span><em>визита</em></span></span></h2></div>
+      <p class="rv">В отзывах пишут: «стараюсь делать комплекс в один день — маникюр, брови и эпиляцию». Соберите свой визит по деталям — чертёж и сумма считаются сами, цены из прайса салона.</p>
+    </div>
+    <div class="spec-grid">
+      <div>
+        <div class="tabs" id="tabs"></div>
+        <div class="parts" id="parts"></div>
+        <a class="mbar" href="#drawing"><span><small>Итого · <span id="mcount">0</span> поз.</small><b id="mtotal">0 ₽</b></span><span class="mono">К чертежу ↓</span></a>
+      </div>
+      <div class="drawing" id="drawing">
+        <div class="dr-top"><span class="mono">Спецификация · Лист 2</span><span class="mono" id="dr-date"></span></div>
+        <div class="tblw"><table class="tbl"><thead><tr><th>Поз.</th><th>Наименование</th><th>Цена</th></tr></thead><tbody id="tb"></tbody></table></div>
+        <div class="seal" id="seal">Комплекс<br>в один<br>визит</div>
+        <div class="dr-foot">
+          <div><small>Итого по спецификации</small><div class="total" id="total">0 ₽</div></div>
+          <div style="display:flex;align-items:center"><svg class="dr-tri" viewBox="0 0 64 58"><line id="t1" x1="32" y1="4" x2="60" y2="54"/><line id="t2" x1="60" y1="54" x2="4" y2="54"/><line id="t3" x1="4" y1="54" x2="32" y2="4"/></svg></div>
+        </div>
+        <div class="dr-act"><button class="btn fill" id="copy"><span class="ls" data-ls>Скопировать</span></button><a class="btn" href="tel:+79680035860"><span class="ls" data-ls>Позвонить</span></a><span class="copied" id="copied">Скопировано — отправьте администратору</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="views dark" id="views">
+  <div class="wrap">
+    <div class="views-head">
+      <div><div class="mono kicker" style="color:var(--gold2)">Работы · крупным планом</div><h2 class="h2"><span class="row"><span>Виды</span></span><span class="row"><span>и <em>разрезы</em></span></span></h2></div>
+      <p class="rv">Наведите на кадр — деталь увеличится. Фото из карточки салона в 2ГИС.</p>
+    </div>
+    <div class="zgrid rv">
+      <div class="cell c2 r2"><span class="vlbl"><b>Б</b>Вид · 1:1</span><div class="ph"><img src="img/platinum.jpg" alt="Платиновый блонд, прямые волосы" loading="lazy"></div><span class="cap">Платиновый блонд</span></div>
+      <div class="cell c2"><span class="vlbl"><b>В</b>3:1</span><div class="ph circle"><img src="img/gold.jpg" alt="Маникюр с золотым френчем" loading="lazy"></div></div>
+      <div class="cell c2"><span class="vlbl"><b>Г</b>3:1</span><div class="ph circle"><img src="img/red.jpg" alt="Красный маникюр с рисунком" loading="lazy"></div></div>
+      <div class="cell c2"><span class="vlbl"><b>Д</b>4:1</span><div class="ph circle"><img src="img/dots.jpg" alt="Нюдовый маникюр в точку" loading="lazy"></div></div>
+      <div class="cell c2 txt"><b>4</b><span>линейки гель-лака в прайсе: Luxio, ONIQ, Klio, Kalipso</span></div>
+      <div class="cell c3"><span class="vlbl"><b>Е</b>Фасад</span><div class="ph"><img src="img/facade.jpg" alt="Вход в студию: витрина с фламинго и тропическими листьями" loading="lazy" style="object-position:50% 40%"></div><span class="cap">Вход: фламинго и тропики</span></div>
+      <div class="cell c3"><span class="vlbl"><b>Ж</b>Вид · 1:1</span><div class="ph"><img src="img/logo.jpg" alt="Логотип «Детали Beauty Lab» в треугольнике и тюльпаны" loading="lazy" style="object-position:50% 12%"></div><span class="cap">Тот самый треугольник</span></div>
+      <div class="cell c2"><span class="vlbl"><b>И</b>3:1</span><div class="ph circle"><img src="img/pedi.jpg" alt="Педикюр с красным покрытием" loading="lazy"></div></div>
+      <div class="cell c2"><span class="vlbl"><b>К</b>Вид · 1:1</span><div class="ph"><img src="img/blond.jpg" alt="Светлые волны" loading="lazy"></div><span class="cap">Тёплый блонд, волны</span></div>
+      <div class="cell c2"><span class="vlbl"><b>Л</b>3:1</span><div class="ph circle"><img src="img/green.jpg" alt="Зелёный глянцевый маникюр" loading="lazy"></div></div>
+      <div class="cell c2"><span class="vlbl"><b>М</b>Вид · 1:1</span><div class="ph"><img src="img/long.jpg" alt="Длинные гладкие волосы" loading="lazy"></div><span class="cap">Длина и гладкость</span></div>
+      <div class="cell c2"><span class="vlbl"><b>Н</b>Вид · 1:1</span><div class="ph"><img src="img/bow.jpg" alt="Укладка с бантом" loading="lazy" style="object-position:50% 20%"></div><span class="cap">Укладка с бантом</span></div>
+      <div class="cell c2"><span class="vlbl"><b>П</b>3:1</span><div class="ph circle"><img src="img/pedi-black.jpg" alt="Педикюр с тёмным покрытием" loading="lazy" style="object-position:50% 70%"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="req" id="req">
+  <div class="wrap req-grid">
+    <div class="req-l">
+      <div class="mono kicker">Отзывы · 2ГИС</div>
+      <h2 class="h2"><span class="row"><span>Технические</span></span><span class="row"><span><em>требования</em></span></span></h2>
+      <p>Так обычно называют примечания на чертеже. Здесь — восемь пунктов из 55 отзывов гостей салона, слегка сокращённых.</p>
+      <div class="ya rv"><div class="ya-badge">Хорошее место<b>2018 · 19</b>Яндекс</div><p>Знаки «Хорошее место. Выбор пользователей Яндекса» висят на двери студии.</p></div>
+    </div>
+    <ol class="reqs">
+      <li class="rv"><q>Маникюр сделали без единой царапины.</q><small>Отзыв · 2022</small></li>
+      <li class="rv"><q>Столько заботы, всё так по-человечески, не наигранно.</q><small>Отзыв · 2024</small></li>
+      <li class="rv"><q>Архитектуру бровей делает идеально. Красиво, быстро, аккуратно.</q><small>Отзыв · 2024</small></li>
+      <li class="rv"><q>Стараюсь делать комплекс в один день — маникюр, брови и эпиляцию.</q><small>Отзыв · 2023</small></li>
+      <li class="rv"><q>Все мастера старательные и аккуратные, качественные материалы, одноразовые инструменты.</q><small>Отзыв · 2023</small></li>
+      <li class="rv"><q>Третий раз делаю ресницы. Держатся месяц.</q><small>Отзыв · 2023</small></li>
+      <li class="rv"><q>Собирали меня на самые важные праздники в жизни — от свадьбы до дня рождения.</q><small>Отзыв · 2022</small></li>
+      <li class="rv"><q>Хожу на мужской маникюр уже три года. Всегда всё на уровне.</q><small>Отзыв · 2023</small></li>
+    </ol>
+  </div>
+</section>
+
+<section class="prices" id="prices">
+  <div class="wrap">
+    <div class="mono kicker">Ведомость цен</div>
+    <h2 class="h2"><span class="row"><span>Все <em>57</em> позиций</span></span></h2>
+    <p class="pr-note">По данным 2ГИС, обновлено 23 марта 2026. Не является публичной офертой — точную стоимость подтвердит администратор.</p>
+    <div class="pr-cols" id="prcols"></div>
+  </div>
+</section>
+
+<section class="final dark" id="contacts">
+  <svg class="tri2" viewBox="0 0 600 540" aria-hidden="true"><path d="M300 8 592 532H8Z"/></svg>
+  <div class="wrap">
+    <div class="inner">
+      <div class="mono kicker" style="color:var(--gold2)">Запись</div>
+      <div class="big"><span class="row"><span>Приходите.</span></span><span class="row"><span>Остальное —</span></span><span class="row"><span class="g">детали</span></span></div>
+      <div class="cta"><a class="btn fill" href="tel:+79680035860"><span class="ls" data-ls>Позвонить</span></a><a class="btn" href="https://t.me/detalibl" target="_blank" rel="noopener"><span class="ls" data-ls>Telegram</span></a><a class="btn" href="https://vk.com/detaliblk" target="_blank" rel="noopener"><span class="ls" data-ls>ВКонтакте</span></a></div>
+    </div>
+    <div class="contacts">
+      <div><small>Адрес</small><p>Профсоюзная ул., 126 к3<br>рядом с метро Коньково</p></div>
+      <div><small>Часы</small><p>Ежедневно 10:00–21:00</p><p class="status" style="font:600 13px var(--t);margin-top:8px;letter-spacing:.06em"><i class="dot" data-dot></i><span data-st>…</span></p></div>
+      <div><small>Телефон</small><a href="tel:+79680035860">+7 968 003-58-60</a></div>
+      <div><small>Маршрут</small><a href="https://2gis.ru/moscow/firm/70000001027922254" target="_blank" rel="noopener">Открыть в 2ГИС</a></div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© Детали beauty lab, салон красоты · Москва, Профсоюзная ул., 126 к3</span><span>Демо-концепт по открытым данным салона, не официальный сайт. Сделал Михаил Глазунов.</span></div></footer>
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt=n=>n.toLocaleString('ru-RU').replace(/ /g,' ');
+
+/* letter-swap */
+$$('[data-ls]').forEach(el=>{const t=el.textContent;el.textContent='';[...t].forEach((c,i)=>{const s=document.createElement('i');s.textContent=c;s.style.transitionDelay=(i*18)+'ms';el.appendChild(s)})});
+
+/* меню */
+$('#burger').onclick=()=>document.body.classList.toggle('menu-open');
+$$('#mnu a').forEach(a=>a.onclick=()=>document.body.classList.remove('menu-open'));
+
+/* статус по Москве */
+function status(){
+  const p=new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+  const h=+p.find(x=>x.type==='hour').value%24, m=+p.find(x=>x.type==='minute').value, t=h*60+m;
+  const open=t>=600&&t<1260;
+  const txt=open?'Открыто до 21:00':(t<600?'Закрыто · откроется в 10:00':'Закрыто · завтра с 10:00');
+  $$('[data-st]').forEach(e=>e.textContent=txt);$$('[data-dot]').forEach(e=>e.classList.toggle('off',!open));
+}
+status();setInterval(status,60000);
+
+/* hero: появление */
+requestAnimationFrame(()=>setTimeout(()=>$('#top').classList.add('on'),80));
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
+$$('.rv,.dim,section .row,.reqs li').forEach(el=>io.observe(el));
+$$('.dims .dim').forEach((d,i)=>d.style.transitionDelay=(i*90)+'ms');
+
+/* hero: увеличительный «Вид А» */
+const NP=[[.42,.46],[.45,.52],[.43,.58],[.38,.64],[.53,.75],[.5,.81],[.54,.86],[.6,.91]]; /* ногти на фото */
+const pf=$('#pf'),photo=$('#photo'),mark=$('#mark'),view=$('#view'),zoom=$('#zoom'),leader=$('#leader'),K=3;
+let W=0,H=0,V=0,vx=0,vy=0,tx=.5,ty=.7,x=.5,y=.7,ptr=false,heroVis=true,t0=performance.now();
+function measure(){W=photo.offsetWidth;H=photo.offsetHeight;V=view.offsetWidth;vx=view.offsetLeft;vy=view.offsetTop;zoom.style.width=W+'px';zoom.style.height=H+'px'}
+measure();addEventListener('resize',measure);
+pf.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=photo.getBoundingClientRect();tx=Math.min(.94,Math.max(.06,(e.clientX-r.left)/r.width));ty=Math.min(.94,Math.max(.06,(e.clientY-r.top)/r.height));ptr=true});
+pf.addEventListener('pointerleave',()=>ptr=false);
+new IntersectionObserver(es=>heroVis=es[0].isIntersecting).observe($('#top'));
+function frame(now){
+  if(heroVis){
+    if(!ptr){const t=(now-t0)/1700,i=Math.floor(t)%NP.length,a=NP[i],b=NP[(i+1)%NP.length];let f=t%1;f=f<.45?0:(f-.45)/.55;f=f*f*(3-2*f);tx=a[0]+(b[0]-a[0])*f;ty=a[1]+(b[1]-a[1])*f}
+    const f=RM?1:.12;x+=(tx-x)*f;y+=(ty-y)*f;
+    const px=x*W,py=y*H;
+    mark.style.transform=`translate(${px}px,${py}px)`;
+    zoom.style.transform=`translate(${V/2-px*K}px,${V/2-py*K}px) scale(${K})`;
+    const cx=vx+V/2,cy=vy+V/2,dx=px-cx,dy=py-cy,d=Math.hypot(dx,dy),ux=dx/d,uy=dy/d;
+    const len=Math.max(0,d-V/2-50);
+    leader.style.transform=`translate(${cx+ux*(V/2+4)}px,${cy+uy*(V/2+4)}px) rotate(${Math.atan2(dy,dx)}rad) scaleX(${len/100})`;
+  }
+  if(!RM||!frame.once){frame.once=1;requestAnimationFrame(frame)}
+}
+requestAnimationFrame(frame);
+
+/* угольник поворачивается при прокрутке */
+const tri=$('#tri');
+if(!RM)addEventListener('scroll',()=>{const s=scrollY;if(s<innerHeight*1.2)tri.style.transform=`translateY(${s*.18}px) rotate(${s*.03}deg)`},{passive:true});
+
+/* сборочный чертёж: выноски по шагам */
+const bals=$$('.bal'),steps=$$('.step');
+const wide=matchMedia('(min-width:1101px)');
+function setStep(i){bals.forEach((b,j)=>{b.classList.toggle('on',j<=i);b.classList.toggle('cur',j===i)});steps.forEach((s,j)=>s.classList.toggle('on',j<=i))}
+const sio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&wide.matches)setStep(+e.target.dataset.step)}),{rootMargin:'-45% 0px -45% 0px'});
+steps.forEach(s=>sio.observe(s));
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!wide.matches){bals.forEach((b,j)=>setTimeout(()=>b.classList.add('on'),j*260))}}),{threshold:.4}).observe($('#asmfig'));
+
+/* пины ↔ легенда */
+$$('#legend li[data-pin]').forEach(li=>{const p=$(`.pin[data-pin="${li.dataset.pin}"]`);li.onmouseenter=()=>p.classList.add('hi');li.onmouseleave=()=>p.classList.remove('hi')});
+
+/* ===== данные прайса ===== */
+const P=[
+ ['Маникюр',[['Комплекс маникюр: снятие + маникюр + гель-лак с выравниванием, Klio | Kalipso',2650],['Комплекс маникюр: снятие + маникюр + гель-лак с выравниванием, Luxio | ONIQ',2850],['Маникюр без покрытия',1400],['Маникюр при покрытии',1050],['Маникюр мужской',1600]]],
+ ['Педикюр',[['Комплекс педикюр: снятие + педикюр + гель-лак, Luxio | ONIQ',3150],['Комплекс педикюр: снятие + педикюр + гель-лак, Klio | Kalipso',3350],['Педикюр без покрытия',2200],['Педикюр при покрытии',1950],['Обработка пальцев без покрытия',1650],['Обработка пальцев при покрытии',1250],['Педикюр мужской',2400],['Удаление мозоля, натоптыша, вросшего ногтя',400],['Доплата за Smart-педикюр',400]]],
+ ['Дизайн',[['Простой дизайн, один палец',50],['Простой дизайн, все пальцы',800],['Сложный дизайн, один палец',150],['Сложный дизайн, все пальцы',1000]]],
+ ['Прочее',[['Ремонт',200],['Укрепление базой Hard',700],['Укрепление Polygel',1000],['Укрепление акриловой пудрой',400],['Укрепление базой',500],['Парафинотерапия',400],['Придание формы ногтям',200],['Полировка',200],['Снятие лака при покрытии',100],['Снятие лака',300],['Снятие шеллака при покрытии',300],['Снятие шеллака',700],['Снятие геля / нарощенных ногтей при покрытии',500],['Снятие геля / нарощенных ногтей',1000]]],
+ ['Волосы',[['Стрижка женская',2500],['Окрашивание волос в один тон',[5000,8000]],['Сложное окрашивание',[9000,15000]],['Укладка повседневная',[1800,2200]],['Укладка коктейльная',[3000,3500]],['Уходы за волосами',[1300,1800]]]],
+ ['Брови и ресницы',[['Ламинирование бровей',3500],['Ламинирование ресниц',3000],['Окрашивание бровей / ресниц',1000],['Коррекция бровей',1000],['Коррекция + окрашивание бровей',1800],['Наращивание ресниц 1D-эффект',3000],['Наращивание ресниц 2D-эффект',3400],['Наращивание ресниц 3D-эффект',3800]]],
+ ['Эпиляция',[['Подмышки',800],['Голень',1100],['Бёдра',1100],['Ноги полностью',1800],['Классическое бикини',1500],['Глубокое бикини',1800],['Руки до локтя',1100],['Руки полностью',1500],['Живот',600],['Зона на лице',400],['Ягодицы',800]]]
+];
+const pr=v=>Array.isArray(v)?`${fmt(v[0])}–${fmt(v[1])} ₽`:`${fmt(v)} ₽`;
+let pos=0;
+$('#prcols').innerHTML=P.map(([c,it])=>`<div class="pr-block rv"><h3>${c}<span>${it.length} поз.</span></h3>${it.map(([n,v])=>`<div class="pr-row"><i>${String(++pos).padStart(2,'0')}</i><span>${n}</span><b>${pr(v)}</b></div>`).join('')}</div>`).join('');
+$$('#prcols .rv').forEach(el=>io.observe(el));
+
+/* ===== спецификация визита ===== */
+const S=[
+ ['Руки',[['m1','Комплекс маникюр, Luxio | ONIQ',2850,'m'],['m2','Комплекс маникюр, Klio | Kalipso',2650,'m'],['m3','Маникюр без покрытия',1400,'m'],['m4','Маникюр мужской',1600,'m'],['d1','Простой дизайн, все пальцы',800,'d'],['d2','Сложный дизайн, все пальцы',1000,'d'],['m5','Укрепление базой Hard',700],['m6','Парафинотерапия',400]]],
+ ['Ноги',[['p1','Комплекс педикюр, Luxio | ONIQ',3150,'p'],['p2','Комплекс педикюр, Klio | Kalipso',3350,'p'],['p3','Педикюр без покрытия',2200,'p'],['p4','Педикюр мужской',2400,'p'],['p5','Доплата за Smart-педикюр',400],['p6','Удаление мозоля, натоптыша',400]]],
+ ['Брови и ресницы',[['b1','Коррекция + окрашивание бровей',1800,'b'],['b2','Коррекция бровей',1000,'b'],['b3','Ламинирование бровей',3500],['l1','Ламинирование ресниц',3000,'l'],['l2','Наращивание ресниц 1D',3000,'l'],['l3','Наращивание ресниц 2D',3400,'l'],['l4','Наращивание ресниц 3D',3800,'l']]],
+ ['Волосы',[['h1','Стрижка женская',2500],['h2','Окрашивание в один тон',[5000,8000],'c'],['h3','Сложное окрашивание',[9000,15000],'c'],['h4','Укладка повседневная',[1800,2200],'s'],['h5','Укладка коктейльная',[3000,3500],'s'],['h6','Уход за волосами',[1300,1800]]]],
+ ['Эпиляция',[['e1','Подмышки',800],['e2','Голень',1100,'leg'],['e3','Ноги полностью',1800,'leg'],['e4','Классическое бикини',1500,'bk'],['e5','Глубокое бикини',1800,'bk'],['e6','Руки полностью',1500],['e7','Зона на лице',400]]]
+];
+const byId={};S.forEach(([c,it],ci)=>it.forEach(x=>byId[x[0]]={id:x[0],n:x[1],v:x[2],g:x[3],c:ci}));
+let sel=['m1','b1'],tab=0,fresh=null;
+const tabs=$('#tabs'),parts=$('#parts'),tb=$('#tb');
+function rTabs(){tabs.innerHTML=S.map(([c],i)=>{const n=sel.filter(id=>byId[id].c===i).length;return `<button class="tab${i===tab?' on':''}" data-t="${i}">${c}<span class="c${n?' v':''}">${n}</span></button>`}).join('');
+  tabs.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tab=+b.dataset.t;rTabs();rParts()})}
+function rParts(){parts.innerHTML=S[tab][1].map(([id,n,v])=>`<button class="part${sel.includes(id)?' on':''}" data-id="${id}"><span>${n}</span><b>${pr(v)}</b></button>`).join('');
+  parts.querySelectorAll('.part').forEach(b=>b.onclick=()=>toggle(b.dataset.id))}
+function toggle(id){
+  const it=byId[id];
+  if(sel.includes(id))sel=sel.filter(x=>x!==id);
+  else{if(it.g)sel=sel.filter(x=>byId[x].g!==it.g||byId[x].c!==it.c);sel.push(id);fresh=id}
+  rTabs();rParts();rTable();
+}
+function rTable(){
+  let lo=0,hi=0;
+  tb.innerHTML=sel.length?sel.map((id,i)=>{const it=byId[id];const v=it.v;lo+=Array.isArray(v)?v[0]:v;hi+=Array.isArray(v)?v[1]:v;return `<tr class="${id===fresh?'new':''}"><td>${String(i+1).padStart(2,'0')}</td><td>${it.n}<br><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.5">${S[it.c][0]}</span></td><td>${pr(v)}</td></tr>`}).join('')
+    :'<tr class="empty"><td></td><td colspan="2">Выберите детали слева — они встанут сюда по позициям</td></tr>';
+  fresh=null;
+  $('#total').textContent=$('#mtotal').textContent=lo===hi?`${fmt(lo)} ₽`:`${fmt(lo)}–${fmt(hi)} ₽`;
+  $('#mcount').textContent=sel.length;
+  const cats=new Set(sel.map(id=>byId[id].c)).size;
+  $('#seal').classList.toggle('on',cats>=2);
+  ['#t1','#t2','#t3'].forEach((s,i)=>$(s).classList.toggle('on',sel.length>i));
+}
+const d=new Date();$('#dr-date').textContent=[d.getDate(),d.getMonth()+1,d.getFullYear()].map(n=>String(n).padStart(2,'0')).join('.');
+rTabs();rParts();rTable();
+$('#copy').onclick=()=>{
+  if(!sel.length)return;
+  const txt='Здравствуйте! Хочу записаться в «Детали»:\n'+sel.map((id,i)=>`${i+1}. ${byId[id].n} — ${pr(byId[id].v)}`).join('\n')+'\nИтого по прайсу: '+$('#total').textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).catch(()=>{}).finally(()=>{const c=$('#copied');c.classList.add('on');setTimeout(()=>c.classList.remove('on'),2600)});
+};
+})();
+</script>
+</body>
+</html>
