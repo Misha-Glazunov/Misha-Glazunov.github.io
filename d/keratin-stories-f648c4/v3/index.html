@@ -32,6 +32,8 @@ button { font: inherit; color: inherit; }
 h1, h2, h3, .pf { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; }
 h2 { font-size: clamp(32px, 4.4vw, 60px); line-height: 1; letter-spacing: -.02em; padding-bottom: .1em; }
 h2 em, h3 em { font-style: italic; color: var(--lav); }
+h1, h2, h3, h4, .k, .sub, summary { text-wrap: balance; }
+p, li, figcaption, td, th, .lines span { text-wrap: pretty; }
 .eb { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--mute); }
 section { padding: clamp(56px, 7vw, 100px) 0; position: relative; }
 
@@ -190,15 +192,16 @@ input[type=range] { width: 100%; accent-color: var(--ice); height: 28px; }
               background: rgba(17,17,18,.4) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50%/22px no-repeat; }
 
 /* ── акция ── */
-.deal { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 6vw, 90px); align-items: center; }
+.deal { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
 .bigring { width: clamp(200px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%; box-shadow: var(--glow); display: grid; place-items: center; text-align: center; animation: breathe 4s ease-in-out infinite; }
 .bigring b { display: block; font: italic 400 clamp(52px, 6.4vw, 90px)/1 'Playfair Display', serif; }
 .bigring .up { display: block; margin-bottom: 4px; }
 .bigring span { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
 .deal h3 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1; margin: 10px 0 16px; }
-.deal > div > p { color: #d4cfc9; max-width: 520px; margin-bottom: 20px; }
-.deal table { width: 100%; max-width: 560px; border-collapse: collapse; }
-.deal td { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.deal > div > p { color: #d4cfc9; max-width: 780px; margin-bottom: 20px; }
+.deal table { width: 100%; max-width: 780px; border-collapse: collapse; }
+.deal td { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.deal td:first-child { padding-right: 16px; }
 .deal td:last-child { text-align: right; white-space: nowrap; }
 .deal s { color: var(--mute); margin-right: 8px; }
 .deal td b { font-weight: 600; }
@@ -215,7 +218,7 @@ input[type=range] { width: 100%; accent-color: var(--ice); height: 28px; }
 .about p { color: #d4cfc9; margin-bottom: 14px; }
 
 /* ── почему мы: счётчики ── */
-.nums { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 50px; }
+.nums { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 50px; padding: 0; }
 .nums li { list-style: none; padding: 30px 22px 10px 0; border-right: 1px solid var(--line); }
 .nums li:last-child { border-right: 0; }
 .nums li + li { padding-left: 22px; }
@@ -284,6 +287,43 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 .rv { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .rv.in { opacity: 1; transform: none; }
 
+/* PRICE-CSS:START — генерирует build_pages.py, руками не править */
+#price .prules { list-style: none; padding: 0; display: grid; gap: 4px; color: #d4cfc9; font-size: 14px; max-width: 980px; margin-top: 14px; }
+#price .prules li::before { content: "— "; }
+#price .prules b { color: var(--tx); font-weight: 500; }
+#price .legend { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--mute); }
+#price .legend span { padding: 5px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); color: var(--tx); white-space: nowrap; }
+#price .legend small { color: var(--mute); }
+.pchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 20px -16px 0; padding: 0 16px; }
+.pchips::-webkit-scrollbar, .prail::-webkit-scrollbar { display: none; }
+.pchips button { flex: none; min-height: 36px; padding: 6px 14px; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 1px var(--line); background: none; cursor: pointer; font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
+.pchips button:hover { box-shadow: inset 0 0 0 1px rgba(243,241,238,.55); }
+.pchips button.on { background: var(--tx); color: var(--bg); }
+.prail { --g: 16px; display: flex; align-items: flex-start; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 18px var(--g) 10px; scrollbar-width: none; }
+@media (min-width: 1272px) { .prail { --g: calc((100vw - 1240px) / 2 + 16px); } }
+.pc { flex: none; width: min(88vw, 440px); scroll-snap-align: start; background: var(--card); border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); padding: 18px 18px 16px; display: grid; gap: 9px; }
+.pc .pg { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.pc h3 { font-size: 19px; font-weight: 600; line-height: 1.2; }
+.pc .new { font: italic 500 15px 'Playfair Display', serif; color: var(--lav); margin-left: 8px; }
+.pc .sub { font-size: 13px; color: var(--mute); margin-top: -5px; }
+.pc p { font-size: 13.5px; color: #d4cfc9; }
+.pc .link { justify-self: start; color: var(--tx); border-bottom-color: var(--lav); font-weight: 500; }
+.pc table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.pc th, .pc td { padding: 6px 0; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.pc tbody tr:last-child > * { border-bottom: 0; }
+.pc tbody th { text-align: left; font-weight: 400; color: #d4cfc9; white-space: normal; padding-right: 10px; }
+.pc td { font-weight: 500; padding-left: 8px; }
+.pc thead th { font-size: 12px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.25; }
+.pc thead th:first-child { text-align: left; }
+.pc thead small { display: block; font-weight: 400; font-size: 11px; opacity: .8; }
+.pc .t3 thead th:nth-child(4), .pc .t3 td:nth-child(4) { color: var(--lav); }
+.pc .t1 td.w { white-space: normal; }
+.pc .nt { list-style: none; padding: 0; font-size: 12px; color: var(--mute); display: grid; gap: 2px; }
+.pfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 14px; }
+.pfoot .fine { margin: 0; }
+@media (max-width: 600px) { .pc table { font-size: 13px; } .pc td { padding-left: 6px; } }
+/* PRICE-CSS:END */
+
 @media (max-width: 1060px) {
   .nav { left: 12px; right: 12px; transform: none; width: auto; justify-content: space-between; }
   .nav nav { display: none; position: fixed; top: 64px; left: 12px; right: 12px; flex-direction: column; gap: 0; padding: 10px 20px; border-radius: 24px; background: rgba(17,17,18,.96); box-shadow: inset 0 0 0 1px var(--line); font-size: 18px; }
@@ -317,7 +357,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 
 <header class="nav" id="top">
   <a class="logo" href="#hero" aria-label="Кератин Сторис, наверх"><img src="../v2/img/logo.png" alt="KS Keratin Stories" width="700" height="461"></a>
-  <nav id="menu" aria-label="Разделы"><a href="#services">Услуги</a><a class="pl" href="price/">Прайс</a><a href="#calc">Калькулятор</a><a href="#offers">Акции</a><a href="#about">О студии</a><a href="#team">Команда</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav>
+  <nav id="menu" aria-label="Разделы"><a href="#services">Услуги</a><a class="pl" href="#price">Прайс</a><a href="#calc">Калькулятор</a><a href="#offers">Акции</a><a href="#about">О студии</a><a href="#team">Команда</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav>
   <a class="btn sm fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a>
   <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Меню"><i></i><i></i><i></i></button>
 </header>
@@ -334,7 +374,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
       <h1><span class="w1">КЕРАТИН</span> <span class="w2">СТОРИС</span></h1>
       <p class="sub">Студия выпрямления и реконструкции волос</p>
       <div class="cta"><a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться в студию</a><a class="btn" href="#calc">Рассчитать стоимость</a></div>
-      <a class="plink" href="price/">Весь прайс-лист →</a>
+      <a class="plink" href="#price">Весь прайс-лист →</a>
       <a class="ya" href="https://yandex.ru/maps/org/keratin_stories/187969935132/reviews/" target="_blank" rel="noopener"><b>5,0</b><span>Яндекс Карты · 252 отзыва<small>«Хорошее место 2026»</small></span></a>
     </div>
     <div class="hint" id="hint">листайте</div>
@@ -349,10 +389,45 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
     </div>
     <div class="rail" id="rail"></div>
     <div class="wrap"><div class="prog"><i id="prog"></i></div>
-      <div class="after"><a class="btn fill" href="price/">Весь прайс-лист</a><a class="btn" href="https://wa.me/79057025612" target="_blank" rel="noopener">Получить консультацию</a><a class="btn" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться онлайн</a></div>
+      <div class="after"><a class="btn fill" href="#price">Весь прайс-лист</a><a class="btn" href="https://wa.me/79057025612" target="_blank" rel="noopener">Получить консультацию</a><a class="btn" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться онлайн</a></div>
     </div>
   </div>
 </section>
+
+<!-- PRICE:START — генерирует build_pages.py (build_price_v3), руками не править -->
+<section id="price">
+  <div class="wrap">
+    <div class="hs-head" style="margin-bottom:0"><div><span class="eb rv">Действует с 1 марта 2026 года</span><h2 class="rv">Прайс-<em>лист</em></h2></div>
+      <div class="arrows"><button type="button" data-pdir="-1" aria-label="Назад">←</button><button type="button" data-pdir="1" aria-label="Вперёд">→</button></div></div>
+    <ul class="prules">
+      <li>Стоимость процедуры определяется исходя из <b>длины и густоты волос</b>.</li>
+      <li>Перед началом процедуры мастер измерит длину и густоту ваших волос и озвучит точную стоимость услуги в соответствии с прайсом, <b>обязательно до начала работы</b>, на этапе консультации.</li>
+      <li>Подбор составов и продуктов, на которых будет выполнена услуга, проводится мастером индивидуально в зависимости от вашего типа волос и пожеланий по результату. <b>Выбор конкретных продуктов и составов не влияет на стоимость.</b></li>
+    </ul>
+    <p class="legend">Цены в таблицах — по уровню мастера: <span>Мастер</span><span>ТОП-мастер <small>Яна, Полина</small></span><span>Юлия* <small>основатель</small></span></p>
+    <nav class="pchips" id="pchips" aria-label="Процедуры прайса"><button type="button" data-go="p-keratin">Кератин · ботокс</button><button type="button" data-go="p-total">Тотальная реконструкция</button><button type="button" data-go="p-nano">Нанопластика</button><button type="button" data-go="p-disc">Разглаживание и дисциплина</button><button type="button" data-go="p-afro">Выпрямление афро</button><button type="button" data-go="p-lebel">Счастье для волос Lebel</button><button type="button" data-go="p-cold">Холодное восстановление</button><button type="button" data-go="p-cbotox">Холодный ботокс</button><button type="button" data-go="p-polishing">Комплексная стрижка</button><button type="button" data-go="p-peeling">Пилинг кожи головы</button><button type="button" data-go="p-coloring-complex">Окрашивание + ботокс</button><button type="button" data-go="p-coloring">Окрашивание в 1 тон</button><button type="button" data-go="p-density">Доплата за густоту</button><button type="button" data-go="p-substrate">Подложка</button><button type="button" data-go="p-extensions">Наращённые волосы</button><button type="button" data-go="p-extra">Доп. услуги</button></nav>
+  </div>
+  <div class="prail" id="prail">
+<article class="pc" id="p-keratin"><span class="pg">Выпрямление и разглаживание</span><h3>Кератиновое выпрямление · Ботокс для волос</h3><p><b>Кератиновое выпрямление</b> — процедура, которая выпрямит волосы от лёгких волн до тугих завитков и избавит от пористости. Срок носки после первой процедуры 3–4 месяца, при накопительном эффекте — до 6 месяцев.</p><p><b>Ботокс для волос</b> — процедура, которая поможет избавиться от пушистости, разгладит волосы и сделает их более послушными, возможно выпрямление лёгкого завитка. Срок носки — до 3 месяцев.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>7 000 ₽</td><td>8 500 ₽</td><td>11 000 ₽</td></tr><tr><th scope="row">до 35 см</th><td>7 500 ₽</td><td>9 000 ₽</td><td>12 000 ₽</td></tr><tr><th scope="row">до 40 см</th><td>8 000 ₽</td><td>9 500 ₽</td><td>13 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>8 500 ₽</td><td>10 000 ₽</td><td>14 000 ₽</td></tr><tr><th scope="row">до 50 см</th><td>9 000 ₽</td><td>11 000 ₽</td><td>15 000 ₽</td></tr><tr><th scope="row">до 55 см</th><td>10 000 ₽</td><td>12 000 ₽</td><td>16 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>11 000 ₽</td><td>13 000 ₽</td><td>17 000 ₽</td></tr><tr><th scope="row">до 65 см</th><td>12 000 ₽</td><td>14 000 ₽</td><td>18 000 ₽</td></tr><tr><th scope="row">до 70 см</th><td>13 000 ₽</td><td>15 000 ₽</td><td>19 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту: 1 000 ₽ — 3 000 ₽</li><li>подложка для сильно повреждённых волос: 2 000 ₽ — 3 000 ₽</li><li>доплата за наращённые волосы: 1 500 ₽ — 3 000 ₽</li></ul><button class="link" type="button" data-calc="keratin">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-total"><span class="pg">Выпрямление и разглаживание</span><h3>Тотальная реконструкция</h3><p class="sub">если у вас блонд либо сильно повреждённые волосы</p><p>Включает в себя холодную реконструкцию при помощи 2-х подложек (белковая и липидная) и закрытие горячей процедурой кератин/ботокс.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>11 000 ₽</td><td>13 000 ₽</td><td>16 000 ₽</td></tr><tr><th scope="row">до 35 см</th><td>12 000 ₽</td><td>14 000 ₽</td><td>17 000 ₽</td></tr><tr><th scope="row">до 40 см</th><td>13 000 ₽</td><td>15 000 ₽</td><td>18 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>14 000 ₽</td><td>16 000 ₽</td><td>19 000 ₽</td></tr><tr><th scope="row">до 50 см</th><td>15 000 ₽</td><td>17 000 ₽</td><td>20 000 ₽</td></tr><tr><th scope="row">до 55 см</th><td>16 000 ₽</td><td>18 000 ₽</td><td>21 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>17 000 ₽</td><td>19 000 ₽</td><td>22 000 ₽</td></tr><tr><th scope="row">до 65 см</th><td>18 000 ₽</td><td>20 000 ₽</td><td>23 000 ₽</td></tr><tr><th scope="row">до 70 см</th><td>19 000 ₽</td><td>21 000 ₽</td><td>24 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту: 1 000 ₽ — 3 000 ₽</li><li>доплата за наращённые волосы: 1 500 ₽ — 3 000 ₽</li></ul><button class="link" type="button" data-calc="total">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-nano"><span class="pg">Выпрямление и разглаживание</span><h3>Нанопластика</h3><p class="sub">в технике «полуперманент»</p><p>Процедура с самым сильным выпрямлением. Предназначена для волос хорошего качества, для выпрямления тугого завитка и гормональной волны.</p><p>Волосы выпрямляются НАВСЕГДА, кудрявыми будут отрастать только корни. Техника «полуперманент» позволяет не только выпрямить, но и укрепить эффект более плотной плёнкой, что позволяет волосам больше сохранять мягкость и гладкость.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>11 000 ₽</td><td>13 000 ₽</td><td>16 000 ₽</td></tr><tr><th scope="row">до 35 см</th><td>12 000 ₽</td><td>14 000 ₽</td><td>17 000 ₽</td></tr><tr><th scope="row">до 40 см</th><td>13 000 ₽</td><td>15 000 ₽</td><td>18 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>14 000 ₽</td><td>16 000 ₽</td><td>19 000 ₽</td></tr><tr><th scope="row">до 50 см</th><td>15 000 ₽</td><td>17 000 ₽</td><td>20 000 ₽</td></tr><tr><th scope="row">до 55 см</th><td>16 000 ₽</td><td>18 000 ₽</td><td>21 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>17 000 ₽</td><td>19 000 ₽</td><td>22 000 ₽</td></tr><tr><th scope="row">до 65 см</th><td>18 000 ₽</td><td>20 000 ₽</td><td>23 000 ₽</td></tr><tr><th scope="row">до 70 см</th><td>19 000 ₽</td><td>21 000 ₽</td><td>24 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту: 1 000 ₽ — 3 000 ₽</li><li>доплата за наращённые волосы: 1 500 ₽ — 3 000 ₽</li></ul><button class="link" type="button" data-calc="nano">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-disc"><span class="pg">Выпрямление и разглаживание</span><h3>Разглаживание и дисциплина<span class="new">new!</span></h3><p>Облегчённая процедура на базе ботокса с минимальными испарениями. Подойдёт тем, кому не нужна идеальная гладкость, кто предпочитает более натуральный эффект ухоженных волос без утяжеления, а также тем, кто любит объёмные укладки на стайлеры.</p><p>Разглаживает лёгкую волну, устраняет несильную пушистость. Придаёт волосам мягкость, блеск, рассыпчатость и послушность. Срок носки 1,5–3 месяца в зависимости от типа волос. Имеет накопительный эффект.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>6 000 ₽</td><td>7 500 ₽</td><td>10 000 ₽</td></tr><tr><th scope="row">до 35 см</th><td>6 500 ₽</td><td>8 000 ₽</td><td>10 500 ₽</td></tr><tr><th scope="row">до 40 см</th><td>7 000 ₽</td><td>8 500 ₽</td><td>11 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>7 500 ₽</td><td>9 000 ₽</td><td>11 500 ₽</td></tr><tr><th scope="row">до 50 см</th><td>8 000 ₽</td><td>9 500 ₽</td><td>12 000 ₽</td></tr><tr><th scope="row">до 55 см</th><td>8 500 ₽</td><td>10 000 ₽</td><td>13 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>9 000 ₽</td><td>11 000 ₽</td><td>14 000 ₽</td></tr><tr><th scope="row">до 65 см</th><td>10 000 ₽</td><td>12 000 ₽</td><td>15 000 ₽</td></tr><tr><th scope="row">до 70 см</th><td>11 000 ₽</td><td>13 000 ₽</td><td>16 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту: 1 000 ₽ — 3 000 ₽</li><li>подложка для сильно повреждённых волос: 2 000 ₽ — 3 000 ₽</li><li>доплата за наращённые волосы: 1 500 ₽ — 3 000 ₽</li></ul><button class="link" type="button" data-calc="disc">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-afro"><span class="pg">Выпрямление и разглаживание</span><h3>Выпрямление АФРО</h3><p>Выполняется в технике полуперманент.</p><p>Стоимость рассчитывается индивидуально после очной консультации в студии либо по актуальной фотографии ваших волос.</p><table class="t1"><tbody><tr><th scope="row">Короткие волосы (до 30 см)</th><td>от 20 000 ₽</td></tr></tbody></table><ul class="nt"><li>*в стоимость включена услуга в четыре руки по вашему желанию.</li></ul></article>
+<article class="pc" id="p-lebel"><span class="pg">Восстановление и уход</span><h3>Абсолютное счастье для волос</h3><p class="sub">от премиального японского бренда LEBEL</p><p>Комплексный спа-уход, состоящий из 12 последовательных шагов, направленный на восстановление и питание волос и уход за кожей головы.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>5 000 ₽</td><td>6 000 ₽</td><td>7 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>7 000 ₽</td><td>8 000 ₽</td><td>9 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>9 000 ₽</td><td>10 000 ₽</td><td>11 500 ₽</td></tr><tr><th scope="row">до 70 см</th><td>10 000 ₽</td><td>11 000 ₽</td><td>13 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту 9–10 см: 500 ₽</li><li>доплата за густоту от 11 см: 1 000 ₽</li></ul><button class="link" type="button" data-calc="lebel">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-cold"><span class="pg">Восстановление и уход</span><h3>Комплексное холодное восстановление</h3><p>Многоступенчатый холодный уход, направленный на восстановление повреждённых волос, увлажнение и питание. Не выпрямляет и не меняет структуру волос.</p><p>Включает в себя белковую и липидную подложку и закрывается ламинирующим ботоксом. Срок носки до 4–6 недель. Имеет накопительный эффект.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>6 000 ₽</td><td>7 500 ₽</td><td>10 000 ₽</td></tr><tr><th scope="row">до 35 см</th><td>6 500 ₽</td><td>8 000 ₽</td><td>10 500 ₽</td></tr><tr><th scope="row">до 40 см</th><td>7 000 ₽</td><td>8 500 ₽</td><td>11 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>7 500 ₽</td><td>9 000 ₽</td><td>11 500 ₽</td></tr><tr><th scope="row">до 50 см</th><td>8 000 ₽</td><td>9 500 ₽</td><td>12 000 ₽</td></tr><tr><th scope="row">до 55 см</th><td>8 500 ₽</td><td>10 000 ₽</td><td>13 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>9 000 ₽</td><td>11 000 ₽</td><td>14 000 ₽</td></tr><tr><th scope="row">до 65 см</th><td>10 000 ₽</td><td>12 000 ₽</td><td>15 000 ₽</td></tr><tr><th scope="row">до 70 см</th><td>11 000 ₽</td><td>13 000 ₽</td><td>16 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту 9–10 см: 500 ₽</li><li>доплата за густоту от 11 см: 1 000 ₽</li><li>доплата за наращённые волосы: 1 500 ₽ — 3 000 ₽</li></ul><button class="link" type="button" data-calc="cold">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-cbotox"><span class="pg">Восстановление и уход</span><h3>Холодный ботокс</h3><p>Насыщает волосы липидами и увлажняющими компонентами, делая их более упругими, плотными и блестящими. Не выпрямляет волосы. Подходит для всех типов волос. Срок носки — 2–4 недели.</p><table class="t3"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">до 30 см</th><td>4 000 ₽</td><td>5 000 ₽</td><td>6 000 ₽</td></tr><tr><th scope="row">до 45 см</th><td>6 000 ₽</td><td>7 000 ₽</td><td>8 000 ₽</td></tr><tr><th scope="row">до 60 см</th><td>8 000 ₽</td><td>9 000 ₽</td><td>10 000 ₽</td></tr><tr><th scope="row">до 70 см</th><td>9 000 ₽</td><td>10 000 ₽</td><td>12 000 ₽</td></tr></tbody></table><ul class="nt"><li>*к Юлии — только по предварительному бронированию</li><li>свыше 70 см стоимость рассчитывается индивидуально</li><li>доплата за густоту 9–10 см: 500 ₽</li><li>доплата за густоту от 11 см: 1 000 ₽</li></ul><button class="link" type="button" data-calc="cbotox">Рассчитать стоимость →</button></article>
+<article class="pc" id="p-polishing"><span class="pg">Восстановление и уход</span><h3>Комплексная стрижка (полировка) волос против сечения</h3><p class="sub">комплекс мер, направленный на устранение сечения и ломкости по полотну без потери длины и густоты</p><table class="t2"><thead><tr><th scope="col">Длина</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th></tr></thead><tbody><tr><th scope="row">до 50 см</th><td>4 000 ₽</td><td>5 000 ₽</td></tr><tr><th scope="row">свыше 50 см</th><td>5 000 ₽</td><td>6 000 ₽</td></tr><tr><th scope="row"><b>В комплексе</b> с другими процедурами, до 50 см</th><td>2 000 ₽</td><td>2 500 ₽</td></tr><tr><th scope="row"><b>В комплексе</b>, свыше 50 см</th><td>2 500 ₽</td><td>3 000 ₽</td></tr></tbody></table><ul class="nt"><li>*густота свыше 10 см — 1 000 ₽</li><li><b>Процедура включает в себя:</b> детокс — очищение кожи головы; экспресс-spa-уход для волос; сушку волос; чистку полотна от сечения (сочетание машинной и ручной техники); ровный срез кончиков.</li></ul></article>
+<article class="pc" id="p-peeling"><span class="pg">Восстановление и уход</span><h3>Пилинг кожи головы</h3><p>Диагностика кожи головы при помощи трихоскопа, процедура пилинга, массаж кожи головы, увлажняющая/питательная маска для волос.</p><table class="t1"><tbody><tr><th scope="row">Стоимость пилинга</th><td>3 500 ₽</td></tr><tr><th scope="row">Стоимость пилинга в комплексе с любой другой процедурой</th><td>2 000 ₽</td></tr></tbody></table></article>
+<article class="pc" id="p-coloring-complex"><span class="pg">Окрашивание</span><h3>Комплекс окрашивание | тонирование + холодный ампульный ботокс</h3><p><b>В услугу включено:</b> мытьё волос; процедура окрашивания | тонирования; уход: холодный ампульный ботокс (глубокое увлажнение и питание волос, без выпрямления); сушка.</p><table class="t1"><tbody><tr><th scope="row">Корни (до 2-х см)</th><td>7 500 ₽</td></tr><tr><th scope="row">Короткие волосы (до 35 см)</th><td>9 000 ₽</td></tr><tr><th scope="row">Средние волосы (до 50 см)</th><td>10 500 ₽</td></tr><tr><th scope="row">Длинные волосы (свыше 50 см)</th><td>12 500 ₽</td></tr></tbody></table><ul class="nt"><li>свыше 65 см / густые волосы (свыше 9 см в обхвате) — +1 000 ₽</li></ul></article>
+<article class="pc" id="p-coloring"><span class="pg">Окрашивание</span><h3>Окрашивание в 1 тон | тонирование</h3><p class="sub">*без осветления</p><p><b>В услугу включено:</b> мытьё волос; процедура окрашивания | тонирования; базовый уход; сушка.</p><table class="t1"><tbody><tr><th scope="row">Корни (до 2-х см)</th><td>5 000 ₽</td></tr><tr><th scope="row">Короткие волосы (до 35 см)</th><td>6 500 ₽</td></tr><tr><th scope="row">Средние волосы (до 50 см)</th><td>8 500 ₽</td></tr><tr><th scope="row">Длинные волосы (свыше 50 см)</th><td>9 500 ₽</td></tr></tbody></table><ul class="nt"><li>свыше 65 см / густые волосы (свыше 9 см в обхвате) — +1 000 ₽</li></ul></article>
+<article class="pc" id="p-density"><span class="pg">Доплаты и дополнительные услуги</span><h3>Доплата за густоту</h3><p class="sub">обхват хвоста</p><table class="t1"><tbody><tr><th scope="row">до 6 см</th><td>без доплат</td></tr><tr><th scope="row">7–8 см</th><td>1 000 ₽</td></tr><tr><th scope="row">9–10 см</th><td>1 500 ₽</td></tr><tr><th scope="row">11–12 см</th><td>2 000 ₽</td></tr><tr><th scope="row">от 13 см</th><td>3 000 ₽</td></tr></tbody></table></article>
+<article class="pc" id="p-substrate"><span class="pg">Доплаты и дополнительные услуги</span><h3>Подложка</h3><p>*выполняется на осветлённые, повреждённые волосы либо на любые волосы по вашему желанию как дополнительный уход и защита</p><table class="t1"><tbody><tr><th scope="row">до 50 см</th><td>2 000 ₽</td></tr><tr><th scope="row">от 50 см</th><td>3 000 ₽</td></tr></tbody></table></article>
+<article class="pc" id="p-extensions"><span class="pg">Доплаты и дополнительные услуги</span><h3>Наращённые волосы</h3><table class="t1"><tbody><tr><th scope="row">до 100 капсул</th><td>1 500 ₽</td></tr><tr><th scope="row">до 200 капсул</th><td>2 000 ₽</td></tr><tr><th scope="row">свыше 200 капсул</th><td>3 000 ₽</td></tr></tbody></table></article>
+<article class="pc" id="p-extra"><span class="pg">Доплаты и дополнительные услуги</span><h3>Дополнительные услуги</h3><table class="t1"><tbody><tr><th scope="row">Услуга «в 4 руки»</th><td class=w>+5 000 ₽ к прайсу</td></tr><tr><th scope="row">Выпрямление чёлки</th><td>4 000 ₽</td></tr><tr><th scope="row">Коррекция корней (до 10 см)</th><td class=w>70% от полной стоимости работы</td></tr><tr><th scope="row">Стрижка кончиков совместно с любой из процедур</th><td>500 ₽</td></tr><tr><th scope="row">Стрижка кончиков отдельной процедурой</th><td>1 500 ₽</td></tr></tbody></table></article>
+  </div>
+  <div class="wrap pfoot"><p class="fine">*к Юлии — только по предварительному бронированию. Листайте карточки вбок — все процедуры и доплаты.</p><a class="btn" href="#calc">Калькулятор стоимости</a></div>
+</section>
+<!-- PRICE:END -->
 
 <dialog id="dlg" aria-labelledby="dlgT"><button class="x" type="button" aria-label="Закрыть" data-close>×</button><div class="dlg" id="dlgB"></div></dialog>
 
@@ -378,7 +453,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
           <div class="sum" id="sum"><small>Ориентировочно</small>9 000 ₽</div>
           <ul class="lines" id="lines"></ul>
           <p class="note" id="note"></p>
-          <p class="fine">Перед процедурой мастер измерит длину и густоту и назовёт точную цену до начала работы. Выбор составов на цену не влияет. Свыше 70 см — индивидуально. Все цены по мастерам — в <a class="link" href="price/">прайсе</a>.</p>
+          <p class="fine">Перед процедурой мастер измерит длину и густоту и назовёт точную цену до начала работы. Выбор составов на цену не влияет. Свыше 70 см — индивидуально. Все цены по мастерам — в <a class="link" href="#price">прайсе</a>.</p>
           <div class="cta"><a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a><a class="btn" id="wa" href="https://wa.me/79057025612" target="_blank" rel="noopener">Спросить в WhatsApp</a></div>
         </div>
       </div>
@@ -481,7 +556,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
       <details><summary>Остаются ли заломы на волосах?<i></i></summary><div class="a"><p>Кератин — это не цемент, ваши волосы сохраняют все те же свойства. Поэтому на волосах могут оставаться заломы от резинок и заколок, замятия после сна — это абсолютно нормально.</p><p>Чтобы убрать залом, слегка намочите прядь и высушите её феном. Волосы снова станут прямыми.</p></div></details>
       <details><summary>Есть ли противопоказания?<i></i></summary><div class="a"><p>Противопоказания к горячим процедурам:</p><ul><li>механические повреждения кожного покрова головы</li><li>заболевания кожи головы</li><li>заболевания онкологического характера</li><li>склонность к частой и обильной потере волос</li><li>астматические заболевания</li><li>аллергические реакции</li><li>беременность и период кормления грудью</li></ul><p>Если имеется хотя бы одно из противопоказаний, от процедуры кератинового выпрямления лучше отказаться. Напишите нам для консультации, и, если возможно, мы предложим варианты альтернативных процедур.</p></div></details>
       <details><summary>Обязательно ли пользоваться бессульфатным шампунем после процедуры?<i></i></summary><div class="a"><p>Нет, использование бессульфатного шампуня не обязательно. Вы подбираете шампунь по типу вашей кожи головы.</p></div></details>
-      <details><summary>Сколько будет стоить моя процедура?<i></i></summary><div class="a"><p>Ориентир — в <a class="link" href="#calc">калькуляторе</a>, все цены — в <a class="link" href="price/">прайсе</a>. В кресле перед началом процедуры мастер измерит длину и густоту ваших волос, обсудит с вами пожелания и что будет включать в себя процедура, и обязательно озвучит полную точную стоимость до начала работы.</p></div></details>
+      <details><summary>Сколько будет стоить моя процедура?<i></i></summary><div class="a"><p>Ориентир — в <a class="link" href="#calc">калькуляторе</a>, все цены — в <a class="link" href="#price">прайсе</a>. В кресле перед началом процедуры мастер измерит длину и густоту ваших волос, обсудит с вами пожелания и что будет включать в себя процедура, и обязательно озвучит полную точную стоимость до начала работы.</p></div></details>
       <details><summary>Есть ли гарантия на процедуры?<i></i></summary><div class="a"><p>На все горячие процедуры (ботокс для волос, кератиновое выпрямление, тотальная реконструкция, нанопластика) гарантия — 1 месяц со дня выполнения процедуры.</p><p>Если в течение месяца появилась волна или пух после сушки волос, напишите нам: мы пригласим вас в студию, и если действительно выявится недочёт в работе, переделаем работу полностью бесплатно.</p></div></details>
     </div>
   </div>
@@ -507,7 +582,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 <footer>
   <div class="wrap">
     <span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
-    <nav aria-label="Документы"><a href="price/">Прайс</a><a href="policy/">Политика конфиденциальности</a><a href="offer/">Оферта</a></nav>
+    <nav aria-label="Документы"><a href="#price">Прайс</a><a href="policy/">Политика конфиденциальности</a><a href="offer/">Оферта</a></nav>
   </div>
 </footer>
 
@@ -517,6 +592,19 @@ const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DIKIDI = 'https://dikidi.net/1005604';
 const IMG = '../v2/img/';
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+// ── типограф: короткие слова (предлоги, союзы) не остаются в конце строки, тире не переносится на новую ──
+const NB = /(^|[\s\u00A0(«„"—–])([а-яё]{1,2}|для|без|при|под|над|про|что|как|или|его|еще|ещё)\s+(?=\S)/gi;
+function typo(root) {
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('script,style,textarea') ? 2 : 1 });
+  for (let n; (n = w.nextNode());) {
+    let t = n.nodeValue, u;
+    while ((u = t.replace(NB, '$1$2\u00A0')) !== t) t = u;   // подряд идущие короткие слова — за несколько проходов
+    t = t.replace(/\s+([—–])(\s)/g, '\u00A0$1$2').replace(/(\d) (?=\d{3}\b)/g, '$1\u00A0').replace(/(\d) ₽/g, '$1\u00A0₽')
+      .replace(/(\d)([–-])(?=\d)/g, '$1$2\u2060').replace(/ · /g, '\u00A0· ');   // «3–4» и «… · Ботокс» не рвутся
+    if (t !== n.nodeValue) n.nodeValue = t;
+  }
+}
 
 // ── меню ──
 const menu = $('menu'), burger = $('burger');
@@ -558,7 +646,7 @@ $('rail').innerHTML = SVC.map((s, i) => `<article class="sv">
   <h3>${s.t}${s.t2 ? '<br>' + s.t2 : ''}${s.sub ? `<small>${s.sub}</small>` : ''}</h3>
   <p>${s.short}</p>
   <div class="pr">${s.from ? 'от ' + rub(s.from) : 'по прайсу'}</div>
-  <div class="acts"><button class="btn sm" type="button" data-more="${i}">Подробнее</button>${s.calc ? `<button class="link" type="button" data-calc="${s.calc}">Рассчитать стоимость</button>` : '<a class="link" href="price/">Смотреть прайс</a>'}</div>
+  <div class="acts"><button class="btn sm" type="button" data-more="${i}">Подробнее</button>${s.calc ? `<button class="link" type="button" data-calc="${s.calc}">Рассчитать стоимость</button>` : '<a class="link" href="#price">Смотреть прайс</a>'}</div>
 </article>`).join('');
 document.querySelectorAll('.sv').forEach(c => c.style.position = 'relative');
 
@@ -569,15 +657,15 @@ document.addEventListener('click', e => {
   if (m) {
     const s = SVC[+m.dataset.more];
     $('dlgB').innerHTML = `<h3 id="dlgT">${s.t}${s.t2 ? ' · ' + s.t2 : ''}</h3>${s.full}<div class="pr">${s.from ? 'от ' + rub(s.from) : 'Цены — в прайсе'}</div>
-      <div class="acts"><a class="btn fill" href="${DIKIDI}" target="_blank" rel="noopener">Записаться</a>${s.calc ? `<button class="btn" type="button" data-calc="${s.calc}">Рассчитать стоимость</button>` : '<a class="btn" href="price/">Открыть прайс</a>'}</div>`;
-    dlg.showModal();
+      <div class="acts"><a class="btn fill" href="${DIKIDI}" target="_blank" rel="noopener">Записаться</a>${s.calc ? `<button class="btn" type="button" data-calc="${s.calc}">Рассчитать стоимость</button>` : '<a class="btn" href="#price">Открыть прайс</a>'}</div>`;
+    typo($('dlgB')); dlg.showModal();
   }
   if (c) { if (dlg.open) dlg.close(); toCalc(c.dataset.calc); }
   const v = e.target.closest('[data-vk]');
   if (v) { e.preventDefault(); dlg.classList.add('vd');
     $('dlgB').innerHTML = `<iframe title="Видео работы" src="https://vk.com/video_ext.php?oid=-76757312&id=${v.dataset.vk}&hd=2&autoplay=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     dlg.showModal(); }
-  if (e.target.closest('[data-close]') || e.target === dlg) dlg.close();
+  if (e.target.closest('[data-close]') || e.target === dlg || e.target.closest('dialog a[href^="#"]')) dlg.close();
 });
 
 // видео (VK-клипы студии), лента дублируется для бесконечной прокрутки
@@ -674,9 +762,20 @@ function draw() {
   const msg = afro ? 'Здравствуйте! Хочу узнать стоимость выпрямления афро.' : `Здравствуйте! Хочу записаться: ${o.n}, длина до ${s.len} см.`;
   $('wa').href = 'https://wa.me/79057025612?text=' + encodeURIComponent(msg);
 }
-const qp = new URLSearchParams(location.search).get('p'); if (P[qp]) s.p = qp;   // ?p=nano#calc — из прайса
 function toCalc(p) { if (p === 'afro') s.type = 'afro'; else { s.p = p; if (s.type === 'afro') s.type = 'nat'; } draw(); $('calc').scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); }
 draw();
+
+// ── прайс: лента карточек ──
+{ const pr = $('prail'), chips = [...$('pchips').children], cards = [...pr.children];
+  const pad = () => parseFloat(getComputedStyle(pr).scrollPaddingLeft) || 0;
+  const go = el => pr.scrollTo({ left: el.offsetLeft - cards[0].offsetLeft, behavior: RM ? 'auto' : 'smooth' });
+  chips.forEach(b => b.onclick = () => go($(b.dataset.go)));
+  document.querySelectorAll('[data-pdir]').forEach(b => b.onclick = () => pr.scrollBy({ left: +b.dataset.pdir * (cards[0].offsetWidth + 14), behavior: RM ? 'auto' : 'smooth' }));
+  const mark = () => { const x = pr.getBoundingClientRect().left + pad() + 20;
+    const c = cards.find(el => el.getBoundingClientRect().right > x) || cards[0];
+    chips.forEach(b => { const on = b.dataset.go === c.id; if (on !== b.classList.contains('on')) { b.classList.toggle('on', on); if (on) $('pchips').scrollTo({ left: b.offsetLeft - $('pchips').offsetLeft - 16, behavior: 'smooth' }); } }); };
+  pr.addEventListener('scroll', () => requestAnimationFrame(mark), { passive: true }); mark(); }
+typo(document.body);
 
 // ── сцены при прокрутке ──
 const hero = $('hero'), lens = $('lens'), lensImg = $('lensImg'), ringl = $('ringl'), shade = $('shade'), hint = $('hint');
