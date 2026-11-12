@@ -564,79 +564,106 @@ up.onclick = () => scrollTo({{ top: 0 }});
 # build_price_v3() вписывает CSS и HTML в v3/index.html между маркерами; v3/price/ — редирект на ../#price.
 CALC = {'keratin': 'keratin', 'nano': 'nano', 'total': 'total', 'disc': 'disc', 'cold': 'cold', 'lebel': 'lebel', 'cbotox': 'cbotox'}
 
-def card3(sid, group):
-    _, title, sub, desc, (head, labels, rows), notes, _ = SD[sid]
+# сноски → короткие метки (ведут на карточку «Доплаты»); остальное — мелким текстом
+TAG3 = {O70: 'свыше 70 см — индивидуально', DENS: '+ густота', SUB: '+ подложка', EXT: '+ наращённые', JULIA: None}
+ORDER3 = [('keratin', 'Кератин · Ботокс', 'Выпрямление'), ('total', None, 'Выпрямление'), ('nano', None, 'Выпрямление'), ('disc', None, 'Разглаживание'),
+          ('afro', None, 'Выпрямление'), ('lebel', None, 'Уход'), ('cold', None, 'Уход'), ('cbotox', None, 'Уход'),
+          ('polishing', 'Комплексная стрижка (полировка) против сечения', 'Уход'), ('peeling', None, 'Уход'),
+          ('coloring-complex', 'Окрашивание + холодный ботокс', 'Окрашивание'), ('coloring', None, 'Окрашивание'),  # убрать с 01.01.2027
+          ('extra', None, 'Дополнительно')]
+CHIP3 = {'keratin': 'Кератин · ботокс', 'total': 'Реконструкция', 'nano': 'Нанопластика', 'disc': 'Разглаживание', 'afro': 'Афро', 'lebel': 'LEBEL',
+         'cold': 'Холодное восстановление', 'cbotox': 'Холодный ботокс', 'polishing': 'Комплексная стрижка', 'peeling': 'Пилинг',
+         'coloring-complex': 'Окрашивание', 'coloring': 'Окрашивание в 1 тон', 'extra': 'Доп. услуги'}
+
+def tab3(sid):
+    head, labels, rows = SD[sid][4]
+    num = lambda v: money(v).replace(' ₽', '')
+    if head and len(head) == 3:
+        body = ''.join(f'<tr><th scope="row">{l.replace("до ", "")}</th>' + ''.join(f'<td>{num(v)}</td>' for v in r) + '</tr>' for l, r in zip(labels, rows))
+        return ('<table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП<small>Яна, Полина</small></th>'
+                f'<th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody>{body}</tbody></table>')
     if head:
         th = ''.join(f'<th scope="col">{h}</th>' for h in head)
-        first = 'Длина' if labels[0].startswith('до ') else ''
-        body = ''.join(f'<tr><th scope="row">{l}</th>' + ''.join(f'<td>{money(v)}</td>' for v in r) + '</tr>' for l, r in zip(labels, rows))
-        tab = f'<table class="t{len(head)}"><thead><tr><th scope="col">{first}</th>{th}</tr></thead><tbody>{body}</tbody></table>'
-    else:
-        body = ''.join(f'<tr><th scope="row">{l}</th><td{" class=w" if len(money(r[0])) > 14 else ""}>{money(r[0])}</td></tr>' for l, r in zip(labels, rows))
-        tab = f'<table class="t1"><tbody>{body}</tbody></table>'
-    tag = '<span class="new">new!</span>' if sub == 'new' else ''
+        body = ''.join(f'<tr><th scope="row">{l}</th>' + ''.join(f'<td>{num(v)}</td>' for v in r) + '</tr>' for l, r in zip(labels, rows))
+        return f'<table class="m2"><thead><tr><th scope="col">₽</th>{th}</tr></thead><tbody>{body}</tbody></table>'
+    body = ''.join(f'<tr><th scope="row">{l}</th><td>{money(r[0])}</td></tr>' for l, r in zip(labels, rows))
+    return f'<table class="m1"><tbody>{body}</tbody></table>'
+
+def card3(sid, title, eb):
+    _, t, sub, _, _, notes, cls = SD[sid]
+    tags, rest = [], []
+    for n in notes:
+        if n in TAG3:
+            if TAG3[n] and TAG3[n] not in tags: tags.append(TAG3[n])
+        else: rest.append(n)
+    new = '<i>new</i>' if sub == 'new' else ''
     sub_html = f'<p class="sub">{sub}</p>' if sub and sub != 'new' else ''
-    desc_html = ''.join(f'<p>{d}</p>' for d in desc)
-    notes_html = ('<ul class="nt">' + ''.join(f'<li>{n}</li>' for n in notes) + '</ul>') if notes else ''
-    act = f'<button class="link" type="button" data-calc="{CALC[sid]}">Рассчитать стоимость →</button>' if sid in CALC else ''
-    return f'<article class="pc" id="p-{sid}"><span class="pg">{group}</span><h3>{title}{tag}</h3>{sub_html}{desc_html}{tab}{notes_html}{act}</article>\n'
+    tag_html = ('<p class="tags">' + ''.join(f'<a href="#p-dop">{x}</a>' for x in tags) + '</p>') if tags else ''
+    fn = ''.join(f'<p class="fn">{x}</p>' for x in rest)
+    act = f'<button class="pcalc" type="button" data-calc="{CALC[sid]}">Рассчитать стоимость →</button>' if sid in CALC else ''
+    return f'<article class="pc {cls}" id="p-{sid}"><span class="eb">{eb}</span><h3>{title or t}{new}</h3>{sub_html}{tab3(sid)}{tag_html}{fn}{act}</article>\n'
+
+INTRO3 = f'''<article class="pc pintro" id="p-intro"><span class="eb">Прайс-лист · с 1.03.2026</span><h3>Как считается цена</h3>
+<ul><li>Стоимость определяется исходя из <b>длины и густоты</b> волос.</li><li>Мастер измерит волосы и озвучит точную стоимость по прайсу <b>до начала работы</b>, на этапе консультации.</li><li>Составы подбираются индивидуально — <b>выбор составов на стоимость не влияет</b>.</li></ul>
+<p class="lvls"><span>Мастер</span><span>ТОП · Яна, Полина</span><span class="j">Юлия* · основатель</span></p><p class="fn">{JULIA}</p></article>
+<article class="pc" id="p-dop"><span class="eb">Доплаты</span><h3>Густота, подложка, наращённые</h3>
+<h4>Густота <small>обхват хвоста</small></h4>{{d}}<h4>Подложка <small>на осветлённые, повреждённые волосы или по желанию</small></h4>{{s}}<h4>Наращённые</h4>{{e}}<p class="fn">Свыше 70 см — стоимость рассчитывается индивидуально.</p></article>
+'''
 
 PRICE_CSS = '''/* PRICE-CSS:START — генерирует build_pages.py, руками не править */
-#price .prules { list-style: none; padding: 0; display: grid; gap: 4px; color: #d4cfc9; font-size: 14px; max-width: 980px; margin-top: 14px; }
-#price .prules li::before { content: "— "; }
-#price .prules b { color: var(--tx); font-weight: 500; }
-#price .legend { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--mute); }
-#price .legend span { padding: 5px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); color: var(--tx); white-space: nowrap; }
-#price .legend small { color: var(--mute); }
-.pchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 20px -16px 0; padding: 0 16px; }
-.pchips::-webkit-scrollbar, .prail::-webkit-scrollbar { display: none; }
-.pchips button { flex: none; min-height: 36px; padding: 6px 14px; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 1px var(--line); background: none; cursor: pointer; font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
+.prail { --g: 16px; display: flex; align-items: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 18px var(--g) 6px; scrollbar-width: none; }
+.prail::-webkit-scrollbar, .pchips::-webkit-scrollbar { display: none; }
+@media (min-width: 1272px) { .prail { --g: calc((100vw - 1240px) / 2 + 16px); } }
+.pchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 18px -16px 0; padding: 0 16px; }
+.pchips button { flex: none; min-height: 34px; padding: 5px 13px; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 1px var(--line); background: none; cursor: pointer; font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
 .pchips button:hover { box-shadow: inset 0 0 0 1px rgba(243,241,238,.55); }
 .pchips button.on { background: var(--tx); color: var(--bg); }
-.prail { --g: 16px; display: flex; align-items: flex-start; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 18px var(--g) 10px; scrollbar-width: none; }
-@media (min-width: 1272px) { .prail { --g: calc((100vw - 1240px) / 2 + 16px); } }
-.pc { flex: none; width: min(88vw, 440px); scroll-snap-align: start; background: var(--card); border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); padding: 18px 18px 16px; display: grid; gap: 9px; }
-.pc .pg { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
-.pc h3 { font-size: 19px; font-weight: 600; line-height: 1.2; }
-.pc .new { font: italic 500 15px 'Playfair Display', serif; color: var(--lav); margin-left: 8px; }
-.pc .sub { font-size: 13px; color: var(--mute); margin-top: -5px; }
-.pc p { font-size: 13.5px; color: #d4cfc9; }
-.pc .link { justify-self: start; color: var(--tx); border-bottom-color: var(--lav); font-weight: 500; }
-.pc table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.pc th, .pc td { padding: 6px 0; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
-.pc tbody tr:last-child > * { border-bottom: 0; }
-.pc tbody th { text-align: left; font-weight: 400; color: #d4cfc9; white-space: normal; padding-right: 10px; }
-.pc td { font-weight: 500; padding-left: 8px; }
-.pc thead th { font-size: 12px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.25; }
-.pc thead th:first-child { text-align: left; }
-.pc thead small { display: block; font-weight: 400; font-size: 11px; opacity: .8; }
-.pc .t3 thead th:nth-child(4), .pc .t3 td:nth-child(4) { color: var(--lav); }
-.pc .t1 td.w { white-space: normal; }
-.pc .nt { list-style: none; padding: 0; font-size: 12px; color: var(--mute); display: grid; gap: 2px; }
-.pfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 14px; }
+.pc { flex: none; width: min(86vw, 380px); scroll-snap-align: start; background: var(--card); border-radius: 20px; box-shadow: inset 0 0 0 1px var(--line); padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 8px; }
+.pc .eb { font-size: 10.5px; letter-spacing: .16em; }
+.pc h3 { font: 600 17px/1.2 'Golos Text', system-ui, sans-serif; }
+.pc h3 i { font: italic 500 14px 'Playfair Display', serif; color: var(--lav); margin-left: 6px; }
+.pc h4 { font-size: 13px; font-weight: 500; margin-top: 4px; } .pc h4 small { color: var(--mute); font-weight: 400; }
+.pc .sub { font-size: 12.5px; color: var(--mute); margin-top: -4px; line-height: 1.35; }
+.pc table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.pc th, .pc td { padding: 4px 0; text-align: right; white-space: nowrap; }
+.pc tbody tr:nth-child(odd) { background: rgba(243,241,238,.035); }
+.pc tbody th { text-align: left; font-weight: 400; color: #cfcac4; white-space: normal; padding-left: 6px; }
+.pc td { font-weight: 500; padding-right: 6px; padding-left: 8px; }
+.pc .m3 td:last-child, .pc .m3 thead th:last-child { color: var(--lav); }
+.pc thead th { font-size: 11px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.2; padding: 0 6px 6px 0; border-bottom: 1px solid var(--line); }
+.pc thead th:first-child { text-align: left; padding-left: 6px; } .pc thead small { display: block; font-weight: 400; font-size: 10px; opacity: .8; }
+.pc .m1 td { white-space: normal; }
+.pc .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.pc .tags a { font-size: 11.5px; color: var(--mute); padding: 2px 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); transition: color .3s; }
+.pc .tags a:hover { color: var(--tx); }
+.pc .fn { font-size: 11.5px; color: var(--mute); line-height: 1.4; }
+.pc .pcalc { margin-top: auto; align-self: flex-start; background: none; border: 0; border-bottom: 1px solid var(--lav); padding: 0 0 1px; cursor: pointer; font-weight: 500; font-size: 14px; }
+.pc.pintro ul { padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; color: #cfcac4; } .pc.pintro li::before { content: "— "; } .pc.pintro b { color: var(--tx); font-weight: 500; }
+.pc .lvls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; } .pc .lvls span { font-size: 12.5px; padding: 4px 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); } .pc .lvls .j { color: var(--lav); }
+.pnav { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.pnav .cnt { font-size: 14px; color: var(--mute); min-width: 60px; font-variant-numeric: tabular-nums; } .pnav .cnt b { color: var(--tx); font-weight: 500; }
+.pnav .pbar { flex: 1; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; } .pnav .pbar i { display: block; height: 100%; background: var(--tx); width: 10%; transition: width .3s; }
+.pnav .arrows button { width: 44px; height: 44px; font-size: 16px; }
+.pfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 18px; }
 .pfoot .fine { margin: 0; }
-@media (max-width: 600px) { .pc table { font-size: 13px; } .pc td { padding-left: 6px; } }
 /* PRICE-CSS:END */'''
 
 def build_price_v3():
-    cards = ''.join(card3(i, n) for g, n, ids, c in GROUPS for i in ids)
-    chips = ''.join(f'<button type="button" data-go="p-{i}">{TOC2[i]}</button>' for g, n, ids, c in GROUPS for i in ids)
+    cards = INTRO3.format(d=tab3('density'), s=tab3('substrate'), e=tab3('extensions')) + ''.join(card3(*x) for x in ORDER3)
+    n = cards.count('<article')
+    chips = '<button type="button" data-go="p-intro">Как считается</button><button type="button" data-go="p-dop">Доплаты</button>' + ''.join(f'<button type="button" data-go="p-{i}">{CHIP3[i]}</button>' for i, _, _ in ORDER3)
     sec = f'''<!-- PRICE:START — генерирует build_pages.py (build_price_v3), руками не править -->
 <section id="price">
   <div class="wrap">
     <div class="hs-head" style="margin-bottom:0"><div><span class="eb rv">Действует с 1 марта 2026 года</span><h2 class="rv">Прайс-<em>лист</em></h2></div>
-      <div class="arrows"><button type="button" data-pdir="-1" aria-label="Назад">←</button><button type="button" data-pdir="1" aria-label="Вперёд">→</button></div></div>
-    <ul class="prules">
-      <li>Стоимость процедуры определяется исходя из <b>длины и густоты волос</b>.</li>
-      <li>Перед началом процедуры мастер измерит длину и густоту ваших волос и озвучит точную стоимость услуги в соответствии с прайсом, <b>обязательно до начала работы</b>, на этапе консультации.</li>
-      <li>Подбор составов и продуктов, на которых будет выполнена услуга, проводится мастером индивидуально в зависимости от вашего типа волос и пожеланий по результату. <b>Выбор конкретных продуктов и составов не влияет на стоимость.</b></li>
-    </ul>
-    <p class="legend">Цены в таблицах — по уровню мастера: <span>Мастер</span><span>ТОП-мастер <small>Яна, Полина</small></span><span>Юлия* <small>основатель</small></span></p>
+      <p>Все процедуры и цены сразу по трём уровням мастера. Листайте карточки вбок.</p></div>
     <nav class="pchips" id="pchips" aria-label="Процедуры прайса">{chips}</nav>
   </div>
   <div class="prail" id="prail">
 {cards}  </div>
-  <div class="wrap pfoot"><p class="fine">{JULIA}. Листайте карточки вбок — все процедуры и доплаты.</p><a class="btn" href="#calc">Калькулятор стоимости</a></div>
+  <div class="wrap pnav"><span class="cnt" id="pcnt"><b>1</b> / {n}</span><span class="pbar"><i id="pbar"></i></span>
+    <div class="arrows"><button type="button" data-pdir="-1" aria-label="Назад">←</button><button type="button" data-pdir="1" aria-label="Вперёд">→</button></div></div>
+  <div class="wrap pfoot"><p class="fine">{JULIA}.</p><a class="btn" href="#calc">Калькулятор стоимости</a></div>
 </section>
 <!-- PRICE:END -->'''
     idx = ROOT / 'v3' / 'index.html'
