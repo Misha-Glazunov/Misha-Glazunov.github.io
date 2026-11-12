@@ -52,7 +52,7 @@ S = [
   ('peeling', 'Пилинг кожи головы', '', [
     'Диагностика кожи головы при помощи трихоскопа, процедура пилинга, массаж кожи головы, увлажняющая/питательная маска для волос.'],
    (None, ['Стоимость пилинга', 'Стоимость пилинга в комплексе с любой другой процедурой'], [(3500,), (2000,)]), [], ''),
-  ('polishing', 'Комплексная стрижка | полировка против сечения', 'комплекс мер, направленный на устранение сечения и ломкости по полотну без потери длины и густоты', [],
+  ('polishing', 'Комплексная стрижка (полировка) волос против сечения', 'комплекс мер, направленный на устранение сечения и ломкости по полотну без потери длины и густоты', [],
    (['Мастер', 'ТОП-мастер<small>Яна, Полина</small>'], ['до 50 см', 'свыше 50 см', '<b>В комплексе</b> с другими процедурами, до 50 см', '<b>В комплексе</b>, свыше 50 см'], [(4000, 5000), (5000, 6000), (2000, 2500), (2500, 3000)]),
    ['*густота свыше 10 см — 1 000 ₽',
     '<b>Процедура включает в себя:</b> детокс — очищение кожи головы; экспресс-spa-уход для волос; сушку волос; чистку полотна от сечения (сочетание машинной и ручной техники); ровный срез кончиков.'], ''),
@@ -80,7 +80,7 @@ S = [
    (None, ['до 100 капсул', 'до 200 капсул', 'свыше 200 капсул'], [(1500,), (2000,), (3000,)]), [], ''),
 ]
 NAV = [('keratin', 'Кератин · ботокс'), ('nano', 'Нанопластика'), ('total', 'Реконструкция'), ('disc', 'Разглаживание'), ('lebel', 'Lebel'),
-       ('cold', 'Холодное восстановление'), ('cbotox', 'Холодный ботокс'), ('peeling', 'Пилинг'), ('polishing', 'Полировка'), ('afro', 'Афро'),
+       ('cold', 'Холодное восстановление'), ('cbotox', 'Холодный ботокс'), ('peeling', 'Пилинг'), ('polishing', 'Комплексная стрижка'), ('afro', 'Афро'),
        ('coloring-complex', 'Окрашивание'), ('extra', 'Доп. услуги'), ('offer-complex', 'Акция')]
 
 def money(v):
@@ -100,9 +100,9 @@ def section(sid, title, sub, desc, tab, notes, cls):
     return f'''{remark}<section class="p {cls}" id="{sid}"><h2>{title}{sub_html}</h2>{''.join(f'<p>{d}</p>' for d in desc)}{table(tab)}{notes_html}</section>\n'''
 
 BODY = ''.join(section(*s) for s in S) + '''<section class="p deal" id="offer-complex"><h2>Акция «Комплекс»</h2>
-<p>Скидка на полировку волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами.</p>
-<table class="list"><tbody><tr><th scope="row">Полировка в комплексе, до 50 см</th><td><s>4 000 ₽</s> 2 000 ₽</td></tr><tr><th scope="row">Полировка в комплексе, свыше 50 см</th><td><s>5 000 ₽</s> 2 500 ₽</td></tr><tr><th scope="row">Пилинг в комплексе</th><td><s>3 500 ₽</s> 2 000 ₽</td></tr></tbody></table>
-<ul class="notes"><li>цены полировки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽</li></ul></section>
+<p>Скидка на комплексную стрижку (полировку) волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами.</p>
+<table class="list"><tbody><tr><th scope="row">Комплексная стрижка, до 50 см</th><td><s>4 000 ₽</s> 2 000 ₽</td></tr><tr><th scope="row">Комплексная стрижка, свыше 50 см</th><td><s>5 000 ₽</s> 2 500 ₽</td></tr><tr><th scope="row">Пилинг в комплексе</th><td><s>3 500 ₽</s> 2 000 ₽</td></tr></tbody></table>
+<ul class="notes"><li>цены комплексной стрижки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽</li></ul></section>
 '''
 
 MAIN = f'''<main class="wrap">
@@ -258,13 +258,13 @@ for name, v in V.items():
 SD = {x[0]: x for x in S}
 PHOTO = {'keratin': 's-keratin', 'nano': 's-nano', 'total': 's-total', 'disc': 's-disc', 'afro': 's-afro', 'lebel': 's-lebel', 'cold': 's-cold'}
 GROUPS = [
-  ('straight', 'Выпрямление и разглаживание', ['keratin', 'nano', 'disc', 'total', 'afro'], ''),
+  ('straight', 'Выпрямление и разглаживание', ['keratin', 'total', 'nano', 'disc', 'afro'], ''),
   ('care', 'Восстановление и уход', ['lebel', 'cold', 'cbotox', 'polishing', 'peeling'], ''),
   ('color', 'Окрашивание', ['coloring-complex', 'coloring'], 'coloring'),  # убрать с 01.01.2027: удалить группу
   ('add', 'Доплаты и дополнительные услуги', ['density', 'substrate', 'extensions', 'extra'], ''),
 ]
 TOC2 = {'keratin': 'Кератин · ботокс', 'nano': 'Нанопластика', 'disc': 'Разглаживание и дисциплина', 'total': 'Тотальная реконструкция', 'afro': 'Выпрямление афро',
-        'lebel': 'Счастье для волос Lebel', 'cold': 'Холодное восстановление', 'cbotox': 'Холодный ботокс', 'polishing': 'Полировка', 'peeling': 'Пилинг кожи головы',
+        'lebel': 'Счастье для волос Lebel', 'cold': 'Холодное восстановление', 'cbotox': 'Холодный ботокс', 'polishing': 'Комплексная стрижка', 'peeling': 'Пилинг кожи головы',
         'coloring-complex': 'Окрашивание + ботокс', 'coloring': 'Окрашивание в 1 тон', 'density': 'Доплата за густоту', 'substrate': 'Подложка',
         'extensions': 'Наращённые волосы', 'extra': 'Доп. услуги'}
 
@@ -484,9 +484,9 @@ def build_price(name):
 <label><input type="radio" name="lvl" value="2">Юлия*<small>основатель</small></label></div>
 <p class="jn">''' + JULIA + '</p></fieldset>'
     deal = P.get('deal') or '''<section class="deal" id="deal"><p class="k">Акция</p><h2>«Комплекс»</h2>
-<p>Скидка на полировку волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами.</p>
-<ul><li><span>Полировка в комплексе, до 50 см</span><b><s>4 000 ₽</s>2 000 ₽</b></li><li><span>Полировка в комплексе, свыше 50 см</span><b><s>5 000 ₽</s>2 500 ₽</b></li><li><span>Пилинг в комплексе</span><b><s>3 500 ₽</s>2 000 ₽</b></li></ul>
-<ul class="nt"><li>цены полировки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽</li></ul>
+<p>Скидка на комплексную стрижку (полировку) волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами.</p>
+<ul><li><span>Комплексная стрижка, до 50 см</span><b><s>4 000 ₽</s>2 000 ₽</b></li><li><span>Комплексная стрижка, свыше 50 см</span><b><s>5 000 ₽</s>2 500 ₽</b></li><li><span>Пилинг в комплексе</span><b><s>3 500 ₽</s>2 000 ₽</b></li></ul>
+<ul class="nt"><li>цены комплексной стрижки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽</li></ul>
 <div class="act" style="justify-content:center"><a class="btn fill" href="''' + DIKIDI + '''" target="_blank" rel="noopener">Записаться онлайн</a></div></section>'''
     html = f'''<!doctype html>
 <html lang="ru">
@@ -559,103 +559,210 @@ up.onclick = () => scrollTo({{ top: 0 }});
     print(out, len(html))
 
 
-# v3: та же раскладка, поверх — стиль «вау»-главной (Playfair + Golos, капсула-навигация, круглые светящиеся зеркала)
-P3_CSS = P2_CSS + '''
-:root { --bg: #111112; --card: #1b1b1d; --card2: #252528; --tx: #f3f1ee; --mute: #9e9a95; --soft: #d4cfc9; --line: rgba(243,241,238,.14); --ice: #eaf6ff; --lav: #b8a6e0;
+# ═══════════ v3: прайс (2026-11-12, по просьбе Юлии) ═══════════
+# Весь прайс сразу: у каждой процедуры таблица со всеми тремя мастерами (Мастер / ТОП / Юлия),
+# без переключателей. Блоки идут один за другим, сверху — быстрые ссылки по процедурам. Данные — те же S.
+CALC = {'keratin': 'keratin', 'nano': 'nano', 'total': 'total', 'disc': 'disc', 'cold': 'cold', 'lebel': 'lebel', 'cbotox': 'cbotox'}
+
+def card3(sid):
+    _, title, sub, desc, (head, labels, rows), notes, _ = SD[sid]
+    if head:
+        th = ''.join(f'<th scope="col">{h}</th>' for h in head)
+        first = 'Длина' if labels[0].startswith('до ') else ''
+        body = ''.join(f'<tr><th scope="row">{l}</th>' + ''.join(f'<td>{money(v)}</td>' for v in r) + '</tr>' for l, r in zip(labels, rows))
+        tab = f'<table class="t{len(head)}"><thead><tr><th scope="col">{first}</th>{th}</tr></thead><tbody>{body}</tbody></table>'
+    else:
+        body = ''.join(f'<tr><th scope="row">{l}</th><td{" class=w" if len(money(r[0])) > 14 else ""}>{money(r[0])}</td></tr>' for l, r in zip(labels, rows))
+        tab = f'<table class="t1"><tbody>{body}</tbody></table>'
+    tag = '<span class="new">new!</span>' if sub == 'new' else ''
+    sub_html = f'<p class="sub">{sub}</p>' if sub and sub != 'new' else ''
+    desc_html = ''.join(f'<p>{d}</p>' for d in desc)
+    notes_html = ('<ul class="nt">' + ''.join(f'<li>{n}</li>' for n in notes) + '</ul>') if notes else ''
+    act = f'<a class="link" href="../?p={CALC[sid]}#calc">Рассчитать стоимость →</a>' if sid in CALC else ''
+    return f'''<article class="pc" id="{sid}"><h3>{title}{tag}</h3>{sub_html}{desc_html}{tab}{notes_html}{act}</article>\n'''
+
+P3_CSS = '''
+:root { --bg: #111112; --card: #1b1b1d; --tx: #f3f1ee; --mute: #9e9a95; --soft: #d4cfc9; --line: rgba(243,241,238,.14); --ice: #eaf6ff; --lav: #b8a6e0; --ease: cubic-bezier(.22,1,.36,1);
         --glow: 0 0 0 2px var(--ice), 0 0 26px 4px rgba(214,236,255,.55), inset 0 0 22px rgba(214,236,255,.35); }
-body { font: 400 16px/1.6 'Golos Text', system-ui, sans-serif; overflow-x: clip; }
-* { font-variant-numeric: lining-nums !important; } /* ровные цифры Playfair, иначе съезжают в кружках */
-:focus-visible { outline-color: var(--ice); }
-.wrap { max-width: 1240px; }
-h1, h2, h3, .from, .rules em, .tg .tgh { font-family: 'Playfair Display', Georgia, serif; }
-h1 em, h2 em { font-style: italic; color: var(--lav); }
-h1 { letter-spacing: -.02em; }
-.kick { letter-spacing: .24em; }
-/* кнопки: капсулы, заливка снизу эллипсом */
-.btn { position: relative; isolation: isolate; overflow: hidden; border-radius: 999px; min-height: 50px; padding: 13px 28px; font: 500 15px/1.2 'Golos Text', system-ui, sans-serif; letter-spacing: 0; }
+* { box-sizing: border-box; margin: 0; }
+* { font-variant-numeric: lining-nums !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+body { background: var(--bg); color: var(--tx); font: 400 15px/1.55 'Golos Text', system-ui, sans-serif; overflow-x: clip; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; padding-bottom: .06em; }
+h1 em { font-style: italic; color: var(--lav); }
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 24px; border-radius: 999px;
+       border: 1px solid var(--tx); background: transparent; cursor: pointer; font: 500 15px/1.2 'Golos Text', sans-serif; transition: color .45s var(--ease); }
 .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--tx); clip-path: ellipse(0 0 at 50% 100%); transition: clip-path .55s var(--ease); }
-.btn:hover { background: transparent; color: var(--bg); } .btn:hover::before { clip-path: ellipse(120% 140% at 50% 100%); }
-.btn.fill { background: var(--tx); color: var(--bg); } .btn.fill::before { background: var(--lav); } .btn.fill:hover { background: var(--tx); color: var(--bg); }
+.btn:hover { color: var(--bg); } .btn:hover::before { clip-path: ellipse(120% 140% at 50% 100%); }
+.btn.fill { background: var(--tx); color: var(--bg); } .btn.fill::before { background: var(--lav); }
 .btn.sm { min-height: 40px; padding: 8px 18px; font-size: 14px; }
-/* навигация — стеклянная капсула, как на главной */
+.link { font-size: 14px; font-weight: 500; border-bottom: 1px solid var(--lav); padding-bottom: 2px; }
+/* шапка — как на главной */
 .nav { position: fixed; z-index: 50; top: 14px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 22px; padding: 6px 6px 6px 18px; border-radius: 999px;
-       background: rgba(17,17,18,.6); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); width: max-content; max-width: calc(100vw - 24px); }
-.nav .logo { width: 46px; }
+       background: rgba(17,17,18,.78); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 6px 24px rgba(0,0,0,.35); width: max-content; max-width: calc(100vw - 24px); }
+.nav .logo { width: 54px; }
 .nav nav { display: flex; gap: 18px; font-size: 14px; }
-.nav nav a { opacity: .8; transition: opacity .3s; } .nav nav a:hover, .nav nav a[aria-current] { opacity: 1; }
-.nav nav a[aria-current] { color: var(--lav); }
-.nav .burger { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); margin: 0; }
-.nav .burger i { left: 12px; right: 12px; } .nav .burger i:first-child { top: 16px; } .nav .burger i:last-child { top: 22px; }
-/* вступление: правила — карточки с номером в светящемся кольце */
-.rules { gap: 12px; background: none; border: 0; }
-.rules li { background: var(--card); border-radius: 24px; box-shadow: inset 0 0 0 1px var(--line); padding: 26px 26px 28px; }
-.rules em { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; box-shadow: var(--glow); font-size: 17px; line-height: 1; color: var(--tx); margin-bottom: 18px; }
-/* шкала мастера и оглавление */
-.lvl label { border-radius: 18px; padding: 10px 18px; }
-.lvl label:has(input:checked) small { color: #5d5853; }
-.tg a.on { border-left-color: var(--lav); }
-.tg .tgh { font-size: 19px; }
-.chips a { border-radius: 999px; }
-/* карточки и круглые зеркала */
-.grp h2 { letter-spacing: -.02em; }
-.card { border-radius: 28px; box-shadow: inset 0 0 0 1px var(--line); }
-.card.big { grid-template-columns: 190px 1fr; gap: 34px; padding: 30px 32px 28px; }
-.ph { overflow: visible; background: none; border-radius: 50%; box-shadow: 0 0 0 2px rgba(234,246,255,.25); transition: box-shadow .6s var(--ease); }
-.ph img { border-radius: 50%; transition: transform 1.2s var(--ease); }
-.card.big:hover .ph { box-shadow: var(--glow); }
-.ph .new, .new { position: absolute; top: -6px; right: -4px; left: auto; background: none; color: var(--lav); padding: 0; font: italic 500 17px 'Playfair Display', serif; letter-spacing: 0; text-transform: none; transform: rotate(12deg); }
-.new { position: static; display: inline-block; margin-left: 10px; }
-.bd { padding-top: 4px; }
-.from { font-style: italic; font-size: 26px; } .from b { font-weight: 400; }
-.sub { font: 400 13px/1.4 'Golos Text', system-ui, sans-serif; margin-top: 6px; }
-.pl i { border-bottom-color: rgba(243,241,238,.22); }
-/* акция — кольцо «−50%», как на главной */
-.deal { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; background: none; text-align: left; padding: 60px 0 10px; }
-.bigring { width: clamp(200px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%; box-shadow: var(--glow); display: grid; place-items: center; text-align: center; animation: breathe 4s ease-in-out infinite; }
-@keyframes breathe { 50% { filter: brightness(1.35); } }
-.bigring b { display: block; font: italic 400 clamp(56px, 7vw, 96px)/1 'Playfair Display', serif; }
-.bigring span { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
-.deal .k { font: 500 12px 'Golos Text', sans-serif; letter-spacing: .24em; text-transform: uppercase; }
-.deal h2 { text-transform: none; letter-spacing: -.02em; margin: 8px 0 14px; }
-.deal > div > p { margin: 0; max-width: 520px; color: var(--soft); }
-.deal ul { margin: 20px 0 0; }
-.deal .nt { text-align: left; }
-.deal .act { justify-content: flex-start; }
-.up { border-radius: 50%; }
-footer { margin-top: 70px; }
+.nav nav a { opacity: .85; } .nav nav a:hover { opacity: 1; } .nav nav a[aria-current] { opacity: 1; color: var(--lav); }
+.burger { display: none; width: 46px; height: 46px; border: 0; background: none; cursor: pointer; position: relative; }
+.burger i { position: absolute; left: 10px; right: 10px; height: 2px; border-radius: 2px; background: var(--tx); transition: transform .4s var(--ease), opacity .3s; }
+.burger i:nth-child(1) { top: 15px; } .burger i:nth-child(2) { top: 22px; } .burger i:nth-child(3) { top: 29px; }
+.burger[aria-expanded=true] i:nth-child(1) { transform: translateY(7px) rotate(45deg); } .burger[aria-expanded=true] i:nth-child(2) { opacity: 0; } .burger[aria-expanded=true] i:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* вступление */
+.intro { padding: 110px 0 10px; }
+.kick { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--mute); }
+h1 { font-size: clamp(34px, 4.4vw, 56px); line-height: 1.05; margin: 8px 0 16px; letter-spacing: -.02em; }
+.rules { list-style: none; padding: 0; display: grid; gap: 6px; color: var(--soft); max-width: 860px; font-size: 14px; }
+.rules li::before { content: "— "; }
+.rules b { color: var(--tx); font-weight: 500; }
+.legend { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--mute); }
+.legend span { padding: 5px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); color: var(--tx); }
+.legend small { color: var(--mute); }
+.intro .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+/* быстрые ссылки — липкая лента */
+.chips { position: sticky; top: 76px; z-index: 20; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 26px -16px 0; padding: 10px 16px;
+         background: linear-gradient(rgba(17,17,18,.96) 75%, rgba(17,17,18,0)); }
+.chips::-webkit-scrollbar { display: none; }
+.chips a { flex: none; padding: 7px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
+.chips a:hover, .chips a.on { background: var(--tx); color: var(--bg); }
+/* группы и блоки процедур */
+.grp { margin-top: 34px; }
+.grp > h2 { font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -.01em; margin-bottom: 14px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); gap: 14px; align-items: start; }
+.pc { background: var(--card); border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); padding: 20px 20px 18px; display: grid; gap: 10px; }
+.pc h3 { font-size: 20px; font-weight: 600; line-height: 1.2; }
+.pc .new { font: italic 500 15px 'Playfair Display', serif; color: var(--lav); margin-left: 8px; }
+.pc .sub { font-size: 13px; color: var(--mute); margin-top: -6px; }
+.pc p { font-size: 14px; color: var(--soft); }
+.pc .link { justify-self: start; margin-top: 2px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 7px 0; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+tbody tr:last-child > * { border-bottom: 0; }
+tbody th { text-align: left; font-weight: 400; color: var(--soft); white-space: normal; padding-right: 10px; }
+td { font-weight: 500; padding-left: 8px; }
+thead th { font-size: 12px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.25; }
+thead th:first-child { text-align: left; }
+thead small { display: block; font-weight: 400; font-size: 11px; opacity: .8; }
+.t3 thead th:nth-child(4), .t3 td:nth-child(4) { color: var(--lav); }
+.t1 td.w { white-space: normal; }
+.nt { list-style: none; padding: 0; font-size: 12.5px; color: var(--mute); display: grid; gap: 2px; }
+/* акция */
+.deal { display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 5vw, 60px); align-items: center; margin-top: 50px; }
+.bigring { width: clamp(180px, 20vw, 240px); aspect-ratio: 1; border-radius: 50%; box-shadow: var(--glow); display: grid; place-items: center; text-align: center; }
+.bigring b { display: block; font: italic 400 clamp(46px, 5vw, 68px)/1 'Playfair Display', serif; }
+.bigring span { display: block; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.deal .k { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--mute); }
+.deal h2 { font-size: clamp(28px, 3vw, 40px); margin: 6px 0 10px; }
+.deal p { color: var(--soft); max-width: 560px; }
+.deal ul:not(.nt) { list-style: none; padding: 0; margin: 14px 0 8px; max-width: 560px; }
+.deal li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.deal li b { font-weight: 600; white-space: nowrap; } .deal s { color: var(--mute); font-weight: 400; margin-right: 8px; }
+.deal .act { margin-top: 16px; }
+footer { border-top: 1px solid var(--line); margin-top: 60px; padding: 24px 0 34px; font-size: 13px; color: var(--mute); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 30px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { color: var(--tx); }
+.up { position: fixed; right: 16px; bottom: 16px; z-index: 40; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: rgba(17,17,18,.85); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.up.show { opacity: 1; pointer-events: auto; }
 @media (max-width: 1060px) {
-  .nav { gap: 12px; padding-left: 14px; width: calc(100vw - 24px); justify-content: space-between; }
-  .nav nav { display: none; position: fixed; top: 64px; left: 12px; right: 12px; flex-direction: column; gap: 0; padding: 10px 20px; border-radius: 24px; background: rgba(17,17,18,.96); box-shadow: inset 0 0 0 1px var(--line); font-size: 18px; }
+  .nav { left: 12px; right: 12px; transform: none; width: auto; justify-content: space-between; }
+  .nav nav { display: none; position: fixed; top: 70px; left: 12px; right: 12px; flex-direction: column; gap: 0; padding: 10px 20px; border-radius: 24px; background: rgba(17,17,18,.97); box-shadow: inset 0 0 0 1px var(--line); font-size: 18px; }
   .nav nav.open { display: flex; }
   .nav nav a { padding: 12px 0; border-bottom: 1px solid var(--line); } .nav nav a:last-child { border: 0; }
-  .nav .burger { display: block; }
+  .burger { display: block; }
   .nav > .btn { margin-left: auto; }
 }
-@media (max-width: 1000px) {
-  html { scroll-padding-top: 150px; }
-  .lvl { top: 0; padding-top: 76px; margin-top: -66px; background: linear-gradient(rgba(17,17,18,.96) 70%, rgba(17,17,18,.9)); border-bottom: 0; }
-  .lvl .opts { gap: 0; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
-  .lvl label { border: 0; border-radius: 0; padding: 8px 2px; font-size: 13.5px; white-space: nowrap; }
-}
-@media (max-width: 760px) {
-  .card.big { grid-template-columns: 1fr; padding: 26px 18px 20px; }
-  .card.big .ph { width: 170px; aspect-ratio: 1; justify-self: center; } .card.big .ph img { object-position: 50% 50%; }
-  .card.big .bd { padding: 20px 0 0; }
+@media (max-width: 600px) {
+  .pc { padding: 16px 14px 14px; border-radius: 18px; }
+  table { font-size: 13px; }
+  td { padding-left: 6px; }
   .deal { grid-template-columns: 1fr; } .bigring { justify-self: center; }
-  .rules em { margin-bottom: 10px; }
 }
-@media (prefers-reduced-motion: reduce) { .bigring { animation: none; } }'''
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }'''
 
-PV['v3'] = dict(css=P3_CSS, img='../../v2/img/', root='../../v2/', h1='Прайс-<em>лист</em>', header=f'''<header class="nav" id="top">
-<a class="logo" href="../" aria-label="Кератин Сторис, на главную"><img src="../../v2/img/logo.png" alt="KS Keratin Stories" width="700" height="461"></a>
-<nav id="nav" aria-label="Разделы">{NAVLINKS}</nav>
+NAV3 = '<a href="../#services">Услуги</a><a href="./" aria-current="page">Прайс</a><a href="../#calc">Калькулятор</a><a href="../#offers">Акции</a><a href="../#about">О студии</a><a href="../#team">Команда</a><a href="../#reviews">Отзывы</a><a href="../#contacts">Контакты</a>'
+
+def build_price3():
+    v = V['v3']; img = '../../v2/img/'
+    faces = '\n'.join(l for l in v['fonts'].splitlines() if l.startswith('@font-face')).replace('url(fonts/', 'url(../fonts/')
+    chips = ''.join(f'<a href="#{i}">{TOC2[i]}</a>' for g, n, ids, c in GROUPS for i in ids) + '<a href="#deal">Акция «Комплекс»</a>'
+    groups = ''.join(
+        ('<!-- окрашивание убирают с 01.01.2027: удалить эту секцию -->\n' if c else '') +
+        f'<section class="grp" id="{g}" aria-labelledby="{g}-h"><h2 id="{g}-h">{n}</h2><div class="cards">\n' + ''.join(card3(i) for i in ids) + '</div></section>\n'
+        for g, n, ids, c in GROUPS)
+    html = f'''<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- превью на demo.animemory.ru; при переносе на keratinstories.ru убрать noindex -->
+<meta name="robots" content="noindex, nofollow">
+<title>{PRICE_T}</title>
+<meta name="description" content="{PRICE_D}">
+{ICONS.format(img=img, root='../../v2/')}<style>
+{faces}
+{P3_CSS}
+</style>
+</head>
+<body>
+<header class="nav" id="top">
+<a class="logo" href="../" aria-label="Кератин Сторис, на главную"><img src="{img}logo.png" alt="KS Keratin Stories" width="700" height="461"></a>
+<nav id="nav" aria-label="Разделы">{NAV3}</nav>
 <a class="btn sm fill" href="{DIKIDI}" target="_blank" rel="noopener">Записаться</a>
-<button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню"><i></i><i></i></button>
-</header>''', deal=f'''<section class="deal" id="deal"><div class="bigring"><div><b>−50%</b><span>в комплексе</span></div></div><div>
-<p class="k">Акция</p><h2>«Комплекс»</h2>
-<p>Скидка на полировку волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами.</p>
-<ul><li><span>Полировка в комплексе, до 50 см</span><b><s>4 000 ₽</s>2 000 ₽</b></li><li><span>Полировка в комплексе, свыше 50 см</span><b><s>5 000 ₽</s>2 500 ₽</b></li><li><span>Пилинг в комплексе</span><b><s>3 500 ₽</s>2 000 ₽</b></li></ul>
-<ul class="nt"><li>цены полировки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽</li></ul>
-<div class="act"><a class="btn fill" href="{DIKIDI}" target="_blank" rel="noopener">Записаться онлайн</a></div></div></section>''')
+<button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню"><i></i><i></i><i></i></button>
+</header>
 
-for n in PV: build_price(n)
+<main class="wrap">
+<div class="intro">
+<p class="kick">действует с 1 марта 2026 года</p>
+<h1>Прайс-<em>лист</em></h1>
+<ul class="rules">
+<li>Стоимость процедуры определяется исходя из <b>длины и густоты волос</b>.</li>
+<li>Перед началом процедуры мастер измерит длину и густоту ваших волос и озвучит точную стоимость услуги в соответствии с прайсом, <b>обязательно до начала работы</b>, на этапе консультации.</li>
+<li>Подбор составов и продуктов, на которых будет выполнена услуга, проводится мастером индивидуально в зависимости от вашего типа волос и пожеланий по результату. <b>Выбор конкретных продуктов и составов не влияет на стоимость.</b></li>
+</ul>
+<p class="legend">Цены в таблицах — по уровню мастера: <span>Мастер</span><span>ТОП-мастер <small>Яна, Полина</small></span><span>Юлия* <small>основатель</small></span></p>
+<div class="cta"><a class="btn fill" href="{DIKIDI}" target="_blank" rel="noopener">Записаться онлайн</a><a class="btn" href="../#calc">Калькулятор стоимости</a></div>
+</div>
+<nav class="chips" id="chips" aria-label="Процедуры">{chips}</nav>
+{groups}
+<section class="deal" id="deal"><div class="bigring"><div><span>до</span><b>−50%</b><span>в комплексе</span></div></div><div>
+<p class="k">Акция</p><h2>«Комплекс»</h2>
+<p>Скидка на комплексную стрижку (полировку) волос против сечения и пилинг кожи головы при проведении в комплексе с другими процедурами.</p>
+<ul><li><span>Комплексная стрижка, до 50 см</span><b><s>4 000 ₽</s>2 000 ₽</b></li><li><span>Комплексная стрижка, свыше 50 см</span><b><s>5 000 ₽</s>2 500 ₽</b></li><li><span>Пилинг кожи головы</span><b><s>3 500 ₽</s>2 000 ₽</b></li></ul>
+<ul class="nt"><li>цены комплексной стрижки — у мастера; у ТОП-мастера в комплексе 2 500 / 3 000 ₽</li></ul>
+<div class="act"><a class="btn fill" href="{DIKIDI}" target="_blank" rel="noopener">Записаться онлайн</a></div></div></section>
+</main>
+
+<footer><div class="wrap"><span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+<nav aria-label="Документы"><a href="../">Главная</a><a href="../policy/">Политика конфиденциальности</a><a href="../offer/">Оферта</a></nav></div></footer>
+<button class="up" id="up" type="button" aria-label="Наверх">↑</button>
+
+<script>
+const $ = id => document.getElementById(id);
+const nav = $('nav'), burger = $('burger');
+const setNav = o => {{ nav.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); }};
+burger.onclick = () => setNav(!nav.classList.contains('open'));
+nav.querySelectorAll('a').forEach(a => a.onclick = () => setNav(false));
+// подсветка текущей процедуры в ленте ссылок
+const links = [...document.querySelectorAll('#chips a')], map = new Map(links.map(a => [a.hash.slice(1), a]));
+const io = new IntersectionObserver(es => es.forEach(e => {{ if (!e.isIntersecting) return; const a = map.get(e.target.id); if (!a) return;
+  links.forEach(x => x.classList.remove('on')); a.classList.add('on'); a.scrollIntoView({{ block: 'nearest', inline: 'center' }}); }}), {{ rootMargin: '-150px 0px -60% 0px' }});
+document.querySelectorAll('.pc[id], .deal').forEach(s => io.observe(s));
+const up = $('up');
+addEventListener('scroll', () => up.classList.toggle('show', scrollY > 900), {{ passive: true }});
+up.onclick = () => scrollTo({{ top: 0 }});
+</script>
+</body>
+</html>
+'''
+    out = ROOT / 'v3' / 'price' / 'index.html'
+    out.write_text(html, encoding='utf-8')
+    print(out, len(html))
+
+build_price('v2')
+build_price3()
+
