@@ -662,7 +662,7 @@ document.addEventListener('click', e => {
   if (c) { if (dlg.open) dlg.close(); toCalc(c.dataset.calc); }
   const v = e.target.closest('[data-vk]');
   if (v) { e.preventDefault(); dlg.classList.add('vd');
-    $('dlgB').innerHTML = `<iframe title="Видео работы" src="https://vk.com/video_ext.php?oid=-76757312&id=${v.dataset.vk}&hd=2&autoplay=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    $('dlgB').innerHTML = `<iframe title="Видео работы" src="https://vk.com/video_ext.php?oid=-76757312&id=${v.dataset.vk}&hd=2${matchMedia('(pointer: coarse)').matches ? '' : '&autoplay=1'}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     dlg.showModal(); }
   if (e.target.closest('[data-close]') || e.target === dlg || e.target.closest('dialog a[href^="#"]')) dlg.close();
 });
