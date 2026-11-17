@@ -1,0 +1,39 @@
+/* PRICE-CSS — генерирует build_pages.py из build/price3.css */
+.pricepg { padding-top: clamp(110px, 12vw, 150px); }
+.pricepg h1 { font-size: clamp(32px, 4.4vw, 60px); line-height: 1; letter-spacing: -.02em; padding-bottom: .1em; }
+.pricepg h1 em { font-style: italic; color: var(--lav); }
+.prail { --g: 16px; display: flex; align-items: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 18px var(--g) 6px; scrollbar-width: none; }
+.prail::-webkit-scrollbar, .pchips::-webkit-scrollbar { display: none; }
+@media (min-width: 1272px) { .prail { --g: calc((100vw - 1240px) / 2 + 16px); } }
+.pchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 18px -16px 0; padding: 0 16px; }
+.pchips button { flex: none; min-height: 34px; padding: 5px 13px; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 1px var(--line); background: none; cursor: pointer; font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
+.pchips button:hover { box-shadow: inset 0 0 0 1px rgba(243,241,238,.55); }
+.pchips button.on { background: var(--tx); color: var(--bg); }
+.pc { flex: none; width: min(86vw, 380px); scroll-snap-align: start; background: var(--card); border-radius: 20px; box-shadow: inset 0 0 0 1px var(--line); padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 8px; }
+.pc .eb { font-size: 10.5px; letter-spacing: .16em; }
+.pc h3 { font: 600 17px/1.2 'Golos Text', system-ui, sans-serif; }
+.pc h3 i { font: italic 500 14px 'Playfair Display', serif; color: var(--lav); margin-left: 6px; }
+.pc h4 { font-size: 13px; font-weight: 500; margin-top: 4px; } .pc h4 small { color: var(--mute); font-weight: 400; }
+.pc .sub { font-size: 12.5px; color: var(--mute); margin-top: -4px; line-height: 1.35; }
+.pc table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.pc th, .pc td { padding: 4px 0; text-align: right; white-space: nowrap; }
+.pc tbody tr:nth-child(odd) { background: rgba(243,241,238,.035); }
+.pc tbody th { text-align: left; font-weight: 400; color: #cfcac4; white-space: normal; padding-left: 6px; }
+.pc td { font-weight: 500; padding-right: 6px; padding-left: 8px; }
+.pc thead th { font-size: 11px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.2; padding: 0 6px 6px 0; border-bottom: 1px solid var(--line); }
+.pc thead th:first-child { text-align: left; padding-left: 6px; } .pc thead small { display: block; font-weight: 400; font-size: 10px; opacity: .8; }
+.pc .m1 td { white-space: normal; }
+.pc .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.pc .tags a { font-size: 11.5px; color: var(--mute); padding: 2px 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); transition: color .3s; }
+.pc .tags a:hover { color: var(--tx); }
+.pc .fn { font-size: 11.5px; color: var(--mute); line-height: 1.4; }
+.pc .pcalc { margin-top: auto; align-self: flex-start; border-bottom: 1px solid var(--lav); padding: 0 0 1px; font-weight: 500; font-size: 14px; }
+.pc .pcalc.in { margin: 0 0 6px; font-size: 13px; }
+.pc.pintro ul { padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; color: #cfcac4; } .pc.pintro li::before { content: "— "; } .pc.pintro b { color: var(--tx); font-weight: 500; }
+.pc .lvls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; } .pc .lvls span { font-size: 12.5px; padding: 4px 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
+.pnav { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.pnav .cnt { font-size: 14px; color: var(--mute); min-width: 60px; font-variant-numeric: tabular-nums; } .pnav .cnt b { color: var(--tx); font-weight: 500; }
+.pnav .pbar { flex: 1; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; } .pnav .pbar i { display: block; height: 100%; background: var(--tx); width: 10%; transition: width .3s; }
+.pnav .arrows button { width: 44px; height: 44px; font-size: 16px; }
+.pfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 18px; }
+.pfoot .fine { margin: 0; } .pfoot .cta { display: flex; flex-wrap: wrap; gap: 10px; }

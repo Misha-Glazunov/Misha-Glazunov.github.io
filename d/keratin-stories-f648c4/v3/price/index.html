@@ -1,5 +1,444 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex">
-<title>Прайс-лист — Кератин Сторис</title><meta http-equiv="refresh" content="0; url=../#price">
-<script>location.replace('../#price')</script></head>
-<body style="background:#111112;color:#f3f1ee;font-family:system-ui"><p><a href="../#price">Прайс-лист</a></p></body></html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- превью-вариант B; при переносе на keratinstories.ru убрать noindex и перенести img из ../v2 -->
+<meta name="robots" content="noindex, nofollow">
+<title>Прайс-лист — Кератин Сторис</title>
+<link rel="icon" href="../../v2/favicon.ico" sizes="any" media="(prefers-color-scheme: light)">
+<link rel="icon" href="../../v2/img/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="../../v2/img/apple-touch-icon.png">
+<style>
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 700;font-display:swap;src:url(../fonts/playfair-italic-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 700;font-display:swap;src:url(../fonts/playfair-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 700;font-display:swap;src:url(../fonts/playfair-normal-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 700;font-display:swap;src:url(../fonts/playfair-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:400 600;font-display:swap;src:url(../fonts/golos-normal-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:400 600;font-display:swap;src:url(../fonts/golos-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root { --bg: #111112; --card: #1b1b1d; --card2: #252528; --tx: #f3f1ee; --mute: #9e9a95; --line: rgba(243,241,238,.14); --ice: #eaf6ff; --lav: #b8a6e0; --ease: cubic-bezier(.22,1,.36,1);
+        --glow: 0 0 0 2px var(--ice), 0 0 26px 4px rgba(214,236,255,.55), inset 0 0 22px rgba(214,236,255,.35); }
+* { box-sizing: border-box; margin: 0; }
+html { scroll-padding-top: 80px; }
+body { background: var(--bg); color: var(--tx); font: 400 16px/1.6 'Golos Text', system-ui, sans-serif; overflow-x: clip; }
+/* у Playfair цифры по умолчанию «старые» — прыгают по высоте и съезжают в кружках; !important — шорткат font: сбрасывает это свойство */
+* { font-variant-numeric: lining-nums !important; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+h1, h2, h3, .pf { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; }
+h2 { font-size: clamp(32px, 4.4vw, 60px); line-height: 1; letter-spacing: -.02em; padding-bottom: .1em; }
+h2 em, h3 em { font-style: italic; color: var(--lav); }
+h1, h2, h3, h4, .k, .sub, summary { text-wrap: balance; }
+p, li, figcaption, td, th, .lines span { text-wrap: pretty; }
+.eb { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--mute); }
+section { padding: clamp(56px, 7vw, 100px) 0; position: relative; }
+
+/* кнопки: заливка снизу эллипсом */
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 13px 28px; border-radius: 999px; border: 1px solid var(--tx); background: transparent; cursor: pointer; font-weight: 500; font-size: 15px; transition: color .45s var(--ease); }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--tx); clip-path: ellipse(0 0 at 50% 100%); transition: clip-path .55s var(--ease); }
+.btn:hover { color: var(--bg); } .btn:hover::before { clip-path: ellipse(120% 140% at 50% 100%); }
+.btn.fill { background: var(--tx); color: var(--bg); }
+.btn.fill::before { background: var(--lav); }
+.btn.sm { min-height: 40px; padding: 8px 18px; font-size: 14px; }
+.link { background: none; border: 0; border-bottom: 1px solid var(--lav); padding: 0 0 2px; cursor: pointer; font-size: 14px; transition: border-color .3s; }
+.link:hover { border-color: var(--tx); }
+
+/* ── навигация: стеклянная капсула ── */
+.nav { position: fixed; z-index: 50; top: 14px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 22px; padding: 6px 6px 6px 18px; border-radius: 999px;
+       background: rgba(17,17,18,.78); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 6px 24px rgba(0,0,0,.35); width: max-content; max-width: calc(100vw - 24px); }
+.nav .logo { width: 54px; } .nav .logo img { height: auto; }
+.nav nav { display: flex; gap: 18px; font-size: 14px; }
+.nav nav a { opacity: .85; transition: opacity .3s; } .nav nav a:hover { opacity: 1; }
+.nav nav a.pl { opacity: 1; color: var(--lav); }
+.burger { display: none; width: 46px; height: 46px; border: 0; background: none; cursor: pointer; position: relative; }
+.burger i { position: absolute; left: 10px; right: 10px; height: 2px; border-radius: 2px; background: var(--tx); transition: transform .4s var(--ease), opacity .3s; }
+.burger i:nth-child(1) { top: 15px; } .burger i:nth-child(2) { top: 22px; } .burger i:nth-child(3) { top: 29px; }
+.burger[aria-expanded=true] i:nth-child(1) { transform: translateY(7px) rotate(45deg); } .burger[aria-expanded=true] i:nth-child(2) { opacity: 0; } .burger[aria-expanded=true] i:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── HERO: кольцо-зеркало раскрывается при прокрутке ── */
+.hero { height: 230vh; padding: 0; }
+.stick { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.intro { position: absolute; inset: 0; animation: intro 1.6s var(--ease) both; }
+@keyframes intro { from { opacity: 0; transform: scale(.7); } }
+.lens, .ringl { position: absolute; left: 50%; top: var(--cy, 50%); width: var(--d0); height: var(--d0); margin: calc(var(--d0) / -2) 0 0 calc(var(--d0) / -2); border-radius: 50%; will-change: transform; }
+.lens { overflow: hidden; background: var(--bg); }
+.lens img { position: absolute; left: 50%; top: 50%; width: var(--iw); height: var(--ih); max-width: none; will-change: transform;
+  -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent); }
+.ringl { box-shadow: var(--glow); pointer-events: none; animation: breathe 4s ease-in-out infinite; }
+@keyframes breathe { 50% { filter: brightness(1.35); } }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,17,18,.25), rgba(17,17,18,0) 40%, rgba(17,17,18,.85)); opacity: 0; pointer-events: none; }
+/* текст: на широком экране слова стоят по бокам кольца (одна строка с кольцом посередине), на телефоне — внизу */
+.htx { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 14px; text-align: center; padding: 0 16px 26px; }
+.hero h1 { white-space: nowrap; font-size: min(9.4vw, 52px); line-height: 1; letter-spacing: .05em; padding-bottom: .08em; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+.hero h1 span { display: inline-block; animation: rise 1.4s .5s var(--ease) both; }
+.hero h1 .w2 { animation-delay: .65s; }
+@keyframes rise { from { opacity: 0; transform: translateY(40%); } }
+.htx .sub { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; max-width: 300px; }
+.htx .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.htx > :not(h1) { animation: rise 1.2s 1s var(--ease) both; }
+.hero.wide .htx { display: grid; grid-template-columns: 1fr var(--df) 1fr; grid-template-rows: 1fr auto auto auto 1fr; column-gap: clamp(24px, 3vw, 56px); row-gap: 18px; align-items: center; padding: 0 3vw; text-align: left; }
+.hero.wide h1 { display: contents; }
+.hero.wide h1 span { grid-row: 2; font-size: clamp(36px, 4.9vw, 88px); }
+.hero.wide .w1 { grid-column: 1; justify-self: end; } .hero.wide .w2 { grid-column: 3; justify-self: start; }
+.hero.wide .sub { grid-column: 1; grid-row: 3; justify-self: end; text-align: right; max-width: 340px; font-size: 14px; }
+.hero.wide .cta { grid-column: 3; grid-row: 3; justify-content: start; }
+.hero.wide .ya { grid-column: 1; grid-row: 4; justify-self: end; }
+.hero.wide .plink { grid-column: 3; grid-row: 4; justify-self: start; }
+.plink { font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--lav); padding-bottom: 2px; color: var(--tx); }
+.ya { display: inline-flex; align-items: center; gap: 12px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(17,17,18,.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font-size: 13px; line-height: 1.3; text-align: left; }
+.ya b { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; box-shadow: var(--glow); font: 500 16px/1 'Playfair Display', serif; }
+.ya small { display: block; color: #cfcac4; }
+.hint { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--mute); }
+.hint::after { content: ""; display: block; width: 1px; height: 34px; margin: 10px auto 0; background: linear-gradient(var(--tx), transparent); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* ── услуги: горизонтальная лента, едет при вертикальной прокрутке ── */
+#services { padding: 0; }
+.hs .pin { padding: clamp(70px, 9vw, 110px) 0 40px; }
+.hs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; margin-bottom: 36px; }
+.hs-head p { max-width: 380px; color: var(--mute); }
+.prog { height: 1px; background: var(--line); margin-top: 18px; position: relative; overflow: hidden; }
+.prog i { position: absolute; inset: 0; background: var(--tx); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.rail { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 0 16px 10px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.hs.on { height: var(--h); }
+.hs.on .pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.hero.wide { height: 180vh; }
+.hs.on .after { display: none; }
+.hs.on .pin > .wrap { width: 100%; } /* в flex-колонке margin:auto сжимал .wrap по контенту и центрировал */
+.hs.on .mir { width: min(200px, 24vh); margin-bottom: 16px; }
+.hs.on .hs-head { margin-bottom: 24px; }
+.hs.on .pin { padding: 70px 0 20px; }
+.hs.on .rail { overflow: visible; will-change: transform; transform: translateX(var(--x, 0)); padding-left: max(16px, calc((100vw - 1240px) / 2 + 16px)); }
+.sv { flex: none; width: min(80vw, 340px); scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 24px 20px 22px; border-radius: 28px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.sv .no { align-self: flex-start; font-size: 12px; letter-spacing: .2em; color: var(--mute); }
+.mir { position: relative; width: min(52vw, 210px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; margin: 6px 0 22px; box-shadow: 0 0 0 2px rgba(234,246,255,.25); transition: box-shadow .6s var(--ease); }
+.mir img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.sv:hover .mir, .ms:hover .mir { box-shadow: var(--glow); }
+.sv:hover .mir img, .ms:hover .mir img { transform: scale(1.07); }
+.sv .new { position: absolute; top: 4px; right: 18px; font: italic 500 15px 'Playfair Display', serif; color: var(--lav); transform: rotate(12deg); }
+.sv h3 { font-size: 19px; font-weight: 600; line-height: 1.2; letter-spacing: -.005em; margin-bottom: 8px; padding-bottom: .05em; }
+.sv h3 small { display: block; font: 400 13px 'Golos Text'; color: var(--mute); margin-top: 4px; }
+.sv p { font-size: 14px; color: #cfcac4; margin-bottom: 16px; }
+.sv .pr { font: 600 23px 'Golos Text', sans-serif; margin-top: auto; margin-bottom: 16px; }
+.sv .acts { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.after { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+
+/* модалка */
+dialog { margin: auto; width: min(640px, calc(100vw - 24px)); max-height: calc(100svh - 40px); padding: 0; border: 0; border-radius: 28px; background: var(--card); color: var(--tx); box-shadow: inset 0 0 0 1px var(--line), 0 30px 80px rgba(0,0,0,.6); }
+dialog.vd { width: min(420px, calc(100vw - 24px)); }
+.vd .dlg { padding: 0; }
+.vd iframe { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: calc(100svh - 60px); border: 0; }
+dialog::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(6px); }
+dialog[open] { animation: pop .5s var(--ease); }
+@keyframes pop { from { opacity: 0; transform: translateY(24px) scale(.97); } }
+.dlg { padding: clamp(26px, 4vw, 42px); display: grid; gap: 14px; }
+.dlg h3 { font-size: clamp(30px, 4vw, 40px); line-height: 1.05; padding-right: 40px; }
+.dlg p { color: #dcd7d1; font-size: 15px; }
+.dlg b { font-weight: 600; color: var(--tx); }
+.dlg .pr { font: 600 24px 'Golos Text', sans-serif; border-top: 1px solid var(--line); padding-top: 14px; }
+.dlg .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+.x { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 24px; line-height: 1; }
+
+/* ── калькулятор ── */
+#calc { background: linear-gradient(#141415, #111112); }
+.calc { display: grid; grid-template-columns: minmax(280px, 460px) 1fr; gap: clamp(24px, 5vw, 70px); align-items: start; margin-top: 40px; }
+.hairbox { position: sticky; top: 90px; aspect-ratio: 932 / 1176; overflow: hidden; background: var(--card); cursor: ns-resize; touch-action: none; user-select: none; border-radius: 28px; }
+.hairbox img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; pointer-events: none; }
+.cut { position: absolute; left: 0; right: 0; top: 0; height: 100%; background: rgba(17,17,18,.86); transform: translateY(var(--y, 60%)); transition: transform .45s var(--ease); }
+.hairbox.drag .cut { transition: none; }
+.cut::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--ice); box-shadow: 0 0 14px 2px rgba(214,236,255,.7); }
+.tag { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); padding: 7px 16px; border-radius: 999px; background: var(--tx); color: var(--bg); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.ticks { position: absolute; right: 12px; top: 0; bottom: 0; pointer-events: none; }
+.ticks span { position: absolute; right: 0; font-size: 11px; color: #fff; text-shadow: 0 1px 4px #000; transform: translateY(-50%); display: flex; align-items: center; gap: 6px; }
+.ticks span::after { content: ""; width: 12px; height: 1px; background: rgba(255,255,255,.7); }
+.hairbox .hint2 { position: absolute; left: 14px; top: 14px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: rgba(17,17,18,.6); padding: 5px 12px; border-radius: 999px; }
+.ctrl { display: grid; gap: 26px; }
+.ctrl fieldset { border: 0; padding: 0; min-width: 0; }
+.ctrl legend { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; display: flex; justify-content: space-between; width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips button { min-height: 40px; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 14px; transition: background .3s, color .3s, border-color .3s, opacity .3s; }
+.chips button:hover { border-color: rgba(243,241,238,.55); }
+.chips button[aria-pressed=true] { background: var(--tx); color: var(--bg); border-color: var(--tx); }
+.chips button:disabled { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+.chips.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+.chips.seg button { border: 0; border-radius: 0; }
+.chips.seg button small { display: block; font-size: 12px; opacity: .7; }
+.chips.seg5 { grid-template-columns: repeat(5, 1fr); } .chips.seg5 button { padding: 8px 2px; font-size: 13px; white-space: nowrap; min-height: 42px; }
+.chips.seg5 button + button { border-left: 1px solid var(--line); }
+input[type=range] { width: 100%; accent-color: var(--ice); height: 28px; }
+.res { border-top: 1px solid var(--line); padding-top: 22px; display: grid; gap: 12px; }
+.sum { font: 400 clamp(40px, 4.6vw, 60px)/1 'Playfair Display', serif; }
+.sum small { display: block; font: 400 14px 'Golos Text'; color: var(--mute); margin-bottom: 6px; }
+.lines { list-style: none; padding: 0; font-size: 14px; color: #d4cfc9; display: grid; gap: 4px; }
+.lines li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
+.note { font-size: 14px; color: var(--lav); min-height: 1.6em; }
+.fine { color: var(--mute); font-size: 13px; }
+.res .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ── видео: бегущая лента ── */
+#video { overflow: hidden; }
+.reel { display: flex; gap: 14px; width: max-content; animation: run 50s linear infinite; margin-top: 40px; }
+.reel:hover { animation-play-state: paused; }
+@keyframes run { to { transform: translateX(calc(-50% - 7px)); } }
+.vid { width: 190px; aspect-ratio: 3 / 4; position: relative; overflow: hidden; border-radius: 20px; background: var(--card); flex: none; }
+.vid img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.vid:hover img { transform: scale(1.07); }
+.vid::after { content: ""; position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -26px; border-radius: 50%; box-shadow: var(--glow);
+              background: rgba(17,17,18,.4) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50%/22px no-repeat; }
+
+/* ── акция ── */
+.deal { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+.bigring { width: clamp(200px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%; box-shadow: var(--glow); display: grid; place-items: center; text-align: center; animation: breathe 4s ease-in-out infinite; }
+.bigring b { display: block; font: italic 400 clamp(52px, 6.4vw, 90px)/1 'Playfair Display', serif; }
+.bigring .up { display: block; margin-bottom: 4px; }
+.bigring span { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.deal h3 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1; margin: 10px 0 16px; }
+.deal > div > p { color: #d4cfc9; max-width: 780px; margin-bottom: 20px; }
+.deal table { width: 100%; max-width: 780px; border-collapse: collapse; }
+.deal td { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.deal td:first-child { padding-right: 16px; }
+.deal td:last-child { text-align: right; white-space: nowrap; }
+.deal s { color: var(--mute); margin-right: 8px; }
+.deal td b { font-weight: 600; }
+.deal .fine { margin-top: 14px; }
+
+/* ── студия: три горизонтальных фото друг под другом ── */
+.stack { display: grid; gap: 14px; max-width: 1000px; margin: 36px auto; }
+.stack figure { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 24px; background: var(--card); }
+.stack img { width: 100%; height: 100%; object-fit: cover; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 70px); align-items: start; }
+.about .k { font: italic 400 clamp(22px, 2.4vw, 30px)/1.25 'Playfair Display', serif; margin-top: 10px; }
+.about ul { margin: 0 0 14px; padding-left: 0; list-style: none; color: #d4cfc9; }
+.about li::before { content: "— "; }
+.about p { color: #d4cfc9; margin-bottom: 14px; }
+
+/* ── почему мы: счётчики ── */
+.nums { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 50px; padding: 0; }
+.nums li { list-style: none; padding: 30px 22px 10px 0; border-right: 1px solid var(--line); }
+.nums li:last-child { border-right: 0; }
+.nums li + li { padding-left: 22px; }
+.nums b { display: block; font: 400 clamp(40px, 4.4vw, 64px)/1 'Playfair Display', serif; margin-bottom: 16px; white-space: nowrap; }
+.nums b small { font-size: .45em; color: var(--lav); }
+.nums h3 { font: 500 17px/1.3 'Golos Text'; margin-bottom: 8px; }
+.nums p { font-size: 14px; color: var(--mute); }
+
+/* ── команда: портреты в круглых зеркалах ── */
+.team { --g: 16px; display: flex; gap: 26px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 36px var(--g) 14px; margin-top: 14px; scrollbar-width: none; }
+.team::-webkit-scrollbar { display: none; }
+@media (min-width: 1272px) { .team { --g: calc((100vw - 1240px) / 2 + 16px); } }
+.ms { flex: none; width: 240px; scroll-snap-align: start; text-align: left; }
+.ms .mir { width: 220px; margin: 0 0 18px; }
+.ms .mir img { object-position: 50% 14%; }
+.ms .badge { display: inline-block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--lav); margin-bottom: 6px; }
+.ms h3 { font-size: 24px; line-height: 1.15; padding-bottom: .05em; }
+.ms .r { font-size: 13px; color: var(--mute); margin: 4px 0 8px; }
+.ms p { font-size: 14px; color: #d4cfc9; }
+.arrows { display: flex; gap: 10px; }
+.arrows button { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 18px; transition: border-color .3s, opacity .3s; }
+.arrows button:hover { border-color: var(--tx); } .arrows button:disabled { opacity: .3; cursor: default; }
+
+/* ── Яндекс ── */
+.yx { display: grid; grid-template-columns: auto 1fr; gap: clamp(30px, 6vw, 90px); align-items: center; }
+.yx .bigring b { font-style: normal; }
+.yx .meta { margin-top: 22px; display: grid; gap: 10px; width: clamp(240px, 26vw, 340px); }
+.bar { display: grid; grid-template-columns: 120px 1fr 42px; gap: 12px; align-items: center; font-size: 13px; }
+.bar i { height: 2px; background: var(--card2); position: relative; overflow: hidden; }
+.bar i::after { content: ""; position: absolute; inset: 0; background: var(--ice); transform: scaleX(var(--v)); transform-origin: left; }
+.bar b { text-align: right; font-weight: 500; }
+.quotes { display: grid; gap: 12px; }
+.quotes { gap: 10px; }
+.quotes figure { padding: 14px 20px; border-radius: 18px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.quotes p { font: italic 400 clamp(15px, 1.3vw, 17px)/1.45 'Playfair Display', serif; }
+.yx .cta { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+/* ── FAQ ── */
+.faqg { display: grid; grid-template-columns: minmax(260px, .7fr) 1.5fr; gap: clamp(30px, 6vw, 90px); align-items: start; }
+.faqg .side { position: sticky; top: 100px; }
+.faqg .side p { color: var(--mute); margin: 20px 0; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; font: 400 clamp(16px, 1.45vw, 19px)/1.3 'Playfair Display', serif; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { flex: 0 0 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); position: relative; transition: transform .45s var(--ease), box-shadow .45s; }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 10px; right: 10px; top: 50%; height: 1px; background: currentColor; }
+.faq summary i::after { transform: rotate(90deg); }
+.faq details[open] summary i { transform: rotate(45deg); box-shadow: var(--glow); }
+.faq .a { padding: 0 0 16px; color: #d4cfc9; display: grid; gap: 8px; font-size: 14.5px; }
+.faq .a ul { padding-left: 18px; }
+
+/* ── финал и контакты ── */
+.final h2 { font-size: clamp(36px, 5.4vw, 76px); line-height: 1; text-align: center; }
+.final .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 26px 0 50px; }
+.contacts { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(24px, 4vw, 50px); }
+.contacts .info { display: grid; gap: 20px; align-content: start; }
+.contacts h4 { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
+.contacts .info p, .contacts .info a:not(.btn) { font-size: 16px; }
+.soc { display: flex; flex-wrap: wrap; gap: 6px 18px; } .soc a { border-bottom: 1px solid var(--lav); }
+.map { min-height: 380px; border-radius: 28px; overflow: hidden; background: var(--card); }
+.map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; }
+footer { border-top: 1px solid var(--line); margin-top: 70px; padding: 26px 0 36px; font-size: 13px; color: var(--mute); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 30px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { color: var(--tx); }
+
+.rv { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+
+
+
+@media (max-width: 1060px) {
+  .nav { left: 12px; right: 12px; transform: none; width: auto; justify-content: space-between; }
+  .nav nav { display: none; position: fixed; top: 64px; left: 12px; right: 12px; flex-direction: column; gap: 0; padding: 10px 20px; border-radius: 24px; background: rgba(17,17,18,.96); box-shadow: inset 0 0 0 1px var(--line); font-size: 18px; }
+  .nav nav.open { display: flex; }
+  .nav nav a { padding: 12px 0; border-bottom: 1px solid var(--line); } .nav nav a:last-child { border: 0; }
+  .burger { display: block; margin-left: auto; }
+  .nav > .btn { display: none; }
+}
+@media (max-width: 900px) {
+  .hero { height: 190vh; }
+  .calc, .deal, .about, .yx, .faqg, .contacts { grid-template-columns: 1fr; }
+  .hairbox { position: relative; top: 0; }
+  .deal .bigring, .yx > div:first-child { justify-self: center; }
+  .yx > div:first-child { display: grid; justify-items: center; }
+  .nums { grid-template-columns: 1fr 1fr; }
+  .nums li { border-right: 0; padding: 24px 12px 12px 0 !important; border-bottom: 1px solid var(--line); }
+  .nums li:nth-child(odd) { border-right: 1px solid var(--line); }
+  .nums li:nth-child(even) { padding-left: 16px !important; }
+  .faqg .side { position: relative; top: 0; }
+  .arrows { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rv { opacity: 1; transform: none; }
+  .hero { height: auto; } .stick { position: relative; }
+  .reel { width: auto; overflow-x: auto; }
+}
+/* PRICE-CSS — генерирует build_pages.py из build/price3.css */
+.pricepg { padding-top: clamp(110px, 12vw, 150px); }
+.pricepg h1 { font-size: clamp(32px, 4.4vw, 60px); line-height: 1; letter-spacing: -.02em; padding-bottom: .1em; }
+.pricepg h1 em { font-style: italic; color: var(--lav); }
+.prail { --g: 16px; display: flex; align-items: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 18px var(--g) 6px; scrollbar-width: none; }
+.prail::-webkit-scrollbar, .pchips::-webkit-scrollbar { display: none; }
+@media (min-width: 1272px) { .prail { --g: calc((100vw - 1240px) / 2 + 16px); } }
+.pchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 18px -16px 0; padding: 0 16px; }
+.pchips button { flex: none; min-height: 34px; padding: 5px 13px; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 1px var(--line); background: none; cursor: pointer; font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
+.pchips button:hover { box-shadow: inset 0 0 0 1px rgba(243,241,238,.55); }
+.pchips button.on { background: var(--tx); color: var(--bg); }
+.pc { flex: none; width: min(86vw, 380px); scroll-snap-align: start; background: var(--card); border-radius: 20px; box-shadow: inset 0 0 0 1px var(--line); padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 8px; }
+.pc .eb { font-size: 10.5px; letter-spacing: .16em; }
+.pc h3 { font: 600 17px/1.2 'Golos Text', system-ui, sans-serif; }
+.pc h3 i { font: italic 500 14px 'Playfair Display', serif; color: var(--lav); margin-left: 6px; }
+.pc h4 { font-size: 13px; font-weight: 500; margin-top: 4px; } .pc h4 small { color: var(--mute); font-weight: 400; }
+.pc .sub { font-size: 12.5px; color: var(--mute); margin-top: -4px; line-height: 1.35; }
+.pc table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.pc th, .pc td { padding: 4px 0; text-align: right; white-space: nowrap; }
+.pc tbody tr:nth-child(odd) { background: rgba(243,241,238,.035); }
+.pc tbody th { text-align: left; font-weight: 400; color: #cfcac4; white-space: normal; padding-left: 6px; }
+.pc td { font-weight: 500; padding-right: 6px; padding-left: 8px; }
+.pc thead th { font-size: 11px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.2; padding: 0 6px 6px 0; border-bottom: 1px solid var(--line); }
+.pc thead th:first-child { text-align: left; padding-left: 6px; } .pc thead small { display: block; font-weight: 400; font-size: 10px; opacity: .8; }
+.pc .m1 td { white-space: normal; }
+.pc .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.pc .tags a { font-size: 11.5px; color: var(--mute); padding: 2px 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); transition: color .3s; }
+.pc .tags a:hover { color: var(--tx); }
+.pc .fn { font-size: 11.5px; color: var(--mute); line-height: 1.4; }
+.pc .pcalc { margin-top: auto; align-self: flex-start; border-bottom: 1px solid var(--lav); padding: 0 0 1px; font-weight: 500; font-size: 14px; }
+.pc .pcalc.in { margin: 0 0 6px; font-size: 13px; }
+.pc.pintro ul { padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; color: #cfcac4; } .pc.pintro li::before { content: "— "; } .pc.pintro b { color: var(--tx); font-weight: 500; }
+.pc .lvls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; } .pc .lvls span { font-size: 12.5px; padding: 4px 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
+.pnav { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.pnav .cnt { font-size: 14px; color: var(--mute); min-width: 60px; font-variant-numeric: tabular-nums; } .pnav .cnt b { color: var(--tx); font-weight: 500; }
+.pnav .pbar { flex: 1; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; } .pnav .pbar i { display: block; height: 100%; background: var(--tx); width: 10%; transition: width .3s; }
+.pnav .arrows button { width: 44px; height: 44px; font-size: 16px; }
+.pfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 18px; }
+.pfoot .fine { margin: 0; } .pfoot .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a class="logo" href="../" aria-label="Кератин Сторис, наверх"><img src="../../v2/img/logo.png" alt="KS Keratin Stories" width="700" height="461"></a>
+  <nav id="menu" aria-label="Разделы"><a href="../#services">Услуги</a><a class="pl" href="./">Прайс</a><a href="../#calc">Калькулятор</a><a href="../#offers">Акции</a><a href="../#about">О студии</a><a href="../#team">Команда</a><a href="../#reviews">Отзывы</a><a href="../#contacts">Контакты</a></nav>
+  <a class="btn sm fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Меню"><i></i><i></i><i></i></button>
+</header>
+
+<main>
+<section id="price" class="pricepg">
+  <div class="wrap">
+    <div class="hs-head" style="margin-bottom:0"><div><span class="eb">Действует с 1 марта 2026 года</span><h1>Прайс-<em>лист</em></h1></div>
+      <p>Все процедуры и цены сразу по трём уровням мастера. Листайте карточки вбок.</p></div>
+    <nav class="pchips" id="pchips" aria-label="Процедуры прайса"><button type="button" data-go="p-intro">Как считается</button><button type="button" data-go="p-dop">Доплаты</button><button type="button" data-go="p-keratin">Кератин · ботокс</button><button type="button" data-go="p-total">Реконструкция</button><button type="button" data-go="p-nano">Нанопластика</button><button type="button" data-go="p-disc">Разглаживание</button><button type="button" data-go="p-cold">Холодное восстановление</button><button type="button" data-go="p-lebel">Счастье · Холодный ботокс</button><button type="button" data-go="p-polishing">Комплексная стрижка</button><button type="button" data-go="p-afro">Афро</button><button type="button" data-go="p-coloring">Окрашивание</button><button type="button" data-go="p-extra">Доп. услуги</button></nav>
+  </div>
+  <div class="prail" id="prail">
+<article class="pc pintro" id="p-intro"><span class="eb">Прайс-лист · с 1.03.2026</span><h3>Как считается цена</h3>
+<ul><li>Стоимость определяется исходя из <b>длины и густоты</b> волос.</li><li>Мастер измерит волосы и озвучит точную стоимость по прайсу <b>до начала работы</b>, на этапе консультации.</li><li>Составы подбираются индивидуально — <b>выбор составов на стоимость не влияет</b>.</li></ul>
+<p class="lvls"><span>Мастер</span><span>ТОП-мастер · Яна, Полина</span><span>Юлия* · основатель</span></p><p class="fn">*к Юлии — только по предварительному бронированию</p></article>
+<article class="pc" id="p-dop"><span class="eb">Доплаты</span><h3>Густота, подложка, наращённые</h3>
+<h4>Густота <small>обхват хвоста</small></h4><table class="m1"><tbody><tr><th scope="row">до 6 см</th><td>без доплат</td></tr><tr><th scope="row">7–8 см</th><td>1 000 ₽</td></tr><tr><th scope="row">9–10 см</th><td>1 500 ₽</td></tr><tr><th scope="row">11–12 см</th><td>2 000 ₽</td></tr><tr><th scope="row">от 13 см</th><td>3 000 ₽</td></tr></tbody></table><h4>Подложка <small>на осветлённые, повреждённые волосы или по желанию</small></h4><table class="m1"><tbody><tr><th scope="row">до 50 см</th><td>2 000 ₽</td></tr><tr><th scope="row">от 50 см</th><td>3 000 ₽</td></tr></tbody></table><h4>Наращённые</h4><table class="m1"><tbody><tr><th scope="row">до 100 капсул</th><td>1 500 ₽</td></tr><tr><th scope="row">до 200 капсул</th><td>2 000 ₽</td></tr><tr><th scope="row">свыше 200 капсул</th><td>3 000 ₽</td></tr></tbody></table><p class="fn">Свыше 70 см — стоимость рассчитывается индивидуально.</p></article>
+<article class="pc" id="p-keratin"><span class="eb">Выпрямление</span><h3>Кератин · Ботокс</h3><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>7 000</td><td>8 500</td><td>11 000</td></tr><tr><th scope="row">35 см</th><td>7 500</td><td>9 000</td><td>12 000</td></tr><tr><th scope="row">40 см</th><td>8 000</td><td>9 500</td><td>13 000</td></tr><tr><th scope="row">45 см</th><td>8 500</td><td>10 000</td><td>14 000</td></tr><tr><th scope="row">50 см</th><td>9 000</td><td>11 000</td><td>15 000</td></tr><tr><th scope="row">55 см</th><td>10 000</td><td>12 000</td><td>16 000</td></tr><tr><th scope="row">60 см</th><td>11 000</td><td>13 000</td><td>17 000</td></tr><tr><th scope="row">65 см</th><td>12 000</td><td>14 000</td><td>18 000</td></tr><tr><th scope="row">70 см</th><td>13 000</td><td>15 000</td><td>19 000</td></tr></tbody></table><p class="tags"><a href="#p-dop">свыше 70 см — индивидуально</a><a href="#p-dop">+ густота</a><a href="#p-dop">+ подложка</a><a href="#p-dop">+ наращённые</a></p><a class="pcalc" href="../?calc=keratin#calc">Рассчитать стоимость →</a></article>
+<article class="pc" id="p-total"><span class="eb">Выпрямление</span><h3>Тотальная реконструкция</h3><p class="sub">если у вас блонд либо сильно повреждённые волосы</p><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>11 000</td><td>13 000</td><td>16 000</td></tr><tr><th scope="row">35 см</th><td>12 000</td><td>14 000</td><td>17 000</td></tr><tr><th scope="row">40 см</th><td>13 000</td><td>15 000</td><td>18 000</td></tr><tr><th scope="row">45 см</th><td>14 000</td><td>16 000</td><td>19 000</td></tr><tr><th scope="row">50 см</th><td>15 000</td><td>17 000</td><td>20 000</td></tr><tr><th scope="row">55 см</th><td>16 000</td><td>18 000</td><td>21 000</td></tr><tr><th scope="row">60 см</th><td>17 000</td><td>19 000</td><td>22 000</td></tr><tr><th scope="row">65 см</th><td>18 000</td><td>20 000</td><td>23 000</td></tr><tr><th scope="row">70 см</th><td>19 000</td><td>21 000</td><td>24 000</td></tr></tbody></table><p class="tags"><a href="#p-dop">свыше 70 см — индивидуально</a><a href="#p-dop">+ густота</a><a href="#p-dop">+ наращённые</a></p><a class="pcalc" href="../?calc=total#calc">Рассчитать стоимость →</a></article>
+<article class="pc" id="p-nano"><span class="eb">Выпрямление</span><h3>Нанопластика</h3><p class="sub">в технике «полуперманент»</p><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>11 000</td><td>13 000</td><td>16 000</td></tr><tr><th scope="row">35 см</th><td>12 000</td><td>14 000</td><td>17 000</td></tr><tr><th scope="row">40 см</th><td>13 000</td><td>15 000</td><td>18 000</td></tr><tr><th scope="row">45 см</th><td>14 000</td><td>16 000</td><td>19 000</td></tr><tr><th scope="row">50 см</th><td>15 000</td><td>17 000</td><td>20 000</td></tr><tr><th scope="row">55 см</th><td>16 000</td><td>18 000</td><td>21 000</td></tr><tr><th scope="row">60 см</th><td>17 000</td><td>19 000</td><td>22 000</td></tr><tr><th scope="row">65 см</th><td>18 000</td><td>20 000</td><td>23 000</td></tr><tr><th scope="row">70 см</th><td>19 000</td><td>21 000</td><td>24 000</td></tr></tbody></table><p class="tags"><a href="#p-dop">свыше 70 см — индивидуально</a><a href="#p-dop">+ густота</a><a href="#p-dop">+ наращённые</a></p><a class="pcalc" href="../?calc=nano#calc">Рассчитать стоимость →</a></article>
+<article class="pc" id="p-disc"><span class="eb">Разглаживание</span><h3>Разглаживание и дисциплина<i>new</i></h3><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>6 000</td><td>7 500</td><td>10 000</td></tr><tr><th scope="row">35 см</th><td>6 500</td><td>8 000</td><td>10 500</td></tr><tr><th scope="row">40 см</th><td>7 000</td><td>8 500</td><td>11 000</td></tr><tr><th scope="row">45 см</th><td>7 500</td><td>9 000</td><td>11 500</td></tr><tr><th scope="row">50 см</th><td>8 000</td><td>9 500</td><td>12 000</td></tr><tr><th scope="row">55 см</th><td>8 500</td><td>10 000</td><td>13 000</td></tr><tr><th scope="row">60 см</th><td>9 000</td><td>11 000</td><td>14 000</td></tr><tr><th scope="row">65 см</th><td>10 000</td><td>12 000</td><td>15 000</td></tr><tr><th scope="row">70 см</th><td>11 000</td><td>13 000</td><td>16 000</td></tr></tbody></table><p class="tags"><a href="#p-dop">свыше 70 см — индивидуально</a><a href="#p-dop">+ густота</a><a href="#p-dop">+ подложка</a><a href="#p-dop">+ наращённые</a></p><a class="pcalc" href="../?calc=disc#calc">Рассчитать стоимость →</a></article>
+<article class="pc" id="p-cold"><span class="eb">Уход</span><h3>Комплексное холодное восстановление</h3><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>6 000</td><td>7 500</td><td>10 000</td></tr><tr><th scope="row">35 см</th><td>6 500</td><td>8 000</td><td>10 500</td></tr><tr><th scope="row">40 см</th><td>7 000</td><td>8 500</td><td>11 000</td></tr><tr><th scope="row">45 см</th><td>7 500</td><td>9 000</td><td>11 500</td></tr><tr><th scope="row">50 см</th><td>8 000</td><td>9 500</td><td>12 000</td></tr><tr><th scope="row">55 см</th><td>8 500</td><td>10 000</td><td>13 000</td></tr><tr><th scope="row">60 см</th><td>9 000</td><td>11 000</td><td>14 000</td></tr><tr><th scope="row">65 см</th><td>10 000</td><td>12 000</td><td>15 000</td></tr><tr><th scope="row">70 см</th><td>11 000</td><td>13 000</td><td>16 000</td></tr></tbody></table><p class="tags"><a href="#p-dop">свыше 70 см — индивидуально</a><a href="#p-dop">+ наращённые</a></p><p class="fn">доплата за густоту 9–10 см: 500 ₽</p><p class="fn">доплата за густоту от 11 см: 1 000 ₽</p><a class="pcalc" href="../?calc=cold#calc">Рассчитать стоимость →</a></article>
+<article class="pc" id="p-lebel"><span class="eb">Уход</span><h3>Счастье для волос · Холодный ботокс</h3><h4>Абсолютное счастье для волос</h4><p class="sub">от премиального японского бренда LEBEL</p><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>5 000</td><td>6 000</td><td>7 000</td></tr><tr><th scope="row">45 см</th><td>7 000</td><td>8 000</td><td>9 000</td></tr><tr><th scope="row">60 см</th><td>9 000</td><td>10 000</td><td>11 500</td></tr><tr><th scope="row">70 см</th><td>10 000</td><td>11 000</td><td>13 000</td></tr></tbody></table><a class="pcalc in" href="../?calc=lebel#calc">Рассчитать стоимость →</a><h4>Холодный ботокс</h4><table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th><th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody><tr><th scope="row">30 см</th><td>4 000</td><td>5 000</td><td>6 000</td></tr><tr><th scope="row">45 см</th><td>6 000</td><td>7 000</td><td>8 000</td></tr><tr><th scope="row">60 см</th><td>8 000</td><td>9 000</td><td>10 000</td></tr><tr><th scope="row">70 см</th><td>9 000</td><td>10 000</td><td>12 000</td></tr></tbody></table><a class="pcalc in" href="../?calc=cbotox#calc">Рассчитать стоимость →</a><p class="tags"><a href="#p-dop">свыше 70 см — индивидуально</a></p><p class="fn">доплата за густоту 9–10 см: 500 ₽</p><p class="fn">доплата за густоту от 11 см: 1 000 ₽</p></article>
+<article class="pc" id="p-polishing"><span class="eb">Уход</span><h3>Комплексная стрижка (полировка) волос против сечения</h3><p class="sub">комплекс мер, направленный на устранение сечения и ломкости по полотну без потери длины и густоты</p><table class="m2"><thead><tr><th scope="col">₽</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th></tr></thead><tbody><tr><th scope="row">до 50 см</th><td>4 000</td><td>5 000</td></tr><tr><th scope="row">свыше 50 см</th><td>5 000</td><td>6 000</td></tr><tr><th scope="row"><b>В комплексе</b> с другими процедурами, до 50 см</th><td>2 000</td><td>2 500</td></tr><tr><th scope="row"><b>В комплексе</b>, свыше 50 см</th><td>2 500</td><td>3 000</td></tr></tbody></table><p class="fn">*густота свыше 10 см — 1 000 ₽</p><p class="fn"><b>Процедура включает в себя:</b> детокс — очищение кожи головы; экспресс-spa-уход для волос; сушку волос; чистку полотна от сечения (сочетание машинной и ручной техники); ровный срез кончиков.</p></article>
+<article class="pc" id="p-afro"><span class="eb">Выпрямление</span><h3>Выпрямление АФРО</h3><table class="m1"><tbody><tr><th scope="row">Короткие волосы (до 30 см)</th><td>от 20 000 ₽</td></tr></tbody></table><p class="fn">*в стоимость включена услуга в четыре руки по вашему желанию.</p></article>
+<article class="pc" id="p-coloring"><span class="eb">Окрашивание</span><h3>Окрашивание</h3><h4>Окрашивание в 1 тон | тонирование</h4><p class="sub">*без осветления</p><table class="m1"><tbody><tr><th scope="row">Корни (до 2-х см)</th><td>5 000 ₽</td></tr><tr><th scope="row">Короткие волосы (до 35 см)</th><td>6 500 ₽</td></tr><tr><th scope="row">Средние волосы (до 50 см)</th><td>8 500 ₽</td></tr><tr><th scope="row">Длинные волосы (свыше 50 см)</th><td>9 500 ₽</td></tr></tbody></table><h4>Окрашивание + холодный ботокс</h4><table class="m1"><tbody><tr><th scope="row">Корни (до 2-х см)</th><td>7 500 ₽</td></tr><tr><th scope="row">Короткие волосы (до 35 см)</th><td>9 000 ₽</td></tr><tr><th scope="row">Средние волосы (до 50 см)</th><td>10 500 ₽</td></tr><tr><th scope="row">Длинные волосы (свыше 50 см)</th><td>12 500 ₽</td></tr></tbody></table><p class="fn">свыше 65 см / густые волосы (свыше 9 см в обхвате) — +1 000 ₽</p></article>
+<article class="pc" id="p-extra"><span class="eb">Дополнительно</span><h3>Дополнительные услуги</h3><table class="m1"><tbody><tr><th scope="row">Услуга «в 4 руки»</th><td>+5 000 ₽ к прайсу</td></tr><tr><th scope="row">Выпрямление чёлки</th><td>4 000 ₽</td></tr><tr><th scope="row">Коррекция корней (до 10 см)</th><td>70% от полной стоимости работы</td></tr><tr><th scope="row">Стрижка кончиков совместно с любой из процедур</th><td>500 ₽</td></tr><tr><th scope="row">Стрижка кончиков отдельной процедурой</th><td>1 500 ₽</td></tr></tbody></table><h4>Пилинг кожи головы</h4><table class="m1"><tbody><tr><th scope="row">Стоимость пилинга</th><td>3 500 ₽</td></tr><tr><th scope="row">Стоимость пилинга в комплексе с любой другой процедурой</th><td>2 000 ₽</td></tr></tbody></table></article>
+  </div>
+  <div class="wrap pnav"><span class="cnt" id="pcnt"><b>1</b> / 12</span><span class="pbar"><i id="pbar"></i></span>
+    <div class="arrows"><button type="button" data-pdir="-1" aria-label="Назад">←</button><button type="button" data-pdir="1" aria-label="Вперёд">→</button></div></div>
+  <div class="wrap pfoot"><p class="fine">*к Юлии — только по предварительному бронированию.</p><div class="cta"><a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a><a class="btn" href="../#calc">Калькулятор стоимости</a></div></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+    <nav aria-label="Документы"><a href="./">Прайс</a><a href="../policy/">Политика конфиденциальности</a><a href="../offer/">Оферта</a></nav>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// ── типограф: короткие слова (предлоги, союзы) не остаются в конце строки, тире не переносится на новую ──
+const NB = /(^|[\s\u00A0(«„"—–])([а-яё]{1,2}|для|без|при|под|над|про|что|как|или|его|еще|ещё)\s+(?=\S)/gi;
+function typo(root) {
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('script,style,textarea') ? 2 : 1 });
+  for (let n; (n = w.nextNode());) {
+    let t = n.nodeValue, u;
+    while ((u = t.replace(NB, '$1$2\u00A0')) !== t) t = u;   // подряд идущие короткие слова — за несколько проходов
+    t = t.replace(/\s+([—–])(\s)/g, '\u00A0$1$2').replace(/(\d) (?=\d{3}\b)/g, '$1\u00A0').replace(/(\d) ₽/g, '$1\u00A0₽')
+      .replace(/(\d)([–-])(?=\d)/g, '$1$2\u2060').replace(/ · /g, '\u00A0· ');   // «3–4» и «… · Ботокс» не рвутся
+    if (t !== n.nodeValue) n.nodeValue = t;
+  }
+}
+
+// ── меню ──
+const menu = $('menu'), burger = $('burger');
+const setMenu = o => { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); };
+burger.onclick = () => setMenu(!menu.classList.contains('open'));
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+// ── прайс: лента карточек ──
+{ const pr = $('prail'), chips = [...$('pchips').children], cards = [...pr.children], step = () => cards[0].offsetWidth + 12;
+  const pad = () => parseFloat(getComputedStyle(pr).scrollPaddingLeft) || 0;
+  const go = el => pr.scrollTo({ left: el.offsetLeft - cards[0].offsetLeft, behavior: RM ? 'auto' : 'smooth' });
+  chips.forEach(b => b.onclick = () => go($(b.dataset.go)));
+  pr.querySelectorAll('.tags a').forEach(a => a.onclick = e => { e.preventDefault(); go($('p-dop')); });
+  document.querySelectorAll('[data-pdir]').forEach(b => b.onclick = () => pr.scrollBy({ left: +b.dataset.pdir * step(), behavior: RM ? 'auto' : 'smooth' }));
+  const mark = () => { const x = pr.getBoundingClientRect().left + pad() + 20;
+    const i = Math.max(0, cards.findIndex(el => el.getBoundingClientRect().right > x)), c = cards[i];
+    const vis = Math.max(1, Math.floor((pr.clientWidth - pad()) / step())), last = Math.min(cards.length, i + vis);
+    $('pcnt').innerHTML = `<b>${i + 1}${vis > 1 ? '–' + last : ''}</b> / ${cards.length}`; $('pbar').style.width = last / cards.length * 100 + '%';
+    chips.forEach(b => { const on = b.dataset.go === c.id; if (on !== b.classList.contains('on')) { b.classList.toggle('on', on); if (on) $('pchips').scrollTo({ left: b.offsetLeft - $('pchips').offsetLeft - 16, behavior: 'smooth' }); } }); };
+  pr.addEventListener('scroll', () => requestAnimationFrame(mark), { passive: true }); addEventListener('resize', mark); mark(); }
+typo(document.body);
+</script>
+</body>
+</html>

@@ -559,28 +559,31 @@ up.onclick = () => scrollTo({{ top: 0 }});
     print(out, len(html))
 
 
-# ═══════════ v3: прайс — секция #price на главной (2026-11-12, сайт одностраничный по просьбе Юлии) ═══════════
-# Лента карточек (листается как услуги): в каждой таблица сразу со всеми тремя мастерами, без переключателей.
-# build_price_v3() вписывает CSS и HTML в v3/index.html между маркерами; v3/price/ — редирект на ../#price.
+# ═══════════ v3: прайс — отдельная страница v3/price/ (2026-11-17, по просьбе Юлии: «чтобы не добавлял тяжести главной») ═══════════
+# Лента карточек (листается вбок): в каждой таблица сразу со всеми тремя мастерами, без переключателей.
+# build_price_v3() собирает v3/price/index.html; шапку, подвал, <style>, типограф и меню берёт из v3/index.html (главную не меняет).
 CALC = {'keratin': 'keratin', 'nano': 'nano', 'total': 'total', 'disc': 'disc', 'cold': 'cold', 'lebel': 'lebel', 'cbotox': 'cbotox'}
 
 # сноски → короткие метки (ведут на карточку «Доплаты»); остальное — мелким текстом
 TAG3 = {O70: 'свыше 70 см — индивидуально', DENS: '+ густота', SUB: '+ подложка', EXT: '+ наращённые', JULIA: None}
-ORDER3 = [('keratin', 'Кератин · Ботокс', 'Выпрямление'), ('total', None, 'Выпрямление'), ('nano', None, 'Выпрямление'), ('disc', None, 'Разглаживание'),
-          ('afro', None, 'Выпрямление'), ('lebel', None, 'Уход'), ('cold', None, 'Уход'), ('cbotox', None, 'Уход'),
-          ('polishing', 'Комплексная стрижка (полировка) волос против сечения', 'Уход'), ('peeling', None, 'Уход'),
-          ('coloring-complex', 'Окрашивание + холодный ботокс', 'Окрашивание'), ('coloring', None, 'Окрашивание'),  # убрать с 01.01.2027
-          ('extra', None, 'Дополнительно')]
-CHIP3 = {'keratin': 'Кератин · ботокс', 'total': 'Реконструкция', 'nano': 'Нанопластика', 'disc': 'Разглаживание', 'afro': 'Афро', 'lebel': 'LEBEL',
-         'cold': 'Холодное восстановление', 'cbotox': 'Холодный ботокс', 'polishing': 'Комплексная стрижка', 'peeling': 'Пилинг',
-         'coloring-complex': 'Окрашивание', 'coloring': 'Окрашивание в 1 тон', 'extra': 'Доп. услуги'}
+# (id карточки, заголовок, надзаголовок, части: [(id услуги из S, подзаголовок блока или None)])
+ORDER3 = [('keratin', 'Кератин · Ботокс', 'Выпрямление', [('keratin', None)]), ('total', None, 'Выпрямление', [('total', None)]),
+          ('nano', None, 'Выпрямление', [('nano', None)]), ('disc', None, 'Разглаживание', [('disc', None)]),
+          ('cold', None, 'Уход', [('cold', None)]),
+          ('lebel', 'Счастье для волос · Холодный ботокс', 'Уход', [('lebel', 'Абсолютное счастье для волос'), ('cbotox', 'Холодный ботокс')]),
+          ('polishing', 'Комплексная стрижка (полировка) волос против сечения', 'Уход', [('polishing', None)]),
+          ('afro', None, 'Выпрямление', [('afro', None)]),
+          ('coloring', 'Окрашивание', 'Окрашивание', [('coloring', 'Окрашивание в 1 тон | тонирование'), ('coloring-complex', 'Окрашивание + холодный ботокс')]),  # убрать с 01.01.2027
+          ('extra', 'Дополнительные услуги', 'Дополнительно', [('extra', None), ('peeling', 'Пилинг кожи головы')])]
+CHIP3 = {'keratin': 'Кератин · ботокс', 'total': 'Реконструкция', 'nano': 'Нанопластика', 'disc': 'Разглаживание', 'cold': 'Холодное восстановление',
+         'lebel': 'Счастье · Холодный ботокс', 'polishing': 'Комплексная стрижка', 'afro': 'Афро', 'coloring': 'Окрашивание', 'extra': 'Доп. услуги'}
 
 def tab3(sid):
     head, labels, rows = SD[sid][4]
     num = lambda v: money(v).replace(' ₽', '')
     if head and len(head) == 3:
         body = ''.join(f'<tr><th scope="row">{l.replace("до ", "")}</th>' + ''.join(f'<td>{num(v)}</td>' for v in r) + '</tr>' for l, r in zip(labels, rows))
-        return ('<table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП<small>Яна, Полина</small></th>'
+        return ('<table class="m3"><thead><tr><th scope="col">длина, см</th><th scope="col">Мастер</th><th scope="col">ТОП-мастер<small>Яна, Полина</small></th>'
                 f'<th scope="col">Юлия*<small>основатель</small></th></tr></thead><tbody>{body}</tbody></table>')
     if head:
         th = ''.join(f'<th scope="col">{h}</th>' for h in head)
@@ -589,99 +592,50 @@ def tab3(sid):
     body = ''.join(f'<tr><th scope="row">{l}</th><td>{money(r[0])}</td></tr>' for l, r in zip(labels, rows))
     return f'<table class="m1"><tbody>{body}</tbody></table>'
 
-def card3(sid, title, eb):
-    _, t, sub, _, _, notes, cls = SD[sid]
-    tags, rest = [], []
-    for n in notes:
-        if n in TAG3:
-            if TAG3[n] and TAG3[n] not in tags: tags.append(TAG3[n])
-        else: rest.append(n)
-    new = '<i>new</i>' if sub == 'new' else ''
-    sub_html = f'<p class="sub">{sub}</p>' if sub and sub != 'new' else ''
+calc3 = lambda sid, cls='pcalc': f'<a class="{cls}" href="../?calc={CALC[sid]}#calc">Рассчитать стоимость →</a>' if sid in CALC else ''
+
+def card3(cid, title, eb, parts):
+    tags, rest, body, multi = [], [], '', len(parts) > 1
+    for sid, h4 in parts:
+        _, t, sub, _, _, notes, _ = SD[sid]
+        for n in notes:
+            if n in TAG3:
+                if TAG3[n] and TAG3[n] not in tags: tags.append(TAG3[n])
+            elif n not in rest: rest.append(n)
+        if h4: body += f'<h4>{h4}</h4>'
+        body += (f'<p class="sub">{sub}</p>' if sub and sub != 'new' else '') + tab3(sid) + (calc3(sid, 'pcalc in') if multi else '')
+    new = '<i>new</i>' if SD[parts[0][0]][2] == 'new' else ''
     tag_html = ('<p class="tags">' + ''.join(f'<a href="#p-dop">{x}</a>' for x in tags) + '</p>') if tags else ''
     fn = ''.join(f'<p class="fn">{x}</p>' for x in rest)
-    act = f'<button class="pcalc" type="button" data-calc="{CALC[sid]}">Рассчитать стоимость →</button>' if sid in CALC else ''
-    return f'<article class="pc {cls}" id="p-{sid}"><span class="eb">{eb}</span><h3>{title or t}{new}</h3>{sub_html}{tab3(sid)}{tag_html}{fn}{act}</article>\n'
+    act = '' if multi else calc3(parts[0][0])
+    return f'<article class="pc" id="p-{cid}"><span class="eb">{eb}</span><h3>{title or SD[parts[0][0]][1]}{new}</h3>{body}{tag_html}{fn}{act}</article>\n'
 
-INTRO3 = f'''<article class="pc pintro" id="p-intro"><span class="eb">Прайс-лист · с 1.03.2026</span><h3>Как считается цена</h3>
-<ul><li>Стоимость определяется исходя из <b>длины и густоты</b> волос.</li><li>Мастер измерит волосы и озвучит точную стоимость по прайсу <b>до начала работы</b>, на этапе консультации.</li><li>Составы подбираются индивидуально — <b>выбор составов на стоимость не влияет</b>.</li></ul>
-<p class="lvls"><span>Мастер</span><span>ТОП · Яна, Полина</span><span class="j">Юлия* · основатель</span></p><p class="fn">{JULIA}</p></article>
-<article class="pc" id="p-dop"><span class="eb">Доплаты</span><h3>Густота, подложка, наращённые</h3>
-<h4>Густота <small>обхват хвоста</small></h4>{{d}}<h4>Подложка <small>на осветлённые, повреждённые волосы или по желанию</small></h4>{{s}}<h4>Наращённые</h4>{{e}}<p class="fn">Свыше 70 см — стоимость рассчитывается индивидуально.</p></article>
-'''
+INTRO3 = ('<article class="pc pintro" id="p-intro"><span class="eb">Прайс-лист · с 1.03.2026</span><h3>Как считается цена</h3>\n'
+  '<ul><li>Стоимость определяется исходя из <b>длины и густоты</b> волос.</li><li>Мастер измерит волосы и озвучит точную стоимость по прайсу <b>до начала работы</b>, на этапе консультации.</li><li>Составы подбираются индивидуально — <b>выбор составов на стоимость не влияет</b>.</li></ul>\n'
+  f'<p class="lvls"><span>Мастер</span><span>ТОП-мастер · Яна, Полина</span><span>Юлия* · основатель</span></p><p class="fn">{JULIA}</p></article>\n'
+  '<article class="pc" id="p-dop"><span class="eb">Доплаты</span><h3>Густота, подложка, наращённые</h3>\n'
+  '<h4>Густота <small>обхват хвоста</small></h4>{d}<h4>Подложка <small>на осветлённые, повреждённые волосы или по желанию</small></h4>{s}<h4>Наращённые</h4>{e}<p class="fn">Свыше 70 см — стоимость рассчитывается индивидуально.</p></article>\n')
 
-PRICE_CSS = '''/* PRICE-CSS:START — генерирует build_pages.py, руками не править */
-.prail { --g: 16px; display: flex; align-items: flex-start; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 18px var(--g) 6px; scrollbar-width: none; }
-.prail::-webkit-scrollbar, .pchips::-webkit-scrollbar { display: none; }
-@media (min-width: 1272px) { .prail { --g: calc((100vw - 1240px) / 2 + 16px); } }
-.pchips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 18px -16px 0; padding: 0 16px; }
-.pchips button { flex: none; min-height: 34px; padding: 5px 13px; border-radius: 999px; border: 0; box-shadow: inset 0 0 0 1px var(--line); background: none; cursor: pointer; font-size: 13px; white-space: nowrap; transition: background .3s, color .3s; }
-.pchips button:hover { box-shadow: inset 0 0 0 1px rgba(243,241,238,.55); }
-.pchips button.on { background: var(--tx); color: var(--bg); }
-.pc { flex: none; width: min(86vw, 380px); scroll-snap-align: start; background: var(--card); border-radius: 20px; box-shadow: inset 0 0 0 1px var(--line); padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 8px; }
-.pc .eb { font-size: 10.5px; letter-spacing: .16em; }
-.pc h3 { font: 600 17px/1.2 'Golos Text', system-ui, sans-serif; }
-.pc h3 i { font: italic 500 14px 'Playfair Display', serif; color: var(--lav); margin-left: 6px; }
-.pc h4 { font-size: 13px; font-weight: 500; margin-top: 4px; } .pc h4 small { color: var(--mute); font-weight: 400; }
-.pc .sub { font-size: 12.5px; color: var(--mute); margin-top: -4px; line-height: 1.35; }
-.pc table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
-.pc th, .pc td { padding: 4px 0; text-align: right; white-space: nowrap; }
-.pc tbody tr:nth-child(odd) { background: rgba(243,241,238,.035); }
-.pc tbody th { text-align: left; font-weight: 400; color: #cfcac4; white-space: normal; padding-left: 6px; }
-.pc td { font-weight: 500; padding-right: 6px; padding-left: 8px; }
-.pc .m3 td:last-child, .pc .m3 thead th:last-child { color: var(--lav); }
-.pc thead th { font-size: 11px; font-weight: 500; color: var(--mute); vertical-align: bottom; line-height: 1.2; padding: 0 6px 6px 0; border-bottom: 1px solid var(--line); }
-.pc thead th:first-child { text-align: left; padding-left: 6px; } .pc thead small { display: block; font-weight: 400; font-size: 10px; opacity: .8; }
-.pc .m1 td { white-space: normal; }
-.pc .tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.pc .tags a { font-size: 11.5px; color: var(--mute); padding: 2px 9px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); transition: color .3s; }
-.pc .tags a:hover { color: var(--tx); }
-.pc .fn { font-size: 11.5px; color: var(--mute); line-height: 1.4; }
-.pc .pcalc { margin-top: auto; align-self: flex-start; background: none; border: 0; border-bottom: 1px solid var(--lav); padding: 0 0 1px; cursor: pointer; font-weight: 500; font-size: 14px; }
-.pc.pintro ul { padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; color: #cfcac4; } .pc.pintro li::before { content: "— "; } .pc.pintro b { color: var(--tx); font-weight: 500; }
-.pc .lvls { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; } .pc .lvls span { font-size: 12.5px; padding: 4px 11px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); } .pc .lvls .j { color: var(--lav); }
-.pnav { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
-.pnav .cnt { font-size: 14px; color: var(--mute); min-width: 60px; font-variant-numeric: tabular-nums; } .pnav .cnt b { color: var(--tx); font-weight: 500; }
-.pnav .pbar { flex: 1; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; } .pnav .pbar i { display: block; height: 100%; background: var(--tx); width: 10%; transition: width .3s; }
-.pnav .arrows button { width: 44px; height: 44px; font-size: 16px; }
-.pfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 18px; }
-.pfoot .fine { margin: 0; }
-/* PRICE-CSS:END */'''
+PRICE_CSS = (ROOT / 'build' / 'price3.css').read_text(encoding='utf-8')
+PRICE_JS = (ROOT / 'build' / 'price3.js').read_text(encoding='utf-8')
+PRICE_HTML = (ROOT / 'build' / 'price3.html').read_text(encoding='utf-8')
 
 def build_price_v3():
     cards = INTRO3.format(d=tab3('density'), s=tab3('substrate'), e=tab3('extensions')) + ''.join(card3(*x) for x in ORDER3)
-    n = cards.count('<article')
-    chips = '<button type="button" data-go="p-intro">Как считается</button><button type="button" data-go="p-dop">Доплаты</button>' + ''.join(f'<button type="button" data-go="p-{i}">{CHIP3[i]}</button>' for i, _, _ in ORDER3)
-    sec = f'''<!-- PRICE:START — генерирует build_pages.py (build_price_v3), руками не править -->
-<section id="price">
-  <div class="wrap">
-    <div class="hs-head" style="margin-bottom:0"><div><span class="eb rv">Действует с 1 марта 2026 года</span><h2 class="rv">Прайс-<em>лист</em></h2></div>
-      <p>Все процедуры и цены сразу по трём уровням мастера. Листайте карточки вбок.</p></div>
-    <nav class="pchips" id="pchips" aria-label="Процедуры прайса">{chips}</nav>
-  </div>
-  <div class="prail" id="prail">
-{cards}  </div>
-  <div class="wrap pnav"><span class="cnt" id="pcnt"><b>1</b> / {n}</span><span class="pbar"><i id="pbar"></i></span>
-    <div class="arrows"><button type="button" data-pdir="-1" aria-label="Назад">←</button><button type="button" data-pdir="1" aria-label="Вперёд">→</button></div></div>
-  <div class="wrap pfoot"><p class="fine">{JULIA}.</p><a class="btn" href="#calc">Калькулятор стоимости</a></div>
-</section>
-<!-- PRICE:END -->'''
-    idx = ROOT / 'v3' / 'index.html'
-    h = idx.read_text(encoding='utf-8')
-    a, b = h.index('/* PRICE-CSS:START'), h.index('/* PRICE-CSS:END */') + len('/* PRICE-CSS:END */')
-    h = h[:a] + PRICE_CSS + h[b:]
-    a, b = h.index('<!-- PRICE:START'), h.index('<!-- PRICE:END -->') + len('<!-- PRICE:END -->')
-    h = h[:a] + sec + h[b:]
-    idx.write_text(h, encoding='utf-8')
-    print(idx, len(h))
-    # старый адрес /price/ — на секцию прайса главной
-    (ROOT / 'v3' / 'price' / 'index.html').write_text('''<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex">
-<title>Прайс-лист — Кератин Сторис</title><meta http-equiv="refresh" content="0; url=../#price">
-<script>location.replace('../#price')</script></head>
-<body style="background:#111112;color:#f3f1ee;font-family:system-ui"><p><a href="../#price">Прайс-лист</a></p></body></html>
-''', encoding='utf-8')
+    chips = '<button type="button" data-go="p-intro">Как считается</button><button type="button" data-go="p-dop">Доплаты</button>' + ''.join(f'<button type="button" data-go="p-{x[0]}">{CHIP3[x[0]]}</button>' for x in ORDER3)
+    main = (ROOT / 'v3' / 'index.html').read_text(encoding='utf-8')
+    cut = lambda a, b: main[main.index(a):main.index(b)]
+    head = main[:main.index('</head>')].replace('<title>Кератин Сторис — студия выпрямления и реконструкции волос в Москве</title>', '<title>Прайс-лист — Кератин Сторис</title>')
+    head = head.replace('</style>', PRICE_CSS + '</style>')
+    header = cut('<header class="nav"', '<main>').replace('href="#hero"', 'href="../"').replace('href="price/"', 'href="./"').replace('href="#', 'href="../#')
+    footer = cut('<footer>', '<script>').replace('href="price/"', 'href="./"').replace('href="policy/"', 'href="../policy/"').replace('href="offer/"', 'href="../offer/"')
+    js = cut('const $ = id', '// ── меню ──').split('const DIKIDI')[0] + cut('// ── типограф', '// ── данные')
+    body = PRICE_HTML.format(chips=chips, cards=cards, n=cards.count('<article'), julia=JULIA, dikidi=DIKIDI)
+    page = f'{head}</head>\n<body>\n\n{header}<main>\n{body}</main>\n\n{footer}<script>\n{js}{PRICE_JS}</script>\n</body>\n</html>\n'
+    page = page.replace('url(fonts/', 'url(../fonts/').replace('../v2/', '../../v2/')
+    out = ROOT / 'v3' / 'price' / 'index.html'
+    out.write_text(page, encoding='utf-8')
+    print(out, len(page))
 
 build_price('v2')
 build_price_v3()
-
