@@ -260,6 +260,7 @@ input[type=range] { width: 100%; accent-color: var(--ice); height: 28px; }
 .faqg { display: grid; grid-template-columns: minmax(260px, .7fr) 1.5fr; gap: clamp(30px, 6vw, 90px); align-items: start; }
 .faqg .side { position: sticky; top: 100px; }
 .faqg .side p { color: var(--mute); margin: 20px 0; }
+.faqg .side .cta { display: flex; flex-wrap: wrap; gap: 10px; }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; font: 400 clamp(16px, 1.45vw, 19px)/1.3 'Playfair Display', serif; }
 .faq summary::-webkit-details-marker { display: none; }
@@ -385,7 +386,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
           <div class="sum" id="sum"><small>Ориентировочно</small>9 000 ₽</div>
           <ul class="lines" id="lines"></ul>
           <p class="note" id="note"></p>
-          <p class="fine">Свыше 70 см — индивидуально. Перед процедурой мастер измерит длину и густоту волос и назовёт точную стоимость до начала работы. <a class="link" href="price/">Смотреть весь прайс-лист</a></p>
+          <p class="fine">Свыше 70 см — индивидуально.<br>Перед процедурой мастер измерит длину и густоту волос и назовёт точную стоимость до начала работы.<br><a class="link" href="price/">Смотреть весь прайс-лист</a></p>
           <div class="cta"><a class="btn fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a><a class="btn" id="wa" href="https://wa.me/79057025612" target="_blank" rel="noopener">Спросить в WhatsApp</a></div>
         </div>
       </div>
@@ -478,7 +479,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 
 <section id="faq" style="padding-top:0">
   <div class="wrap faqg">
-    <div class="side rv"><span class="eb">FAQ</span><h2>Частые <em>вопросы</em></h2><p>Не нашли ответ? Напишите — поможем с выбором процедуры.</p><a class="btn" href="https://wa.me/79057025612" target="_blank" rel="noopener">Написать в WhatsApp</a></div>
+    <div class="side rv"><span class="eb">FAQ</span><h2>Частые <em>вопросы</em></h2><p>Не нашли ответ? Напишите — поможем с выбором процедуры.</p><div class="cta"><a class="btn" href="https://wa.me/79057025612" target="_blank" rel="noopener">Написать в WhatsApp</a><a class="btn" href="https://t.me/keratinstories" target="_blank" rel="noopener">Написать в Telegram</a></div></div>
     <div class="faq rv">
       <details><summary>Выпрямление волос — это безопасно?<i></i></summary><div class="a"><p>Да, процедуры по выпрямлению волос в руках опытного мастера не принесут волосам никакого вреда, зато подарят вам красивые и ухоженные волосы без укладок и утюжка сроком до 6 месяцев.</p></div></details>
       <details><summary>Кератин — это лечение/восстановление волос?<i></i></summary><div class="a"><p>Выпрямления волос (горячие процедуры) — это не лечение и не восстановление. Основная задача этих процедур — визуал, красивый внешний вид волос, комфорт и удобство в повседневной жизни: нет необходимости в укладке и ежедневном выпрямлении, волосы всегда идеальны после простой сушки феном даже без расчёски и при любой погоде.</p><p>Если необходимо именно восстановление волос — это холодные процедуры без использования утюжка.</p></div></details>
@@ -502,7 +503,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
       <div class="info rv">
         <div><h4>Адрес</h4><p>г. Москва, ул. Большая Грузинская, 12. Вход со двора.<br>м. Баррикадная / Краснопресненская</p></div>
         <div><h4>График работы</h4><p>Ежедневно с 10:00 до 22:00</p></div>
-        <div><h4>Написать</h4><div class="soc"><a href="https://wa.me/79057025612" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/keratinstories" target="_blank" rel="noopener">Telegram</a><a href="https://vk.com/hbk_keratinstudio" target="_blank" rel="noopener">ВКонтакте</a><a href="https://instagram.com/keratin.stories" target="_blank" rel="noopener">inst</a></div></div>
+        <div><h4>Написать</h4><div class="soc"><a href="https://wa.me/79057025612" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/keratinstories" target="_blank" rel="noopener">Telegram</a><a href="https://vk.com/hbk_keratinstudio" target="_blank" rel="noopener">ВКонтакте</a><a href="https://instagram.com/keratin.stories" target="_blank" rel="noopener">Instagram*</a></div><p class="fine" style="margin-top:10px">*Instagram принадлежит компании Meta, признанной экстремистской и запрещённой в РФ.</p></div>
         <div><a class="btn" href="https://yandex.ru/maps/org/keratin_stories/187969935132/" target="_blank" rel="noopener">Построить маршрут</a></div>
       </div>
       <div class="map rv"><iframe title="Кератин Сторис на Яндекс Картах" src="https://yandex.ru/map-widget/v1/?oid=187969935132&amp;z=16" loading="lazy" allowfullscreen></iframe></div>

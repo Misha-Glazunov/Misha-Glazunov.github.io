@@ -588,7 +588,7 @@ def tab3(sid):
     if head:
         th = ''.join(f'<th scope="col">{h}</th>' for h in head)
         body = ''.join(f'<tr><th scope="row">{l}</th>' + ''.join(f'<td>{num(v)}</td>' for v in r) + '</tr>' for l, r in zip(labels, rows))
-        return f'<table class="m2"><thead><tr><th scope="col">₽</th>{th}</tr></thead><tbody>{body}</tbody></table>'
+        return f'<table class="m2"><thead><tr><th scope="col"></th>{th}</tr></thead><tbody>{body}</tbody></table>'
     body = ''.join(f'<tr><th scope="row">{l}</th><td>{money(r[0])}</td></tr>' for l, r in zip(labels, rows))
     return f'<table class="m1"><tbody>{body}</tbody></table>'
 
