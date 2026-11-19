@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- превью-вариант B; при переносе на keratinstories.ru убрать noindex и перенести img из ../v2 -->
+<meta name="robots" content="noindex, nofollow">
+<title>Оферта до 1.06.2026 (архив) — Кератин Сторис</title>
+<link rel="icon" href="../../../v2/favicon.ico" sizes="any" media="(prefers-color-scheme: light)">
+<link rel="icon" href="../../../v2/img/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="../../../v2/img/apple-touch-icon.png">
+<style>
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 700;font-display:swap;src:url(../../fonts/playfair-italic-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 700;font-display:swap;src:url(../../fonts/playfair-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 700;font-display:swap;src:url(../../fonts/playfair-normal-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 700;font-display:swap;src:url(../../fonts/playfair-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:400 600;font-display:swap;src:url(../../fonts/golos-normal-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:400 600;font-display:swap;src:url(../../fonts/golos-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+:root { --bg: #111112; --card: #1b1b1d; --card2: #252528; --tx: #f3f1ee; --mute: #9e9a95; --line: rgba(243,241,238,.14); --ice: #eaf6ff; --lav: #b8a6e0; --ease: cubic-bezier(.22,1,.36,1);
+        --glow: 0 0 0 2px var(--ice), 0 0 26px 4px rgba(214,236,255,.55), inset 0 0 22px rgba(214,236,255,.35); }
+* { box-sizing: border-box; margin: 0; }
+html { scroll-padding-top: 80px; }
+body { background: var(--bg); color: var(--tx); font: 400 16px/1.6 'Golos Text', system-ui, sans-serif; overflow-x: clip; }
+/* у Playfair цифры по умолчанию «старые» — прыгают по высоте и съезжают в кружках; !important — шорткат font: сбрасывает это свойство */
+* { font-variant-numeric: lining-nums !important; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+h1, h2, h3, .pf { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; }
+h2 { font-size: clamp(32px, 4.4vw, 60px); line-height: 1; letter-spacing: -.02em; padding-bottom: .1em; }
+h2 em, h3 em { font-style: italic; color: var(--lav); }
+h1, h2, h3, h4, .k, .sub, summary { text-wrap: balance; }
+p, li, figcaption, td, th, .lines span { text-wrap: pretty; }
+.eb { font-size: 12px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--mute); }
+section { padding: clamp(56px, 7vw, 100px) 0; position: relative; }
+
+/* кнопки: заливка снизу эллипсом */
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 13px 28px; border-radius: 999px; border: 1px solid var(--tx); background: transparent; cursor: pointer; font-weight: 500; font-size: 15px; transition: color .45s var(--ease); }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--tx); clip-path: ellipse(0 0 at 50% 100%); transition: clip-path .55s var(--ease); }
+.btn:hover { color: var(--bg); } .btn:hover::before { clip-path: ellipse(120% 140% at 50% 100%); }
+.btn.fill { background: var(--tx); color: var(--bg); }
+.btn.fill::before { background: var(--lav); }
+.btn.sm { min-height: 40px; padding: 8px 18px; font-size: 14px; }
+.link { background: none; border: 0; border-bottom: 1px solid var(--lav); padding: 0 0 2px; cursor: pointer; font-size: 14px; transition: border-color .3s; }
+.link:hover { border-color: var(--tx); }
+
+/* ── навигация: стеклянная капсула ── */
+.nav { position: fixed; z-index: 50; top: 14px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 22px; padding: 6px 6px 6px 18px; border-radius: 999px;
+       background: rgba(17,17,18,.78); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22), 0 6px 24px rgba(0,0,0,.35); width: max-content; max-width: calc(100vw - 24px); }
+.nav .logo { width: 54px; } .nav .logo img { height: auto; }
+.nav nav { display: flex; gap: 18px; font-size: 14px; }
+.nav nav a { opacity: .85; transition: opacity .3s; } .nav nav a:hover { opacity: 1; }
+.nav nav a.pl { opacity: 1; color: var(--lav); }
+.burger { display: none; width: 46px; height: 46px; border: 0; background: none; cursor: pointer; position: relative; }
+.burger i { position: absolute; left: 10px; right: 10px; height: 2px; border-radius: 2px; background: var(--tx); transition: transform .4s var(--ease), opacity .3s; }
+.burger i:nth-child(1) { top: 15px; } .burger i:nth-child(2) { top: 22px; } .burger i:nth-child(3) { top: 29px; }
+.burger[aria-expanded=true] i:nth-child(1) { transform: translateY(7px) rotate(45deg); } .burger[aria-expanded=true] i:nth-child(2) { opacity: 0; } .burger[aria-expanded=true] i:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── HERO: кольцо-зеркало раскрывается при прокрутке ── */
+.hero { height: 230vh; padding: 0; }
+.stick { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.intro { position: absolute; inset: 0; animation: intro 1.6s var(--ease) both; }
+@keyframes intro { from { opacity: 0; transform: scale(.7); } }
+.lens, .ringl { position: absolute; left: 50%; top: var(--cy, 50%); width: var(--d0); height: var(--d0); margin: calc(var(--d0) / -2) 0 0 calc(var(--d0) / -2); border-radius: 50%; will-change: transform; }
+.lens { overflow: hidden; background: var(--bg); }
+.lens img { position: absolute; left: 50%; top: 50%; width: var(--iw); height: var(--ih); max-width: none; will-change: transform;
+  -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent); }
+.ringl { box-shadow: var(--glow); pointer-events: none; animation: breathe 4s ease-in-out infinite; }
+@keyframes breathe { 50% { filter: brightness(1.35); } }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,17,18,.25), rgba(17,17,18,0) 40%, rgba(17,17,18,.85)); opacity: 0; pointer-events: none; }
+/* текст: на широком экране слова стоят по бокам кольца (одна строка с кольцом посередине), на телефоне — внизу */
+.htx { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 14px; text-align: center; padding: 0 16px 26px; }
+.hero h1 { white-space: nowrap; font-size: min(9.4vw, 52px); line-height: 1; letter-spacing: .05em; padding-bottom: .08em; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+.hero h1 span { display: inline-block; animation: rise 1.4s .5s var(--ease) both; }
+.hero h1 .w2 { animation-delay: .65s; }
+@keyframes rise { from { opacity: 0; transform: translateY(40%); } }
+.htx .sub { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; max-width: 300px; }
+.htx .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.htx > :not(h1) { animation: rise 1.2s 1s var(--ease) both; }
+.hero.wide .htx { display: grid; grid-template-columns: 1fr var(--df) 1fr; grid-template-rows: 1fr auto auto auto 1fr; column-gap: clamp(24px, 3vw, 56px); row-gap: 18px; align-items: center; padding: 0 3vw; text-align: left; }
+.hero.wide h1 { display: contents; }
+.hero.wide h1 span { grid-row: 2; font-size: clamp(36px, 4.9vw, 88px); }
+.hero.wide .w1 { grid-column: 1; justify-self: end; } .hero.wide .w2 { grid-column: 3; justify-self: start; }
+.hero.wide .sub { grid-column: 1; grid-row: 3; justify-self: end; text-align: right; max-width: 340px; font-size: 14px; }
+.hero.wide .cta { grid-column: 3; grid-row: 3; justify-content: start; }
+.hero.wide .plink { grid-column: 3; grid-row: 4; justify-self: start; }
+.plink { font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--lav); padding-bottom: 2px; color: var(--tx); }
+.yabadge { display: block; width: 300px; max-width: 100%; height: 108px; margin: 0 auto 10px; border-radius: 14px; overflow: hidden; background: #fff; }
+.yabadge iframe { display: block; width: 100%; height: 300px; border: 0; pointer-events: none; }
+.hint { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--mute); }
+.hint::after { content: ""; display: block; width: 1px; height: 34px; margin: 10px auto 0; background: linear-gradient(var(--tx), transparent); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* ── услуги: горизонтальная лента, едет при вертикальной прокрутке ── */
+#services { padding: 0; }
+.hs .pin { padding: clamp(70px, 9vw, 110px) 0 40px; }
+.hs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; margin-bottom: 36px; }
+.hs-head p { max-width: 380px; color: var(--mute); }
+.prog { height: 1px; background: var(--line); margin-top: 18px; position: relative; overflow: hidden; }
+.prog i { position: absolute; inset: 0; background: var(--tx); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.rail { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; padding: 0 16px 10px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.hs.on { height: var(--h); }
+.hs.on .pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.hero.wide { height: 180vh; }
+.hs.on .after { display: none; }
+.hs.on .pin > .wrap { width: 100%; } /* в flex-колонке margin:auto сжимал .wrap по контенту и центрировал */
+.hs.on .mir { width: min(200px, 24vh); margin-bottom: 16px; }
+.hs.on .hs-head { margin-bottom: 24px; }
+.hs.on .pin { padding: 70px 0 20px; }
+.hs.on .rail { overflow: visible; will-change: transform; transform: translateX(var(--x, 0)); padding-left: max(16px, calc((100vw - 1240px) / 2 + 16px)); }
+.sv { flex: none; width: min(80vw, 340px); scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 24px 20px 22px; border-radius: 28px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.sv .no { align-self: flex-start; font-size: 12px; letter-spacing: .2em; color: var(--mute); }
+.mir { position: relative; width: min(52vw, 210px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; margin: 6px 0 22px; box-shadow: 0 0 0 2px rgba(234,246,255,.25); transition: box-shadow .6s var(--ease); }
+.mir img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.sv:hover .mir, .ms:hover .mir { box-shadow: var(--glow); }
+.sv:hover .mir img, .ms:hover .mir img { transform: scale(1.07); }
+.sv .new { position: absolute; top: 4px; right: 18px; font: italic 500 15px 'Playfair Display', serif; color: var(--lav); transform: rotate(12deg); }
+.sv h3 { font-size: 19px; font-weight: 600; line-height: 1.2; letter-spacing: -.005em; margin-bottom: 8px; padding-bottom: .05em; }
+.sv h3 small { display: block; font: 400 13px 'Golos Text'; color: var(--mute); margin-top: 4px; }
+.sv p { font-size: 14px; color: #cfcac4; margin-bottom: 16px; }
+.sv .pr { font: 600 23px 'Golos Text', sans-serif; margin-top: auto; margin-bottom: 16px; }
+.sv .acts { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.after { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+
+/* модалка */
+dialog { margin: auto; width: min(640px, calc(100vw - 24px)); max-height: calc(100svh - 40px); padding: 0; border: 0; border-radius: 28px; background: var(--card); color: var(--tx); box-shadow: inset 0 0 0 1px var(--line), 0 30px 80px rgba(0,0,0,.6); }
+dialog.vd { width: min(420px, calc(100vw - 24px)); }
+.vd .dlg { padding: 0; }
+.vd iframe { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: calc(100svh - 60px); border: 0; }
+dialog::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(6px); }
+dialog[open] { animation: pop .5s var(--ease); }
+@keyframes pop { from { opacity: 0; transform: translateY(24px) scale(.97); } }
+.dlg { padding: clamp(26px, 4vw, 42px); display: grid; gap: 14px; }
+.dlg h3 { font-size: clamp(30px, 4vw, 40px); line-height: 1.05; padding-right: 40px; }
+.dlg p { color: #dcd7d1; font-size: 15px; }
+.dlg b { font-weight: 600; color: var(--tx); }
+.dlg .pr { font: 600 24px 'Golos Text', sans-serif; border-top: 1px solid var(--line); padding-top: 14px; }
+.dlg .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+.x { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 24px; line-height: 1; }
+
+/* ── калькулятор ── */
+#calc { background: linear-gradient(#141415, #111112); }
+.calc { display: grid; grid-template-columns: minmax(280px, 460px) 1fr; gap: clamp(24px, 5vw, 70px); align-items: start; margin-top: 40px; }
+.hairbox { position: sticky; top: 90px; aspect-ratio: 932 / 1176; overflow: hidden; background: var(--card); cursor: ns-resize; touch-action: none; user-select: none; border-radius: 28px; }
+.hairbox img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; pointer-events: none; }
+.cut { position: absolute; left: 0; right: 0; top: 0; height: 100%; background: rgba(17,17,18,.86); transform: translateY(var(--y, 60%)); transition: transform .45s var(--ease); }
+.hairbox.drag .cut { transition: none; }
+.cut::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--ice); box-shadow: 0 0 14px 2px rgba(214,236,255,.7); }
+.tag { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); padding: 7px 16px; border-radius: 999px; background: var(--tx); color: var(--bg); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.ticks { position: absolute; right: 12px; top: 0; bottom: 0; pointer-events: none; }
+.ticks span { position: absolute; right: 0; font-size: 11px; color: #fff; text-shadow: 0 1px 4px #000; transform: translateY(-50%); display: flex; align-items: center; gap: 6px; }
+.ticks span::after { content: ""; width: 12px; height: 1px; background: rgba(255,255,255,.7); }
+.hairbox .hint2 { position: absolute; left: 14px; top: 14px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: rgba(17,17,18,.6); padding: 5px 12px; border-radius: 999px; }
+.ctrl { display: grid; gap: 26px; }
+.ctrl fieldset { border: 0; padding: 0; min-width: 0; }
+.ctrl legend { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; display: flex; justify-content: space-between; width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips button { min-height: 40px; padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 14px; transition: background .3s, color .3s, border-color .3s, opacity .3s; }
+.chips button:hover { border-color: rgba(243,241,238,.55); }
+.chips button[aria-pressed=true] { background: var(--tx); color: var(--bg); border-color: var(--tx); }
+.chips button:disabled { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+.chips.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+.chips.seg button { border: 0; border-radius: 0; }
+.chips.seg button small { display: block; font-size: 12px; opacity: .7; }
+.chips.seg5 { grid-template-columns: repeat(5, 1fr); } .chips.seg5 button { padding: 8px 2px; font-size: 13px; white-space: nowrap; min-height: 42px; }
+.chips.seg5 button + button { border-left: 1px solid var(--line); }
+input[type=range] { width: 100%; accent-color: var(--ice); height: 28px; }
+.res { border-top: 1px solid var(--line); padding-top: 22px; display: grid; gap: 12px; }
+.sum { font: 400 clamp(40px, 4.6vw, 60px)/1 'Playfair Display', serif; }
+.sum small { display: block; font: 400 14px 'Golos Text'; color: var(--mute); margin-bottom: 6px; }
+.lines { list-style: none; padding: 0; font-size: 14px; color: #d4cfc9; display: grid; gap: 4px; }
+.lines li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
+.note { font-size: 14px; color: var(--lav); min-height: 1.6em; }
+.fine { color: var(--mute); font-size: 13px; }
+.res .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ── видео: бегущая лента ── */
+#video { overflow: hidden; }
+.reel { display: flex; gap: 14px; width: max-content; animation: run 50s linear infinite; margin-top: 40px; }
+.reel:hover { animation-play-state: paused; }
+@keyframes run { to { transform: translateX(calc(-50% - 7px)); } }
+.vid { width: 190px; aspect-ratio: 3 / 4; position: relative; overflow: hidden; border-radius: 20px; background: var(--card); flex: none; }
+.vid img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.vid:hover img { transform: scale(1.07); }
+.vid::after { content: ""; position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -26px; border-radius: 50%; box-shadow: var(--glow);
+              background: rgba(17,17,18,.4) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50%/22px no-repeat; }
+
+/* ── акция ── */
+.deal { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+.bigring { width: clamp(200px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%; box-shadow: var(--glow); display: grid; place-items: center; text-align: center; animation: breathe 4s ease-in-out infinite; }
+.bigring b { display: block; font: italic 400 clamp(52px, 6.4vw, 90px)/1 'Playfair Display', serif; }
+.bigring .up { display: block; margin-bottom: 4px; }
+.bigring span { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.deal h3 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1; margin: 10px 0 16px; }
+.deal > div > p { color: #d4cfc9; max-width: 780px; margin-bottom: 20px; }
+.deal table { width: 100%; max-width: 780px; border-collapse: collapse; }
+.deal td { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.deal td:first-child { padding-right: 16px; }
+.deal td:last-child { text-align: right; white-space: nowrap; }
+.deal s { color: var(--mute); margin-right: 8px; }
+.deal td b { font-weight: 600; }
+.deal .fine { margin-top: 14px; }
+
+/* ── студия: три горизонтальных фото друг под другом ── */
+.stack { display: grid; gap: 14px; max-width: 1000px; margin: 36px auto; }
+.stack figure { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 24px; background: var(--card); }
+.stack img { width: 100%; height: 100%; object-fit: cover; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 70px); align-items: start; }
+.about .k { font: italic 400 clamp(22px, 2.4vw, 30px)/1.25 'Playfair Display', serif; margin-top: 10px; }
+.about ul { margin: 0 0 14px; padding-left: 0; list-style: none; color: #d4cfc9; }
+.about li::before { content: "— "; }
+.about p { color: #d4cfc9; margin-bottom: 14px; }
+
+/* ── почему мы: счётчики ── */
+.nums { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 50px; padding: 0; }
+.nums li { list-style: none; padding: 30px 22px 10px 0; border-right: 1px solid var(--line); }
+.nums li:last-child { border-right: 0; }
+.nums li + li { padding-left: 22px; }
+.nums b { display: block; font: 400 clamp(40px, 4.4vw, 64px)/1 'Playfair Display', serif; margin-bottom: 16px; white-space: nowrap; }
+.nums b small { font-size: .45em; color: var(--lav); }
+.nums h3 { font: 500 17px/1.3 'Golos Text'; margin-bottom: 8px; }
+.nums p { font-size: 14px; color: var(--mute); }
+
+/* ── команда: портреты в круглых зеркалах ── */
+.team { --g: 16px; display: flex; gap: 26px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--g); padding: 36px var(--g) 14px; margin-top: 14px; scrollbar-width: none; }
+.team::-webkit-scrollbar { display: none; }
+@media (min-width: 1272px) { .team { --g: calc((100vw - 1240px) / 2 + 16px); } }
+.ms { flex: none; width: 240px; scroll-snap-align: start; text-align: left; }
+.ms .mir { width: 220px; margin: 0 0 18px; }
+.ms .mir img { object-position: 50% 14%; }
+.ms .badge { display: inline-block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--lav); margin-bottom: 6px; }
+.ms h3 { font-size: 24px; line-height: 1.15; padding-bottom: .05em; }
+.ms .r { font-size: 13px; color: var(--mute); margin: 4px 0 8px; }
+.ms p { font-size: 14px; color: #d4cfc9; }
+.arrows { display: flex; gap: 10px; }
+.arrows button { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 18px; transition: border-color .3s, opacity .3s; }
+.arrows button:hover { border-color: var(--tx); } .arrows button:disabled { opacity: .3; cursor: default; }
+
+/* ── Яндекс ── */
+.yx { display: grid; grid-template-columns: auto 1fr; gap: clamp(30px, 6vw, 90px); align-items: center; }
+.yx .bigring b { font-style: normal; }
+.yx .meta { margin-top: 0; display: grid; gap: 10px; width: clamp(240px, 26vw, 340px); }
+.bar { display: grid; grid-template-columns: 120px 1fr 42px; gap: 12px; align-items: center; font-size: 13px; }
+.bar i { height: 2px; background: var(--card2); position: relative; overflow: hidden; }
+.bar i::after { content: ""; position: absolute; inset: 0; background: var(--ice); transform: scaleX(var(--v)); transform-origin: left; }
+.bar b { text-align: right; font-weight: 500; }
+.quotes { display: grid; gap: 12px; }
+.quotes { gap: 10px; }
+.quotes figure { padding: 14px 20px; border-radius: 18px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.quotes p { font: italic 400 clamp(15px, 1.3vw, 17px)/1.45 'Playfair Display', serif; }
+.yx .cta { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+/* ── FAQ ── */
+.faqg { display: grid; grid-template-columns: minmax(260px, .7fr) 1.5fr; gap: clamp(30px, 6vw, 90px); align-items: start; }
+.faqg .side { position: sticky; top: 100px; }
+.faqg .side p { color: var(--mute); margin: 20px 0; }
+.faqg .side .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; font: 400 clamp(16px, 1.45vw, 19px)/1.3 'Playfair Display', serif; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { flex: 0 0 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); position: relative; transition: transform .45s var(--ease), box-shadow .45s; }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 10px; right: 10px; top: 50%; height: 1px; background: currentColor; }
+.faq summary i::after { transform: rotate(90deg); }
+.faq details[open] summary i { transform: rotate(45deg); box-shadow: var(--glow); }
+.faq .a { padding: 0 0 16px; color: #d4cfc9; display: grid; gap: 8px; font-size: 14.5px; }
+.faq .a ul { padding-left: 18px; }
+
+/* ── финал и контакты ── */
+.final h2 { font-size: clamp(36px, 5.4vw, 76px); line-height: 1; text-align: center; }
+.final .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 26px 0 50px; }
+.contacts { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(24px, 4vw, 50px); }
+.contacts .info { display: grid; gap: 20px; align-content: start; }
+.contacts h4 { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
+.contacts .info p, .contacts .info a:not(.btn) { font-size: 16px; }
+.soc { display: flex; flex-wrap: wrap; gap: 6px 18px; } .soc a { border-bottom: 1px solid var(--lav); }
+.map { min-height: 380px; border-radius: 28px; overflow: hidden; background: var(--card); }
+.map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; }
+footer { border-top: 1px solid var(--line); margin-top: 70px; padding: 26px 0 36px; font-size: 13px; color: var(--mute); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 30px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { color: var(--tx); }
+
+.rv { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+
+
+
+@media (max-width: 1060px) {
+  .nav { left: 12px; right: 12px; transform: none; width: auto; justify-content: space-between; }
+  .nav nav { display: none; position: fixed; top: 64px; left: 12px; right: 12px; flex-direction: column; gap: 0; padding: 10px 20px; border-radius: 24px; background: rgba(17,17,18,.96); box-shadow: inset 0 0 0 1px var(--line); font-size: 18px; }
+  .nav nav.open { display: flex; }
+  .nav nav a { padding: 12px 0; border-bottom: 1px solid var(--line); } .nav nav a:last-child { border: 0; }
+  .burger { display: block; margin-left: auto; }
+  .nav > .btn { display: none; }
+}
+@media (max-width: 900px) {
+  .hero { height: 190vh; }
+  .calc, .deal, .about, .yx, .faqg, .contacts { grid-template-columns: 1fr; }
+  .hairbox { position: relative; top: 0; }
+  .deal .bigring, .yx > div:first-child { justify-self: center; }
+  .yx > div:first-child { display: grid; justify-items: center; }
+  .nums { grid-template-columns: 1fr 1fr; }
+  .nums li { border-right: 0; padding: 24px 12px 12px 0 !important; border-bottom: 1px solid var(--line); }
+  .nums li:nth-child(odd) { border-right: 1px solid var(--line); }
+  .nums li:nth-child(even) { padding-left: 16px !important; }
+  .faqg .side { position: relative; top: 0; }
+  .arrows { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rv { opacity: 1; transform: none; }
+  .hero { height: auto; } .stick { position: relative; }
+  .reel { width: auto; overflow-x: auto; }
+}
+
+.docpg { padding-top: clamp(110px, 12vw, 150px); padding-bottom: 64px; max-width: 820px; }
+.docpg h1 { font-size: clamp(26px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -.01em; }
+.docpg .meta { color: var(--mute); margin-top: 10px; font-size: 14px; }
+.docpg .toc { margin: 28px 0 8px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); padding: 4px 18px; }
+.docpg .toc summary { cursor: pointer; padding: 12px 0; font-weight: 500; }
+.docpg .toc ol { list-style: none; padding: 0 0 12px; display: grid; gap: 6px; font-size: 14px; }
+.docpg .toc a { color: var(--mute); } .docpg .toc a:hover { color: var(--tx); }
+.docpg h2 { font: 600 clamp(17px, 1.6vw, 20px)/1.3 'Golos Text', system-ui, sans-serif; letter-spacing: 0; margin: 40px 0 12px; padding: 0; scroll-margin-top: 100px; }
+.docpg p { font-size: 15px; line-height: 1.6; color: #d9d5d0; margin: 0 0 10px; overflow-wrap: anywhere; }
+.docpg p b { color: var(--tx); font-weight: 600; }
+.docpg a.u { color: var(--tx); border-bottom: 1px solid var(--lav); }
+.docpg .req { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.docpg .req p { margin: 0 0 4px; }
+.docpg h1.sm { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25; }
+.docpg .back { display: inline-block; margin-bottom: 14px; font-size: 14px; color: var(--mute); }
+.docpg .note { margin-top: 14px; padding: 12px 16px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; color: var(--mute); }
+.docpg .tail { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.apx { margin-top: 28px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); padding: 18px; }
+.apx h2 { margin: 0 0 12px !important; }
+.apx dl { display: grid; gap: 4px 20px; font-size: 14px; line-height: 1.5; }
+.apx dt { color: var(--mute); margin-top: 8px; } .apx dd { margin: 0; color: #d9d5d0; overflow-wrap: anywhere; }
+.apx ul { margin: 0; padding-left: 18px; } .apx li i { color: var(--mute); font-style: normal; }
+@media (min-width: 760px) { .apx dl { grid-template-columns: 200px 1fr; } .apx dt { margin-top: 0; } }
+.totop { position: fixed; right: 16px; bottom: 16px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(17,17,18,.8); color: var(--tx); box-shadow: inset 0 0 0 1px var(--line); font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.totop.on { opacity: 1; pointer-events: auto; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a class="logo" href="../../" aria-label="Кератин Сторис, наверх"><img src="../../../v2/img/logo.png" alt="KS Keratin Stories" width="700" height="461"></a>
+  <nav id="menu" aria-label="Разделы"><a href="../../#services">Услуги</a><a class="pl" href="../../price/">Прайс</a><a href="../../#calc">Калькулятор</a><a href="../../#offers">Акции</a><a href="../../#about">О студии</a><a href="../../#team">Команда</a><a href="../../#reviews">Отзывы</a><a href="../../#contacts">Контакты</a></nav>
+  <a class="btn sm fill" href="https://dikidi.net/1005604" target="_blank" rel="noopener">Записаться</a>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Меню"><i></i><i></i><i></i></button>
+</header>
+
+<main>
+<article class="wrap docpg"><a class="back" href="./../">← Действующая оферта</a><h1>Публичный Договор на оказание бытовых (парикмахерских) услуг</h1><details class="toc"><summary>Содержание</summary><ol><li><a href="#s1">1. ТЕРМИНЫ И ОПРЕДЕЛЕНИЯ</a></li><li><a href="#s2">2. ПРЕДМЕТ ДОГОВОРА ОФЕРТЫ</a></li><li><a href="#s3">3. АКЦЕПТ ОФЕРТЫ И ЗАКЛЮЧЕНИЕ ДОГОВОРА ОФЕРТЫ</a></li><li><a href="#s4">4. ОБЩАЯ ИНФОРМАЦИЯ ОБ УСЛУГАХ</a></li><li><a href="#s5">5. СРОКИ ОКАЗАНИЯ УСЛУГ</a></li><li><a href="#s6">6. СТОИМОСТЬ УСЛУГ И ПОРЯДОК РАСЧЕТОВ</a></li><li><a href="#s7">7. ПРАВИЛА ОБОРОТА ПОДАРОЧНЫХ СЕРТИФИКАТОВ И АБОНЕМЕНТОВ</a></li><li><a href="#s8">8. ПРАВА И ОБЯЗАННОСТИ ИСПОЛНИТЕЛЯ</a></li><li><a href="#s9">9. ПРАВА И ОБЯЗАННОСТИ КЛИЕНТА</a></li><li><a href="#s10">10. СРОК ДЕЙСТВИЯ И ИЗМЕНЕНИЕ ОФЕРТЫ</a></li><li><a href="#s11">11. КОНФИДЕНЦИАЛЬНОСТЬ И ЗАЩИТА ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ</a></li><li><a href="#s12">12. РАСТОРЖЕНИЕ ДОГОВОРА И ВОЗВРАТ ОПЛАТЫ ПО ДОГОВОРУ</a></li><li><a href="#s13">13. ОТВЕТСТВЕННОСТЬ СТОРОН И ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</a></li><li><a href="#s14">14. РЕКВИЗИТЫ ИСПОЛНИТЕЛЯ</a></li></ol></details>
+<p>Настоящий Договор является официальным предложением (офертой) гражданина Российской Федерации Матковской Юлии Владимировны, зарегистрированной в соответствии с действующим законодательством Российской Федерации в качестве индивидуального предпринимателя (далее - «Исполнитель»), для любого полностью дееспособного физического лица (далее – «Клиент»), которое примет настоящее предложение, на указанных ниже условиях, по оказанию парикмахерских услуг.</p>
+<p>В соответствии с пунктом 2 статьи 437 Гражданского Кодекса Российской Федерации (далее - ГК РФ), в случае принятия изложенных ниже условий и Предварительной записи на услуги Исполнителя физическое лицо, производящее Акцепт этой Оферты, становится Клиентом (в соответствии с пунктом 3 статьи 438 ГК РФ Акцепт Оферты равносилен заключению Договора на условиях, изложенных в Оферте).</p>
+<p>Физическое лицо обязано полностью ознакомиться с настоящим документом до момента Предварительной записи на услуги Исполнителя. Моментом полного и безоговорочного принятия физическим лицом предложения Исполнителя заключить договор оферты (акцептом оферты) считается факт Предварительной записи на услуги Исполнителя.</p>
+<p>Осуществляя Предварительную запись, физическое лицо гарантирует, что уже ознакомлено и принимает все условия Оферты в том виде, в каком они изложены в тексте настоящей Оферты, а также ознакомлено и согласно со стоимостью Услуг Исполнителя, указанными в настоящей Оферте.</p>
+<p>Договор не требует скрепления печатями и/или подписания Исполнителем и Исполнителем (далее по тексту - Клиентом) и сохраняет при этом юридическую силу.</p>
+<p>Клиент обязуется внимательно прочитать текст данной Оферты и, если он не согласен с каким-либо пунктом, то Исполнитель настоятельно рекомендует отказаться от каких-либо действий, необходимых для совершения Акцепта.</p>
+<h2 id="s1">1. ТЕРМИНЫ И ОПРЕДЕЛЕНИЯ</h2>
+<p>• Для целей настоящего Договора приведенные ниже термины и определения используются в следующем значении:</p>
+<p>• «Оферта» - настоящий документ, Оферта оказания парикмахерских услуг, определяющий права и обязанности сторон, порядок и условия оказания Услуг. Понятия «Оферта» и «Договор», употребляемые в тексте настоящей Оферты, равнозначны;</p>
+<p>• «Акцепт Оферты» - полное и безоговорочное принятие Клиентом условий настоящей Оферты, методами, установленными в преамбуле и предусмотренными в разделе 3 данной Оферты.</p>
+<p>• «Клиент» - любое дееспособное лицо, изъявившее желание получить парикмахерские услуги и акцептовавшее Оферту на нижеописанных условиях. В случае, если Клиент достиг 18 (восемнадцати) лет, он вправе самостоятельно акцептовать Оферту и самостоятельно от своего имени действовать в рамках Договора. В случае, если Клиент не достиг 18 (восемнадцати) лет, он вправе акцептовать Оферту и самостоятельно от своего имени действовать в рамках Договора при условии получения письменного согласия своего законного представителя (одного из родителей, усыновителей, попечителя) на заключение Договора в соответствии с требованиями статьи 26 ГК РФ;</p>
+<p>• «Модель» - это Клиент, который получает парикмахерские и косметические услуги Исполнителя при организации и проведении Исполнителем тренингов для третьих лиц;</p>
+<p>• «Исполнитель» - гражданин Российской Федерации Матковская Юлия Владимировна, зарегистрированная в соответствии с действующим законодательством Российской Федерации в качестве индивидуального предпринимателя и оказывающая парикмахерские услуги. «Услуги»;</p>
+<p>• «Услуга» - парикмахерские услуги Исполнителя:</p>
+<p>- кератиновое выпрямление волос;</p>
+<p>- ботокс волос;</p>
+<p>- нанопластика волос;</p>
+<p>- холодное восстановление волос;</p>
+<p>- тотальная реконструкция волос;</p>
+<p>- полировка волос;</p>
+<p>- пилинг кожи головы;</p>
+<p><b>1.1.7.</b> «Подарочный сертификат» - документ, удостоверяющий возмездную передачу обязательственных прав Клиенту. Оборот подарочных сертификатов Исполнителя регулируется положениями раздела 7 настоящего Договора.</p>
+<p><b>1.1.8.</b> «Курс услуг», «Абонемент» - совокупность парикмахерских услуг Исполнителя, которые оказываются Исполнителем со скидкой в течение срока действия абонемента. Оборот абонементов и правила оказания услуг в рамках курса услуг регулируется положениями раздела 7 настоящего Договора.</p>
+<p><b>1.1.9.</b> «Сайт», «Официальный сайт Исполнителя» - веб-страница, представляющая собой организованную совокупность связанных между собой текстов, графических изображений, фото, видеоматериалов, иных объектов интеллектуальных прав, принадлежащих Исполнителю, содержащий информацию о парикмахерских услугах Исполнителя (список услуг, стоимость услуг, описание услуг) и расположенный по адресу: <a class="u" href="https://keratinstories.ru/;" target="_blank" rel="noopener">https://keratinstories.ru/;</a></p>
+<p><b>1.1.10.</b> «Предварительная запись» - направление физическим лицом электронного сообщения на мессенджер Исполнителя, привязанный к номеру телефона Исполнителя или направление физическим лицом электронного сообщения в аккаунты социальных сетей «Instagram»*, «Телеграмм», «Вконтакте» Исполнителя или направление электронной заявки через Официальный сайт Исполнителя с целью получить парикмахерские услуги Исполнителя. Результатом предварительной записи является согласование даты и момента начала оказания парикмахерских услуг.</p>
+<p>*Здесь и далее по тексту. Facebook/Instagram — проект Meta Platforms Inc., деятельность которой в России запрещена.</p>
+<p><b>1.1.11.</b> «Диагностика волос» - визуальный осмотр волос Клиента, осуществляемый Исполнителем перед оказанием парикмахерских услуг, в целях оценки состояния волос Клиента и определения конечной стоимости оказания парикмахерских услуг в соответствии с разделом 6 настоящего Договора и сроков оказания парикмахерских услуг (длительность 1 (одной) парикмахерской услуги). Диагностика волос может быть организована и проведена Исполнителем в целях оценки результатов оказанной парикмахерской услуги в порядке, установленном положениями раздела 12 настоящего Договора.</p>
+<p><b>1.2.</b> В настоящей Оферте могут быть использованы термины, не определенные в п. 1.1. В этом случае толкование такого термина производится в соответствии с текстом настоящей Оферты. В случае отсутствия однозначного толкования термина в тексте Оферты следует руководствоваться общепринятым значением.</p>
+<h2 id="s2">2. ПРЕДМЕТ ДОГОВОРА ОФЕРТЫ</h2>
+<p><b>2.1.</b> По настоящему Договору Исполнитель обязуется оказать Клиенту на возмездной основе парикмахерские услуги (далее - услуги), а Клиент – принять и оплатить услуги.</p>
+<p><b>2.2.</b> Услуги по Договору оказываются Исполнителем в объеме и сроки, устно согласованные Сторонами при осуществлении Предварительной записи Клиента на оказание парикмахерских услуг Исполнителя.</p>
+<p><b>2.3.</b> Адрес оказания услуг: город Москва, улица Большая Грузинская дом 12 строение 1.</p>
+<p><b>2.3.1.</b> Адрес оказания услуг может быть изменен Исполнителем по предварительному согласованию с Заказчиком.</p>
+<h2 id="s3">3. АКЦЕПТ ОФЕРТЫ И ЗАКЛЮЧЕНИЕ ДОГОВОРА ОФЕРТЫ</h2>
+<p><b>3.1.</b> Физическое лицо производит Акцепт Оферты путем Предварительной записи на услуги Исполнителя.</p>
+<p><b>3.2.</b> Осуществляя акцепт настоящей Оферты, Клиент подтверждает, что ознакомился с информацией об услугах Исполнителя, указанной в разделе 4 настоящего Договора.</p>
+<p><b>3.3.</b> Если Клиент не согласен с каким-либо условием Договора, Исполнитель предлагает отказаться от акцепта и заключить персональный договор на отдельно обсуждаемых с Исполнителем условиях.</p>
+<h2 id="s4">4. ОБЩАЯ ИНФОРМАЦИЯ ОБ УСЛУГАХ</h2>
+<p><b>4.1.</b> Исполнитель оказывает парикмахерские услуги.</p>
+<p><b>4.2.</b> Текстом настоящей Оферты Исполнитель предоставляет полную и достоверную информацию об оказываемых парикмахерских услугах в соответствии с положениями Закона Российской Федерации от 07.02.1992 № 2300-1 &quot;О защите прав потребителей&quot;.</p>
+<p><b>4.3.</b> Исполнитель оказывает услуги в строгом соответствии с положениями Постановления Главного государственного санитарного врача Российской Федерации от 24.12.2020 № 44 &quot;Об утверждении санитарных правил СП 2.1.3678-20 &quot;Санитарно-эпидемиологические требования к эксплуатации помещений, зданий, сооружений, оборудования и транспорта, а также условиям деятельности хозяйствующих субъектов, осуществляющих продажу товаров, выполнение работ или оказание услуг&quot;.</p>
+<p><b>4.4.</b> Исполнитель уведомляет Вас о том, что большинство косметических средств, находящихся в обороте, являются безопасными для здоровья, но следует помнить, что действие химических средств в составе косметических товаров для каждого потребителя индивидуально. Даже косметические товары и средства, применяемые в домашних условиях, могут быть причинами аллергических реакций. В этой связи, в целях заботы о Вашем здоровье Вам следует знать, что химические средства и вещества, используемые Исполнителем при оказании парикмахерских услуг способны вызвать различные аллергические реакции. В этой связи, при наличии у вас аллергических реакций просим Вас уведомить об этом Исполнителя до оказания парикмахерских услуг.</p>
+<p><b>4.5.</b> Каждая парикмахерская услуга Исполнителя имеет характерные особенности, полная и достоверная информация о которых представлена в настоящем разделе Договора.</p>
+<p><b>4.6.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по кератиновому выпрямлению волос:</p>
+<p><b>4.6.1.</b> О возможном возникновении аллергических реакций и (или) непереносимости средств и материалов, используемых Исполнителем для оказания услуг.</p>
+<p><b>4.6.2.</b> О возможном возникновении осложнений в силу ранее проведенных/оказанных аналогичных услуг в другой организации и (или) другим лицом (осветление, окрашивание, ламинирование, кератирование и т.д.).</p>
+<p><b>4.6.3.</b> О том, что эффективность оказания услуги зависит от правильного домашнего ухода за волосами.</p>
+<p><b>4.6.4.</b> О том, что волосы после оказания услуги потребуют дополнительного ухода.</p>
+<p><b>4.6.5.</b> О том, что результат зависит от исходного состояния волос и исходного цвета волос.</p>
+<p><b>4.6.6.</b> О том, что существует вероятность, что качество волос и (или) исходный цвет волос не позволяет достичь надлежащего результата оказания услуг после оказания услуги.</p>
+<p><b>4.6.7.</b> О возможном попадании косметического состава и (или) иных материалов, используемых Исполнителем для оказания услуг, на одежду.</p>
+<p><b>4.6.8.</b> О возможном возникновении неприятного запаха волос.</p>
+<p><b>4.6.9.</b> О возможном сохранении неприятного запаха волос в течение 7 (семи) - 10 (десяти) календарных дней после оказания услуги.</p>
+<p><b>4.6.10.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг. Так, волосы темного цвета могут посветлеть и (или) приобрести более светлый оттенок после оказания услуг. Цвет темных волос по результатам оказания услуг может измениться в сторону осветления на 0,5 (ноль целых пять десятых) или 1 (один) тон.</p>
+<p><b>4.6.11.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг. Так, осветленные волосы пепельного цвета могут изменить цвет на более теплый оттенок, в том числе на ярко-золотой и (или) рыжий цвет. При этом, данный эффект в виде изменения цвета невозможно устранить посредством мытья головы шампунями и (или) иными средствами.</p>
+<p><b>4.6.12.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги не влечет возникновение оттенка на натуральных неокрашенных волосах.</p>
+<p><b>4.6.13.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги влечет изменение цвета окрашенных волос до 1 (одного) тона. Данное изменение может быть заметно исключительно на волосах, осветленных до высокого фона осветления.</p>
+<p><b>4.6.14.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги не заменяет услугу по тонированию волос и (или) самостоятельное тонирование волос, осуществляемое своими силами в домашних условиях. Использование пигментированных составов и (или) расходных средств при оказании услуги компенсирует последствия от воздействия на волосы температуры и (или) иных составов, расходных материалов.</p>
+<p><b>4.6.15.</b> О том, что срок сохранения результата оказания услуги по договору зависит от исходного состояния волос и (или) типа волос.</p>
+<p><b>4.6.16.</b> О том, что срок сохранения результата оказания услуги по договору зависит от количества и качества ранее оказанных услуг аналогичного характера (накопительный эффект).</p>
+<p><b>4.6.17.</b> О том, что полное вымывание состава из структуры волос неизбежно повлечет возврат к прежнему состоянию волос.</p>
+<p><b>4.6.18.</b> О том, что в случаях, когда услуга по кератиновому выпрямлению осуществляется в отношении ваших волос на регулярной основе, то возможно возникновение накопительного эффекта, характеризующегося невозможностью возврата к прежнему состоянию волос (то есть к состоянию кудрявых и (или) волнистых волос).</p>
+<p><b>4.6.19.</b> О том, что осветление волос надлежит осуществлять до осуществления услуги по кератиновому выпрямлению волос. В противном случае, осветление может отрицательно отразиться на результате оказания услуги по Договору.</p>
+<p><b>4.6.20.</b> О том, что окрашивание волос на участке прикорневой зоны можно осуществлять после оказания услуги по кератиновому выпрямлению волос.</p>
+<p><b>4.6.21.</b> О том, что результат оказания услуг по кератиновому выпрямлению волос препятствует достижению надлежащего эффекта от осветления волос и (или) достижения надлежащего результата от оказания услуг по осветлению волос.</p>
+<p><b>4.6.22.</b> О том, что первичное и (или) повторное осветление волос после услуги по кератиновому выпрямлению волос надлежит осуществлять не раньше 2 (двух) календарных месяцев с момента оказания услуги по кератиновому выпрямлению волос. В противном случае, при несоблюдении указанных сроков результат оказания услуги по кератиновому выпрямлению волос может воспрепятствовать наступлению надлежащего результата от услуги по осветлению волос, а именно фон по результатам осветления может быть темнее запланированного.</p>
+<p><b>4.6.23.</b> О том, что можно осуществлять окрашивание и тонирование волос после оказания услуги по кератиновому выпрямлению волос. При необходимости достижения яркости и (или) интенсивности цвета волос по результатам окрашивания и (или) тонирования рекомендуется осуществлять окрашивание и (или) тонирования после оказания услуги по кератиновому выпрямлению волос.</p>
+<p><b>4.6.24.</b> О том, что при осуществлении окрашивания и (или) тонирования волос до оказания услуги по кератиновому выпрямлению волос возможно потеря цвета и (или) интенсивности цвета волос до 0,5 (ноль целых пяти десятых) - 1 (одного) тона.</p>
+<p><b>4.6.25.</b> О том, что услуга по кератиновому выпрямлению волос, выполняемая в отношении кудрявых волос может привести к выпрямлению волос.</p>
+<p><b>4.6.26.</b> О том, что услуга по кератиновому выпрямлению волос не всегда подходит для кудрявых волос. В этой связи, оказание услуги по кератиновому выпрямлению волос в отношении кудрявых волос осуществляется по предварительной консультации с Исполнителем.</p>
+<p><b>4.6.27.</b> О том, что услуга по кератиновому выпрямлению волос в отношении кудрявых волос может привести к изменению внешнего вида и (или) структуры кудрявых волос.</p>
+<p><b>4.6.28.</b> О том, что окрашивание и (или) тонирование волос после оказания услуги по кератиновому выпрямлению волос необходимо осуществлять исключительно после мытья волос шампунем. В противном случае несоблюдение данной рекомендации может повлечь за собой невозможность достижения надлежащего результата от окрашивания и (или) тонирования.</p>
+<p><b>4.6.29.</b> О том, что оказание услуги по кератиновому выпрямлению волос в отношении тех участков волос, которые подвергались на регулярной основе воздействию стайлера и (или) плойки и (или) масел для волос, может привести к возникновению сухости волос.</p>
+<p><b>4.6.30.</b> О том, что услугу по кератиновому выпрямлению волос недопустимо оказывать в отношении волос беременной женщины и (или) женщины, осуществляющей кормление ребенка грудью без письменного согласования врача. В случаях, когда вы скрыли факт беременности и (или) факт кормления ребенка грудью в целях получения от Исполнителя услуги по кератиновому выпрямлению волос без письменного разрешения врача, ответственность Исполнителя исключается.</p>
+<p><b>4.6.31.</b> О том, что оказание услуги по кератиновому выпрямлению волос может повлечь потерю объема волос на прикорневом участке волос (потерю прикорневого объема) на срок до 30 (тридцати) календарных дней.</p>
+<p><b>4.6.32.</b> О том, что услугу по осветлению волос и (или) окрашиванию волос с использованием стойких красителей осветляющей серии и (или) красителей с процентом оксида выше 6 (шести) % (процентов) надлежит осуществлять до оказания услуг по кератиновому выпрямлению волос.</p>
+<p><b>4.6.33.</b> О том, что услуги по тонированию и (или) окрашиванию волос надлежит осуществлять после оказания услуг по кератиновому выпрямлению волос.</p>
+<p><b>4.7.</b> Для обеспечения надлежащего качества оказания услуг по кератиновому выпрямлению волос, Клиент подтверждает, что проинформирован о необходимости соблюдать следующие рекомендации Исполнителя по уходу за волосами после оказания услуг по кератиновому выпрямлению волос:</p>
+<p><b>4.7.1.</b> Обязательное использование фена с теплым потоком воздуха для сушки волос сразу после осуществления мытья волос.</p>
+<p><b>4.7.1.1.</b> После сна на отдельных участках волос могут быть образованы заломы, в этой связи обязательным является просушивание волос на участках, где после сна были образованы заломы. Просушивание осуществляется в следующем порядке - участок волос, на котором образуются заломы, смачивается водой, после чего просушивается феном с теплым потоком воздуха. Также в случае образования заломов после сна возможно проведение дополнительного мытья головы. В данном случае также обязательно использовать фен с теплым потоком воздуха для сушки волос сразу после осуществления мытья волос.</p>
+<p><b>4.7.2.</b> Поток теплого воздуха из фена при сушке направлять сверху вниз, то есть начинать сушку волос феном от прикорневого участка волос и заканчивать сушку волос участком конца волос (кончики волос).</p>
+<p><b>4.7.3</b> Использовать фен мощностью не менее 1500 Вт;</p>
+<p><b>4.7.4.</b> Обязательное использование профессиональных средств ухода за волосами (профессионального шампуня, кондиционера и маски для волос) при мытье волос.</p>
+<p><b>4.7.5.</b> Исключить применение и использование натуральных масел для волос. Использовать профессиональные масла для волос.</p>
+<p><b>4.7.6.</b> По возможности пользоваться услугами по холодному восстановлению волос 1 (один) раз в 3 (три) календарных месяца.</p>
+<p><b>4.8.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по ботоксу волос:</p>
+<p><b>4.8.1.</b> О возможном возникновении аллергических реакций и (или) непереносимости средств и материалов, используемых Исполнителем для оказания услуг.</p>
+<p><b>4.8.2.</b> О возможном возникновении осложнений в силу ранее проведенных/ казанных аналогичных услуг в другой организации и (или) другим лицом (осветление, окрашивание, ламинирование, кератирование и т.д.).</p>
+<p><b>4.8.3.</b> О том, что эффективность оказания услуги зависит от правильного домашнего ухода за волосами.</p>
+<p><b>4.8.4.</b> О том, что волосы после оказания услуги потребуют дополнительного ухода.</p>
+<p><b>4.8.5.</b> О том, что результат зависит от исходного состояния волос и исходного цвета волос.</p>
+<p><b>4.8.6.</b> О том, что существует вероятность, что качество волос и (или) исходный цвет волос не позволяет достичь надлежащего результата оказания услуг после оказания услуги.</p>
+<p><b>4.8.7.</b> О возможном попадании косметического состава и (или) иных материалов, используемых Исполнителем для оказания услуг, на одежду.</p>
+<p><b>4.8.8.</b> О возможном возникновении неприятного запаха волос.</p>
+<p><b>4.8.9.</b> О возможном сохранении неприятного запаха волос в течение 7 (семи) — 10 (десяти) календарных дней после оказания услуги.</p>
+<p><b>4.8.10.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг. Так, волосы темного цвета могут посветлеть и (или) приобрести более светлый оттенок после оказания услуг. Цвет темных волос по результатам оказания услуг может измениться в сторону осветления на 0,5 (ноль целых пять десятых) или 1 (один) тон.</p>
+<p><b>4.8.11.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг. Так, осветленные волосы пепельного цвета могут изменить цвет на более теплый оттенок, в том числе на ярко-золотой и (или) рыжий цвет. При этом, данный эффект в виде изменения цвета невозможно устранить посредством мытья головы шампунями и (или) иными средствами.</p>
+<p><b>4.8.12.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги не влечет возникновение оттенка на натуральных неокрашенных волосах;</p>
+<p><b>4.8.13.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги влечет изменение цвета окрашенных волос до 1 (одного) тона. Данное изменение может быть заметно исключительно на волосах, осветленных до высокого фона осветления.</p>
+<p><b>4.8.14.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги не заменяет услугу по тонированию волос и (или) самостоятельное тонирование волос, осуществляемое своими силами в домашних условиях. Использование пигментированных составов и (или) расходных средств при оказании услуги компенсирует последствия от воздействия на волосы температуры и (или) иных составов, расходных материалов.</p>
+<p><b>4.8.15.</b> О том, что срок сохранения результата оказания услуги по ботоксу волос зависит от исходного состояния волос и (или) типа волос.</p>
+<p><b>4.8.16.</b> О том, что срок сохранения результата оказания услуги по ботоксу волос зависит от количества и качества ранее оказанных услуг аналогичного характера (накопительный эффект).</p>
+<p><b>4.8.17.</b> О том, что срок сохранения результата оказания услуги по ботоксу волос составляет от 2 (двух) до 3 (трех) календарных месяцев.</p>
+<p><b>4.8.18.</b> О том, что полное вымывание состава из структуры волос неизбежно повлечет возврат к прежнему состоянию волос.</p>
+<p><b>4.8.19.</b> О том, что в случаях, когда услуга по ботоксу волос осуществляется в отношении ваших волос на регулярной основе, то возможно возникновение накопительного эффекта, характеризующегося невозможностью возврата к прежнему состоянию волос (то есть к состоянию кудрявых и (или) волнистых волос).</p>
+<p><b>4.8.20.</b> О том, что надлежащим результатом оказания услуги по ботоксу волос является разглаживание волос. Надлежащий результат оказания услуги по ботоксу волос возможно достичь лишь при оказании услуги по ботоксу волос в отношении волос, характеризующихся тонкой структурой.</p>
+<p><b>4.8.21.</b> О том, что при оказании услуги по ботоксу волос в отношении пушистых и (или) кудрявых волос невозможно достичь надлежащего результата - разглаживания волос.</p>
+<p><b>4.8.22.</b> О том, что окрашивание волос на участке прикорневой зоны можно осуществлять после оказания услуги по ботоксу волос.</p>
+<p><b>4.8.23.</b> О том, что результат оказания услуг по ботоксу волос препятствует достижению надлежащего эффекта от осветления волос и (или) достижения надлежащего результата от оказания услуг по осветлению волос.</p>
+<p><b>4.8.24.</b> О том, что первичное и (или) повторное осветление волос после услуги по ботоксу волос надлежит осуществлять не раньше 2 (двух) календарных месяцев с момента оказания услуги по ботоксу волос. В противном случае, при несоблюдении указанных сроков результат оказания услуги по ботоксу волос может воспрепятствовать наступлению надлежащего результата от услуги по осветлению волос, а именно фон по результатам осветления может быть темнее запланированного.</p>
+<p><b>4.8.25.</b> О том, что можно осуществлять окрашивание и тонирование волос после оказания услуги по ботоксу волос. При необходимости достижения яркости и (или) интенсивности цвета волос по результатам окрашивания и (или) тонирования рекомендуется осуществлять окрашивание и (или) тонирования после оказания услуги по ботоксу волос.</p>
+<p><b>4.8.26.</b> О том, что при осуществлении окрашивания и (или) тонирования волос до оказания услуги по ботоксу волос возможно потеря цвета и (или) интенсивности цвета волос до 0,5 (ноль целых пяти десятых) - 1 (одного) тона.</p>
+<p><b>4.8.27.</b> О том, что услуга по ботоксу волос, выполняемая в отношении кудрявых волос может привести к выпрямлению волос.</p>
+<p><b>4.8.28.</b> О том, что услуга по ботоксу волос не всегда подходит для кудрявых волос. В этой связи, оказание услуги по ботоксу волос в отношении кудрявых волос осуществляется по предварительной консультации с Исполнителем.</p>
+<p><b>4.8.29.</b> О том, что услуга по ботоксу волос в отношении кудрявых волос может привести к изменению внешнего вида и (или) структуры кудрявых волос.</p>
+<p><b>4.8.30.</b> О том, что окрашивание и (или) тонирование волос после оказания услуги по ботоксу волос необходимо осуществлять исключительно после мытья волос шампунем. В противном случае несоблюдение данной рекомендации может повлечь за собой невозможность достижения надлежащего результата от окрашивания и (или) тонирования.</p>
+<p><b>4.8.31.</b> О том, что оказание услуги по ботоксу волос в отношении тех участков волос, которые подвергались на регулярной основе воздействию стайлера и (или) плойки и (или) масел для волос, может привести к возникновению сухости волос.</p>
+<p><b>4.8.32.</b> О том, что услугу по ботоксу волос недопустимо оказывать в отношении волос беременной женщины и (или) женщины, осуществляющей кормление ребенка грудью без письменного согласования врача. В случаях, когда вы скрыли факт беременности и (или) факт кормления ребенка грудью в целях получения от Исполнителя услуги по ботоксу волос без письменного разрешения врача, ответственность Исполнителя исключается.</p>
+<p><b>4.8.33.</b> О том, что оказание услуги по ботоксу волос может повлечь потерю объема волос на прикорневом участке волос (потерю прикорневого объема) на срок до 30 (тридцати) календарных дней.</p>
+<p><b>4.8.34.</b> О том, что услугу по осветлению волос и (или) окрашиванию волос с использованием стойких красителей осветляющей серии и (или) красителей с процентом оксида выше 6 (шести) % (процентов) надлежит осуществлять до оказания услуг по ботоксу волос.</p>
+<p><b>4.8.35.</b> О том, что услуги по тонированию и (или) окрашиванию волос надлежит осуществлять после оказания услуг по ботоксу волос.</p>
+<p><b>4.9.</b> Для обеспечения надлежащего качества оказания услуг по ботоксу волос, Клиент подтверждает, что проинформирован о необходимости соблюдать следующие рекомендации Исполнителя по уходу за волосами после оказания услуг по ботоксу волос:</p>
+<p><b>4.9.1.</b> Обязательное использование фена с теплым потоком воздуха для сушки волос сразу после осуществления мытья волос.</p>
+<p><b>4.9.1.1.</b> После сна на отдельных участках волос могут быть образованы заломы, в этой связи обязательным является просушивание волос на участках, где после сна были образованы заломы. Просушивание осуществляется в следующем порядке - участок волос, на котором образуются заломы, смачивается водой, после чего просушивается феном с теплым потоком воздуха. Также в случае образования заломов после сна возможно проведение дополнительного мытья головы. В данном случае также обязательно использовать фен с теплым потоком воздуха для сушки волос сразу после осуществления мытья волос.</p>
+<p><b>4.9.2.</b> Поток теплого воздуха из фена при сушке направлять сверху вниз, то есть начинать сушку волос феном от прикорневого участка волос и заканчивать сушку волос участком конца волос (кончики волос)</p>
+<p><b>4.9.3.</b> Использовать фен мощностью не менее 1500 Вт.</p>
+<p><b>4.9.4.</b> Обязательное использование профессиональных средств ухода за волосами (профессионального шампуня, кондиционера и маски для волос) при мытье волос.</p>
+<p><b>4.9.5.</b> Исключить применение и использование натуральных масел для волос. Использовать профессиональные масла для волос.</p>
+<p><b>4.9.6.</b> По возможности пользоваться услугами по холодному восстановлению волос 1 (один) раз в 3 (три) календарных месяца.</p>
+<p><b>4.10.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по нанопластике волос:</p>
+<p><b>4.10.1.</b> О возможном возникновении аллергических реакций и (или) непереносимости средств и материалов, используемых Исполнителем для оказания услуг.</p>
+<p><b>4.10.2.</b> О возможном возникновении осложнений в силу ранее проведенных/оказанных аналогичных услуг в другой организации и (или) другим лицом (осветление, окрашивание, ламинирование, кератирование и т.д.).</p>
+<p><b>4.10.3.</b> О том, что эффективность оказания услуги зависит от правильного домашнего ухода за волосами.</p>
+<p><b>4.10.4.</b> О том, что волосы после оказания услуги потребуют дополнительного ухода.</p>
+<p><b>4.10.5.</b> О том, что результат зависит от исходного состояния волос и исходного цвета волос.</p>
+<p><b>4.10.6.</b> О том, что существует вероятность, что качество волос и (или) исходный цвет волос не позволяет достичь надлежащего результата оказания услуг после оказания услуги.</p>
+<p><b>4.10.7.</b> О возможном попадании косметических составов и (или) иных материалов, используемых Исполнителем для оказания услуг, на одежду.</p>
+<p><b>4.10.8.</b> О возможном возникновении неприятного запаха волос.</p>
+<p><b>4.10.9.</b> О возможном сохранении неприятного запаха волос в течение 7 (семи) — 10 (десяти) календарных дней после оказания услуги.</p>
+<p><b>4.10.10.</b> О возможном появлении и (или) возникновении зеленого цвета и (или) оттенка цвета, близкого к зеленому на ваших волосах после оказания услуг по нанопластике волос (обычно если ранее было окрашивание хной или басмой).</p>
+<p><b>4.10.11.</b> О возможном изменении цвета и (или) оттенка цвета ваших волос после оказания услуг по нанопластике волос. Так, светлые волосы, в том числе волосы русого цвета после оказания услуг по нанопластике волос могут изменить цвет на ярко-золотой и (или) рыжий цвет. При этом, данный эффект в виде изменения цвета невозможно устранить посредством мытья головы шампунями и (или) иными средствами.</p>
+<p><b>4.10.12.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг по нанопластике волос. Так, волосы темного цвета могут посветлеть и (или) приобрести более светлый оттенок после оказания услуг по нанопластике волос. Цвет темных волос по результатам оказания услуг по нанопластике волос может измениться в сторону осветления на 4 (четыре) или 5 (пять) тонов.</p>
+<p><b>4.10.13.</b> О том, что по результатам оказания услуг по нанопластике волос ваши волосы не вернутся в состояние завитых волос. В случаях, когда вы не согласны и (или) не желаете выпрямить свои волосы навсегда и (или) на длительный период времени (от 8 (восьми) календарных месяцев до 12 (двенадцати) календарных месяцев откажитесь от оказания услуг Исполнителя по нанопластике волос и (или) выберете иную услугу Исполнителя.</p>
+<p><b>4.10.14.</b> О том, что недопустимо осуществлять осветление волос и (или) смыв цвета волос после оказания услуг по нанопластике волос.</p>
+<p><b>4.10.15.</b> О том, что в случаях, когда вы не сообщили информацию Исполнителю и не уведомили Исполнителя о том, что в отношении ваших волос осуществлялась услуга по смыву цвета волос и (или) о том, что вы самостоятельно осуществляли смыв цвета волос, ответственность Исполнителя за качество оказания услуг по нанопластике волос исключается, в том числе исключается ответственность Исполнителя за действия по срезанию ваших волос и (или) участка ваших волос, которые подвергались смыву цвета.</p>
+<p><b>4.10.16.</b> О том, что в случаях, когда вы не сообщили информацию Исполнителю и не уведомили Исполнителя о том, что на ваших волосах имеется скрытый осветленный участок волос, в том числе участок волос с закрашенным и (или) отросшим осветлением волос и (или) скрытым от Исполнителя иным другим образом, ответственность Исполнителя за качество оказания услуг по нанопластике волос исключается, в том числе исключается ответственность Исполнителя за действия по срезанию ваших волос и (или) участка ваших волос, которые ранее подвергались осветлению.</p>
+<p><b>4.10.17.</b> О том, что ваши волосы и (или) участки ваших волос, которые ранее подвергались на регулярной основе воздействию стайлера и (или) плойки после оказания услуг по нанопластике волос могут стать сухими.</p>
+<p><b>4.10.18.</b> О том, что ваши волосы и (или) участки ваших волос, которые ранее подвергались на регулярной основе уходу с использованием масла для волос после оказания услуг по нанопластике волос могут стать сухими.</p>
+<p><b>4.10.19.</b> О том, что услугу по нанопластике волос недопустимо оказывать в отношении волос беременной женщины и (или) женщины, осуществляющей кормление ребенка грудью без письменного согласования врача. В случаях, когда вы скрыли факт беременности и (или) факт кормления ребенка грудью в целях получения от Исполнителя услуги по нанопластике волос без письменного разрешения врача, ответственность Исполнителя исключается.</p>
+<p><b>4.10.20.</b> О том, что достижение надлежащего результата оказания услуг по нанопластике волос в виде выпрямления волос невозможно в случаях, когда ваши волосы и (или) прикорневой участок волос подвергались химической завивке.</p>
+<p><b>4.10.21.</b> О том, что по результатам оказания услуги по нанопластике волос возможно возникновение отрицательных последствий в виде потери объема волос на прикорневом участке волос.</p>
+<p><b>4.10.22.</b> О том, что услугу по осветлению волос и (или) окрашиванию волос с использованием стойких красителей осветляющей серии и (или) красителей с процентом оксида выше 6 (шести) % (процентов) надлежит осуществлять до оказания услуг по нанопластике волос волос.</p>
+<p><b>4.10.23.</b> О том, что услуги по тонированию и (или) окрашиванию волос надлежит осуществлять после оказания услуг по нанопластике волос.</p>
+<p><b>4.11.</b> Для обеспечения надлежащего качества оказания услуг, Клиент подтверждает, что проинформирован о необходимости соблюдать следующие рекомендации Исполнителя по уходу за волосами после оказания услуг по нанопластике волос:</p>
+<p><b>4.11.1.</b> Обязательное использование фена с горячим потоком воздуха для сушки волос сразу после осуществления мытья волос;</p>
+<p><b>4.11.1.1.</b> После сна на отдельных участках волос могут быть образованы заломы, в этой связи обязательным является просушивание волос на участках, где после сна были образованы заломы. Просушивание осуществляется в следующем порядке - участок волос, на котором образуются заломы, смачивается водой, после чего просушивается феном с теплым потоком воздуха. Также в случае образования заломов после сна возможно проведение дополнительного мытья головы. В данном случае также обязательно использовать фен с теплым потоком воздуха для сушки волос сразу после осуществления мытья волос.</p>
+<p><b>4.11.2.</b> Поток теплого воздуха из фена при сушке направлять сверху вниз, то есть начинать сушку волос феном от прикорневого участка волос и заканчивать сушку волос участком конца волос (кончики волос).</p>
+<p><b>4.11.3.</b> Использовать фен мощностью не менее 1500 Вт.</p>
+<p><b>4.11.4.</b> Обязательное использование профессионального шампуня, кондиционера и маски для волос при мытье волос.</p>
+<p><b>4.11.5.</b> Обязательное использование масок для волос и средств несмываемого ухода (несмываемые средства);</p>
+<p><b>4.11.6.</b> По возможности пользоваться услугами по холодному восстановлению волос 1 (один) раз в 3 (три) календарных месяца.</p>
+<p><b>4.12.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по холодному восстановлению волос:</p>
+<p><b>4.12.1.</b> О возможном возникновении аллергических реакций и (или) непереносимости средств и материалов, используемых Исполнителем для оказания услуг.</p>
+<p><b>4.12.2.</b> О возможном возникновении осложнений в силу ранее проведенных/оказанных аналогичных услуг в другой организации и (или) другим лицом (осветление, окрашивание, ламинирование, кератирование и т.д.).</p>
+<p><b>4.12.3.</b> О том, что эффективность оказания услуги зависит от правильного домашнего ухода за волосами.</p>
+<p><b>4.12.4.</b> О том, что волосы после оказания услуги потребуют дополнительного ухода.</p>
+<p><b>4.12.5.</b> О том, что результат зависит от исходного состояния волос и исходного цвета волос.</p>
+<p><b>4.12.6.</b> О том, что существует вероятность, что качество волос и (или) исходный цвет волос не позволяет достичь надлежащего результата оказания услуг после оказания услуги.</p>
+<p><b>4.12.7.</b> О возможном попадании косметических составов и (или) иных материалов, используемых Исполнителем для оказания услуг, на одежду.</p>
+<p><b>4.12.8.</b> О том, что результатом оказания услуг по холодному восстановлению волос не может являться изменение структуры волос.</p>
+<p><b>4.12.9.</b> О том, что результатом оказания услуг по холодному восстановлению волос не может являться возникновение эффекта укладки волос, то есть в данном случае результат оказания услуги по холодному восстановлению волос будет качественно отличаться от результатов оказания иных парикмахерских услуг.</p>
+<p><b>4.12.10.</b> О том, что для достижения надлежащего результата оказания услуг потребуется самостоятельное проведение укладки волос.</p>
+<p><b>4.12.11.</b> О невозможности полноценного восстановления поврежденных волос до состояния неокрашенных и (или) неосветленных волос.</p>
+<p><b>4.12.12.</b> О том, что для достижения надлежащего результата оказания услуг по холодному восстановлению волос и достижения ярко выраженного эффекта от оказания услуг необходимо повторное и (или) дополнительное оказание услуг по холодному восстановлению волос. Частота оказания повторных и (или) дополнительных услуг по холодному восстановлению волос для достижения надлежащего результата определяется Исполнителем самостоятельно.</p>
+<p><b>4.12.13.</b> О том, что срок сохранения надлежащего результата оказания услуги по холодному восстановлению волос составляет от 7 (семи) до 42 (сорока двух) календарных дней, при этом длительность срока напрямую зависит от типа и характера домашнего ухода за волосами. Так, при использовании косметических средств массового производства срок сохранения надлежащего результата оказания услуг может сокращаться, в то время как при использовании профессиональных средств для ухода за волосами срок сохранения надлежащего результата оказания услуг может быть более длительным. Сроки сохранения надлежащего результата оказания услуг по холодному восстановлению волос напрямую зависят от количества оказанных услуг, то есть результат оказания услуг по холодному восстановлению волос характеризуется накопительным эффектом, в соответствии с которым количество оказанных услуг по холодному восстановлению волос напрямую зависит на длительность срока сохранения надлежащего результата.</p>
+<p><b>4.12.14.</b> О возможной потери и (или) утраты цвета волос до 0,5 (ноль целых пяти десятых) - 1 (одного) тона.</p>
+<p><b>4.12.15.</b> О возможной потери и (или) утрате пепельного цвета. Так, пепельный оттенок цвета волос по результатам оказания услуг по холодному восстановлению волос может подвергнуться существенным изменениям в том числе измениться до золотистого / желтого оттенка цвета волос.</p>
+<p><b>4.12.16.</b> О том, что срок сохранения надлежащего результата оказания услуг по холодному восстановлению волос может быть краткосрочным в случаях, когда услуга по холодному восстановлению волос оказана в отношении пористых волос. В данном случае надлежащий результат оказания услуги по договору может быть утрачен после 1 (одного) и (или) 2 (двух) раз мытья головы.</p>
+<p><b>4.13.</b> Для обеспечения надлежащего качества оказания услуг, Клиент подтверждает, что проинформирован о необходимости соблюдать следующие рекомендации Исполнителя по уходу за волосами после оказания услуг по холодному восстановлению волос:</p>
+<p><b>4.13.1.</b> Отказ от косметических масел/органических средств ухода.</p>
+<p><b>4.13.2.</b> Обязательное использование профессионального шампуня, кондиционера и маски для волос при мытье волос.</p>
+<p><b>4.13.3.</b> Не использовать и (или) использовать в исключительных случаях горячий инструмент (плойка, стайлер).</p>
+<p><b>4.13.4.</b> Использовать термозащитные средства для волос.</p>
+<p><b>4.14.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по тотальной реконструкции волос:</p>
+<p><b>4.14.1.</b> Тотальная реконструкция волос - это эксклюзивная услуга, полностью адаптированная под тип волос Клиента. Тотальная реконструкция волос предусматривает наполнение волос Клиента полезными компонентами. В процессе оказания услуги применяются косметические средства, подобранные исключительно под тип волос Клиента. Данные косметические средства богаты на необходимые компоненты для волос Клиента и будут восполнять в волосах Клиента питание, увлажнение, блеск.</p>
+<p>.14.2. О возможном возникновении аллергических реакций и (или) непереносимости средств и материалов, используемых Исполнителем для оказания услуг.</p>
+<p><b>4.14.3.</b> О возможном возникновении осложнений в силу ранее проведенных / оказанных аналогичных услуг в другой организации и (или) другим лицом (осветление, окрашивание, ламинирование, кератирование и т.д.).</p>
+<p><b>4.14.4.</b> О том, что эффективность оказания услуги зависит правильного домашнего ухода за волосами.</p>
+<p><b>4.14.5.</b> О том, что волосы после оказания услуги потребуют дополнительного ухода.</p>
+<p><b>4.14.6.</b> О том, что результат зависит от исходного состояния волос и исходного цвета волос.</p>
+<p><b>4.14.7.</b> О том, что существует вероятность, что качество волос и (или) исходный цвет волос не позволяет достичь надлежащего результата оказания услуг после оказания услуги.</p>
+<p><b>4.14.8.</b> О возможном попадании косметических составов и (или) иных материалов, используемых Исполнителем для оказания услуг, на одежду.</p>
+<p><b>4.14.9.</b> О возможном возникновении неприятного запаха волос.</p>
+<p><b>4.14.10.</b> О возможном сохранении неприятного запаха волос в течение 7 (семи) — 10 (десяти) календарных дней после оказания услуги.</p>
+<p><b>4.14.11.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг. Так, волосы темного цвета могут посветлеть и (или) приобрести более светлый оттенок после оказания услуг. Цвет темных волос по результатам оказания услуг может измениться в сторону осветления на 0,5 (ноль целых пять десятых) или 1 (один) тон.</p>
+<p><b>4.14.12.</b> О возможном изменении и (или) потери цвета и (или) оттенка цвета ваших волос после оказания услуг. Так, осветленные волосы пепельного цвета могут изменить цвет на более теплый оттенок, в том числе на ярко-золотой и (или) рыжий цвет. При этом, данный эффект в виде изменения цвета невозможно устранить посредством мытья головы шампунями и (или) иными средствами.</p>
+<p><b>4.14.13.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги не влечет возникновение оттенка на натуральных неокрашенных волосах.</p>
+<p><b>4.14.14.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги влечет изменение цвета окрашенных волос до 1 (одного) тона. Данное изменение может быть заметно исключительно на волосах, осветленных до высокого фона осветления.</p>
+<p><b>4.14.15.</b> О том, что использование пигментированных составов и (или) расходных средств при оказании услуги не заменяет услугу по тонированию волос и (или) самостоятельное тонирование волос, осуществляемое своими силами в домашних условиях. Использование пигментированных составов и (или) расходных средств при оказании услуги компенсирует последствия от воздействия на волосы температуры и (или) иных составов, расходных материалов.</p>
+<p><b>4.14.16.</b> О том, что срок сохранения результата оказания услуги по договору зависит от исходного состояния волос и (или) типа волос.</p>
+<p><b>4.14.17.</b> О том, что срок сохранения результата оказания услуги по договору зависит от количества и качества ранее оказанных услуг аналогичного характера (накопительный эффект).</p>
+<p><b>4.14.18.</b> О том, что полное вымывание состава из структуры волос неизбежно повлечет возврат к прежнему состоянию волос.</p>
+<p><b>4.14.19.</b> О том, что в случаях, когда услуга по тотальной реконструкции волос осуществляется в отношении ваших волос на регулярной основе, то возможно возникновение накопительного эффекта, характеризующегося невозможностью возврата к прежнему состоянию волос (то есть к состоянию кудрявых и (или) волнистых волос).</p>
+<p><b>4.14.20.</b> О том, что осветление волос надлежит осуществлять до осуществления услуги по тотальной реконструкции волос. В противном случае, осветление может отрицательно отразиться на результате оказания услуги по Договору.</p>
+<p><b>4.14.21.</b> О том, что окрашивание волос на участке прикорневой зоны можно осуществлять после оказания услуги по тотальной реконструкции волос.</p>
+<p><b>4.14.22.</b> О том, что результат оказания услуг по тотальной реконструкции волос препятствует достижению надлежащего эффекта от осветления волос и (или) достижения надлежащего результата от оказания услуг по осветлению волос.</p>
+<p><b>4.14.23.</b> О том, что первичное и (или) повторное осветление волос после услуги по тотальной реконструкции волос надлежит осуществлять не раньше 2 (двух) календарных месяцев с момента оказания услуги по тотальной реконструкции волос. В противном случае, при несоблюдении указанных сроков результат оказания услуги по тотальной реконструкции волос может воспрепятствовать наступлению надлежащего результата от услуги по осветлению волос, а именно фон по результатам осветления может быть темнее запланированного.</p>
+<p><b>4.14.24.</b> О том, что можно осуществлять окрашивание и тонирование волос после оказания услуги по тотальной реконструкции волос. При необходимости достижения яркости и (или) интенсивности цвета волос по результатам окрашивания и (или) тонирования рекомендуется осуществлять окрашивание и (или) тонирования после оказания услуги по тотальной реконструкции волос.</p>
+<p><b>4.14.25.</b> О том, что при осуществлении окрашивания и (или) тонирования волос до оказания услуги по тотальной реконструкции волос возможно потеря цвета и (или) интенсивности цвета волос до 0,5 (ноль целых пяти десятых) - 1 (одного) тона.</p>
+<p><b>4.14.26.</b> О том, что услуга по тотальной реконструкции волос, выполняемая в отношении кудрявых волос может привести к выпрямлению волос.</p>
+<p><b>4.14.27.</b> О том, что услуга по тотальной реконструкции волос не всегда подходит для кудрявых волос. В этой связи, оказание услуги по тотальной реконструкции волос в отношении кудрявых волос осуществляется по предварительной консультации с Исполнителем.</p>
+<p><b>4.14.28.</b> О том, что услуга по тотальной реконструкции волос в отношении кудрявых волос может привести к изменению внешнего вида и (или) структуры кудрявых волос.</p>
+<p><b>4.14.29.</b> О том, что окрашивание и (или) тонирование волос после оказания услуги по тотальной реконструкции волос необходимо осуществлять исключительно после мытья волос шампунем. В противном случае несоблюдение данной рекомендации может повлечь за собой невозможность достижения надлежащего результата от окрашивания и (или) тонирования.</p>
+<p><b>4.14.30.</b> О том, что оказание услуги по тотальной реконструкции волос в отношении тех участков волос, которые подвергались на регулярной основе воздействию стайлера и (или) плойки и (или) масел для волос, может привести к возникновению сухости волос.</p>
+<p><b>4.14.31.</b> О том, что услугу по тотальной реконструкции волос недопустимо оказывать в отношении волос беременной женщины и (или) женщины, осуществляющей кормление ребенка грудью без письменного согласования врача. В случаях, когда вы скрыли факт беременности и (или) факт кормления ребенка грудью в целях получения от Исполнителя услуги по тотальной реконструкции волос без письменного разрешения врача, ответственность Исполнителя исключается.</p>
+<p><b>4.14.32.</b> О том, что оказание услуги по тотальной реконструкции волос может повлечь потерю объема волос на прикорневом участке волос (потерю прикорневого объема) на срок до 30 (тридцати) календарных дней.</p>
+<p><b>4.14.33.</b> О том, что услугу по осветлению волос и (или) окрашиванию волос с использованием стойких красителей осветляющей серии и (или) красителей с процентом оксида выше 6 (шести) % (процентов) надлежит осуществлять до оказания услуг по тотальной реконструкции волос волос.</p>
+<p><b>4.14.34.</b> О том, что услуги по тонированию и (или) окрашиванию волос надлежит осуществлять после оказания услуг по тотальной реконструкции волос.</p>
+<p><b>4.15.</b> Для обеспечения надлежащего качества оказания услуг, Клиент подтверждает, что проинформирован о необходимости соблюдать следующие рекомендации Исполнителя по уходу за волосами после оказания услуг по тотальной реконструкции волос:</p>
+<p><b>4.15.1.</b> Обязательное использование фена с горячим потоком воздуха для сушки волос сразу после осуществления мытья волос.</p>
+<p><b>4.15.2.</b> Поток теплого воздуха из фена при сушке направлять сверху вниз, то есть начинать сушку волос феном от прикорневого участка волос и заканчивать сушку волос участком конца волос (кончики волос).</p>
+<p><b>4.15.3</b> Использовать фен мощностью не менее 1500 Вт;</p>
+<p><b>4.15.4.</b> Обязательное использование профессиональных средств ухода за волосами (профессионального шампуня и профессионального бальзама для волос) при мытье волос.</p>
+<p><b>4.15.5.</b> Исключить применение и использование натуральных масел для волос. Использовать профессиональные масла для волос.</p>
+<p><b>4.15.6.</b> По возможности пользоваться услугами по холодному восстановлению волос 1 (один) раз в 3 (три) календарных месяца.</p>
+<p><b>4.16.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по полировке волос:</p>
+<p><b>4.16.1.</b> О том, что парикмахерская услуга по полировке волос направлена на устранение секущихся кончиков волос Клиента.</p>
+<p><b>4.16.2.</b> О том, что парикмахерская услуга по полировке волос является механической процедурой, выполняется при помощи машинки для стрижки со специальной насадкой и (или) ножниц.</p>
+<p><b>4.16.3.</b> О том, что парикмахерская услуга по полировке волос выполняется на прямые или предварительно выпрямленные волосы. Так, если у Клиента кудрявые или волнистые волосы, перед процедурой волосы предварительно выпрямляются при помощи утюжка.</p>
+<p><b>4.16.6.</b> О том, что для достижения и сохранения надлежащего результата от оказания парикмахерской услуги по полировке волос, Клиенту необходимо соблюдать все рекомендации Исполнителя по уходу. В случаях несоблюдения и (или) неправильного, в том числе неполного соблюдения вышеизложенных рекомендаций Исполнителя, ответственность Исполнителя исключается.</p>
+<p><b>4.17.</b> Для обеспечения надлежащего качества оказания услуг, Клиент подтверждает, что проинформирован о необходимости соблюдать все рекомендации Исполнителя по уходу за волосами после оказания услуг по полировке волос:</p>
+<p><b>4.17.1.</b> Обязательное использование профессиональных средств ухода за волосами (профессионального шампуня, профессионального бальзама для волос, профессиональных пенок и муссов для волос) при мытье волос.</p>
+<p><b>4.17.2.</b> Не использовать и (или) использовать в исключительных случаях горячий инструмент (плойка, стайлер).</p>
+<p><b>4.17.3.</b> Регулярно (не менее 1 раза в 6 месяцев) осуществлять стрижку волос.</p>
+<p><b>4.18.</b> Клиент подтверждает и гарантирует, что предупрежден и согласен со следующими условиями Договора при оказании парикмахерской услуги по пилингу кожи головы:</p>
+<p><b>4.18.1.</b> О возможном возникновении аллергических реакций и (или) непереносимости средств и материалов, используемых Исполнителем для оказания услуг.</p>
+<p><b>4.18.2.</b> О возможном возникновении осложнений в силу ранее проведенных/оказанных аналогичных услуг в другой организации и (или) другим лицом.</p>
+<p><b>4.18.3.</b> О том, что эффективность оказания услуги зависит от правильного домашнего ухода за кожей головы.</p>
+<p><b>4.18.4.</b> О том, что услугу следует повторять 1 (один) раз в календарный месяц.</p>
+<p><b>4.18.5.</b> О том, что результат зависит от исходного состояния кожи головы.</p>
+<p><b>4.18.6.</b> О том, что во время процедуры будет «холодеть» кожа головы, так как в составе есть ментол, возможны легкие покалывания.</p>
+<p><b>4.18.7.</b> О возможном шелушении кожи головы, так как после пилинга будет происходить очищение эпидермиса.</p>
+<p><b>4.18.8.</b> О том, что срок сохранения результата оказания услуги пилинга кожи головы зависит от исходного состояния кожи и домашнего ухода.</p>
+<p><b>4.19.</b> Для обеспечения надлежащего качества оказания услуг, Клиент подтверждает, что проинформирован о необходимости соблюдать все устные рекомендации Исполнителя по уходу за волосами после оказания услуг по пилингу кожи головы.</p>
+<p><b>4.20.</b> В случаях несоблюдения и (или) неправильного, в том числе неполного соблюдения вышеизложенных рекомендаций Исполнителя, ответственность Исполнителя исключается.</p>
+<p><b>4.21.</b> Большинство средств, находящихся в обороте, являются безопасными для здоровья, но следует помнить, что действие химических средств в составе косметических товаров для каждого потребителя индивидуально. В этой связи, при наличии противопоказаний и (или) рисков для здоровья Исполнитель настоятельно рекомендует отказаться от услуг по настоящему Договору.</p>
+<h2 id="s5">5. СРОКИ ОКАЗАНИЯ УСЛУГ</h2>
+<p><b>5.1.</b> Дата и время начала оказания парикмахерских услуг согласуются Сторонами в момент Предварительной записи.</p>
+<p><b>5.2.</b> Сроки оказания парикмахерских услуг (длительность оказания парикмахерских услуг) согласуются Сторонами устно в момент Предварительной записи и (или) в момент Диагностики волос и (или) начала оказания услуги по Договору на месте оказания услуг.</p>
+<h2 id="s6">6. СТОИМОСТЬ УСЛУГ И ПОРЯДОК РАСЧЕТОВ</h2>
+<p><b>6.1.</b> Стоимость услуг Исполнителя указана на Официальном сайте.</p>
+<p><b>6.2.</b> Конечная стоимость парикмахерских услуг в рамках условий, установленных положениями настоящего Договора, определяется Исполнителем исходя из длины, густоты и исходного состояния волос Клиента.</p>
+<p><b>6.3.</b> Конечная стоимость услуг в рамках условий, установленных положениями настоящего Договора, определяется Исполнителем исходя из вида и количества косметических услуг, которые оказываются.</p>
+<p><b>6.4.</b> Конечная стоимость услуг в рамках условий, установленных положениями настоящего Договора, определяется Исполнителем в момент Диагностики волос, осуществляемой Исполнителем перед оказанием услуги.</p>
+<p><b>6.5.</b> Исполнитель вправе установить индивидуальную скидку для Клиента на услуги.</p>
+<p><b>6.6.</b> Клиенты, которые являются Моделями Исполнителя, оплачивают исключительно стоимость расходных материалов. Стоимость расходных материалов определяется Исполнителем самостоятельно.</p>
+<p><b>6.7.</b> Исполнитель вправе установить предварительное бронирование на свои услуги.</p>
+<p><b>6.7.1.</b> Стоимость предварительного бронирования составляет 1000 руб. в случае ранее неявки по записи или отмене/переносе записи менее чем за сутки.</p>
+<p><b>6.7.2.</b> При визите Клиента по адресу оказания услуг: город Москва, улица Большая Грузинская дом 12 строение 1 и получении услуги стоимость предварительного бронирования в размере 1000 (тысячи) рублей включается в общую стоимость услуги.</p>
+<p><b>6.7.3.</b> В случае неявки Клиента по адресу оказания услуг: город Москва, улица Большая Грузинская дом 12 строение 1 и не получения услуги, услуга по бронированию считается оказанной надлежащим образом, и сумма предварительного бронирования возврату не подлежит.</p>
+<h2 id="s7">7. ПРАВИЛА ОБОРОТА ПОДАРОЧНЫХ СЕРТИФИКАТОВ И АБОНЕМЕНТОВ</h2>
+<p><b>7.1.</b> Правила оборота подарочных сертификатов на услуги Исполнителя:</p>
+<p><b>7.1.1.</b> В случаях, когда срок сертификата истёк и Клиент не успел предъявить сертификат в срок, Исполнитель не обязан возвращать деньги в соответствии с ч. 3 ст. 425 ГК РФ. В момент окончания срока действия подарочного сертификата договор считается расторгнутым. Окончание срока действия договора влечет прекращение обязательств сторон по договору в соответствии с ч. 3 ст. 425 ГК РФ.</p>
+<p><b>7.1.2.</b> В случаях, когда срок сертификата не истек, Клиент вправе отказаться от услуги в любой момент при условии оплаты Исполнителю фактически понесенных им расходов и фактически оказанных услуг на момент такого отказа Клиента.</p>
+<p><b>7.2.</b> Правила оборота абонементов Исполнителя на услуги Исполнителя:</p>
+<p><b>7.3.</b> При оформлении абонемента на Курс услуг Исполнитель оказывает услуги для Клиента со скидкой в течение срока действия абонемента.</p>
+<p><b>7.4.1.</b> Срок действия абонемента указывается на абонементе. В случае досрочного отказа Клиента от услуг Исполнителя, которые оказываются для Клиента по абонементу или при наступлении невозможности оказания услуг по абонементу по вине Клиента (болезнь, командировка и любые др. уважительные и неуважительные причины), Клиент в течение срока действия абонемента уведомляет Исполнителя об отказе от услуг Исполнителя.</p>
+<p><b>7.4.2.</b> При отказе Клиента в соответствии с п. 7.4.1. настоящего Договора Исполнителя осуществляет перерасчёт денежных средств за неоказанные услуги. Исполнитель осуществляет перерасчёт оказанных услуг (количество оказанных парикмахерских и косметических услуг) по разовой цене (без скидки), которая указана в настоящем разделе.</p>
+<p><b>7.4.3.</b> Остаток денежных средств, полученный в результате перерасчёта, возвращается Клиенту.</p>
+<p><b>7.4.4.</b> Если в период действия абонемента от Клиента не поступало уведомления об отказе от услуг Исполнителя и (или) перерасчёте уплаченной суммы, то услуги Исполнителя считаются оказанными в полном объеме и денежные средства возврату не подлежат. В момент окончания срока действия абонемента договор считается расторгнутым. Окончание срока действия договора влечет прекращение обязательств сторон по договору в соответствии с ч. 3 ст. 425 ГК РФ.</p>
+<h2 id="s8">8. ПРАВА И ОБЯЗАННОСТИ ИСПОЛНИТЕЛЯ</h2>
+<p><b>8.1.</b> Исполнитель обязан:</p>
+<p><b>8.1.1.</b> Оказывать услуги Клиенту своевременно, качественно и в полном объеме в соответствии с условиями настоящего Договора, положениями действующего законодательства Российской Федерации.</p>
+<p><b>8.1.2.</b> По требованию Клиента уведомлять последнего о ходе исполнения Договора.</p>
+<p><b>8.1.3.</b> Обеспечить качество, полноту и своевременность оказания услуг.</p>
+<p><b>8.1.4.</b> Обеспечить Клиента информацией об объеме услуги, длительности оказания услуги по настоящему Договору.</p>
+<p><b>8.1.5.</b> Обеспечить Клиента информацией о качестве и характеристиках оказываемых услуг.</p>
+<p><b>8.1.6.</b> Обеспечить Клиента информацией об уходе за волосами после оказания услуг по настоящему Договору.</p>
+<p><b>8.2.</b> Исполнитель вправе:</p>
+<p><b>8.2.1.</b> Запрашивать у Клиента информацию (документацию), необходимую для надлежащего оказания услуг по Договору.</p>
+<p><b>8.2.2.</b> Самостоятельно определять формы и методы оказания Услуг по настоящему Договору исходя из своего профессионального опыта и особенностей Клиента.</p>
+<p><b>8.2.3.</b> Отказаться от исполнения обязательств по настоящему Договору.</p>
+<p><b>8.2.4.</b> Вся текстовая информация и графические изображения, находящиеся на сайте <a class="u" href="https://keratinstories.ru/" target="_blank" rel="noopener">https://keratinstories.ru/</a> являются собственностью Исполнителя.</p>
+<h2 id="s9">9. ПРАВА И ОБЯЗАННОСТИ КЛИЕНТА</h2>
+<p><b>9.1.</b> Клиент обязан:</p>
+<p><b>9.1.1.</b> Предоставить исходную информацию (при необходимости, документацию), необходимую для надлежащего оказания услуг Исполнителем по Договору.</p>
+<p><b>9.1.2.</b> Ознакомиться с условиями настоящего Договора.</p>
+<p><b>9.1.3.</b> Предоставить Исполнителю полную и достоверную информацию о состоянии своих волос.</p>
+<p><b>9.1.4.</b> Отказаться от предоставления услуги при наличии обстоятельств, указанных в разделе 4 настоящего Договора и препятствующих оказанию услуги.</p>
+<p><b>9.1.5.</b> Следовать рекомендациям Исполнителя по уходу за волосами, указанным в разделе 4 настоящего Договора, после оказания Исполнителем услуги.</p>
+<p><b>9.1.6.</b> Соблюдать инструкции Исполнителя по уходу за волосами и следовать рекомендациям по уходу за волосами, которые содержатся в разделе 4 настоящего Договора.</p>
+<p><b>9.2.</b> Клиент вправе:</p>
+<p><b>9.2.1.</b> Требовать от Исполнителя надлежащего оказания услуг по Договору.</p>
+<p><b>9.2.2.</b> Запрашивать информацию о ходе оказания услуг, а также осуществлять контроль за их объемом и сроками, в соответствии с условиями Договора, не вмешиваясь в профессиональную деятельность Исполнителя.</p>
+<p><b>9.2.3.</b> Предупредить Исполнителя о наличии противопоказаний для здоровья, которые имеются у Клиента и препятствуют оказанию услуги Исполнителем.</p>
+<p><b>9.2.4.</b> Отказаться от предоставления услуги при наличии противопоказаний для здоровья.</p>
+<h2 id="s10">10. СРОК ДЕЙСТВИЯ И ИЗМЕНЕНИЕ ОФЕРТЫ</h2>
+<p><b>10.1.</b> Настоящая Оферта вступает в силу с момента совершения Клиентом Акцепта Оферты и действует до полного выполнения обязательств Сторонами.</p>
+<p><b>10.2.</b> Клиент соглашается и признает, что внесение изменений в Оферту влечет за собой внесение этих изменений в заключенный и действующий между Клиентом и Исполнителем договор Оферты, и эти изменения вступают в силу одновременно с такими изменениями в Оферте.</p>
+<h2 id="s11">11. КОНФИДЕНЦИАЛЬНОСТЬ И ЗАЩИТА ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ</h2>
+<p><b>11.1.</b> Исполнитель обязуется не разглашать полученную от Клиента информацию.</p>
+<p><b>11.2.</b> Не считается нарушением обязательств разглашение информации в соответствии с обоснованными и применимыми требованиями закона.</p>
+<p><b>11.3.</b> Исполнитель получает информацию об IP-адресе посетителя сайта <a class="u" href="https://keratinstories.ru/." target="_blank" rel="noopener">https://keratinstories.ru/.</a> Данная информация не используется для установления личности посетителя.</p>
+<p><b>11.4.</b> Исполнитель не несет ответственности за сведения, предоставленные Клиентом на сайте <a class="u" href="https://keratinstories.ru/" target="_blank" rel="noopener">https://keratinstories.ru/</a> в общедоступной форме.</p>
+<p><b>11.5.</b> Клиент даёт своё согласие на обработку персональных данных и получение СМС-рассылок о рекламных материалах, связанных с продвижением услуг посредством мессенджера WhatsApp.</p>
+<h2 id="s12">12. РАСТОРЖЕНИЕ ДОГОВОРА И ВОЗВРАТ ОПЛАТЫ ПО ДОГОВОРУ</h2>
+<p><b>12.1.</b> В ходе оказания услуг по настоящему Договору Клиент вправе отказаться от исполнения договора при условии оплаты Исполнителю фактически понесенных им расходов и фактически оказанных услуг на момент расторжения Договора.</p>
+<p><b>12.2.</b> Для отказа от услуг Клиент направляет Исполнителю заявление об отказе.</p>
+<p><b>12.2.1.</b> Заявление составляется в свободной письменной форме.</p>
+<p><b>12.2.2.</b> Заявления, сообщения, уведомления, связанные с расторжением настоящего Договора и (или) возвратом денежных средств по Договору, должны быть направлены в письменной форме по адресу: город Москва, улица Большая Грузинская 12 строение 1.</p>
+<p><b>12.2.3.</b> Исполнитель вправе рассматривать заявление об отказе в течение 7 (семи) календарных дней с момента его получения.</p>
+<p><b>12.3.</b> Денежные средства возвращаются на тот счет Клиента, с которого производилась оплата, либо на иной счет по согласованию Сторон. При этом Клиент уведомлен о том, что Исполнитель не возвращает уплаченные Клиентом комиссии банкам или иным кредитным организациям, т.к. эти расходы являются расходами Клиента, которые он несет самостоятельно.</p>
+<h2 id="s13">13. ОТВЕТСТВЕННОСТЬ СТОРОН И ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</h2>
+<p><b>13.1.</b> За невыполнение или ненадлежащее выполнение обязательств по настоящей Оферте, Стороны несут ответственность в соответствии с действующим законодательством Российской Федерации.</p>
+<p><b>13.2.</b> Все споры и разногласия, которые могут возникнуть из настоящей Оферты или в связи с ней, должны разрешаться путем переговоров между Сторонами. В случае невозможности достичь соглашения путем переговоров, Стороны обращаются в суд по месту исполнения услуг, указанным в реквизитах Исполнителя.</p>
+<p><b>13.3.</b> Исполнитель вправе отказать любому обратившемуся лицу и (или) Клиенту в оказании услуг по Договору, в случаях, когда по результатам визуального осмотра волос обратившегося лица и (или) Клиента Исполнителем установлено, что состояние волос обратившегося лица и (или) Клиента не позволит оказать услуги по настоящему Договору надлежащим образом.</p>
+<p><b>13.4.</b> Ответственность Исполнителя за ненадлежащее оказание услуги исключается в случаях, когда Клиент ознакомился с условиями настоящего Договора, в том числе с информацией, указанной в разделе 4 настоящего Договора, однако умышленно или по неосторожности скрыл от Исполнителя обстоятельства, препятствующие оказанию услуг надлежащего качества по настоящему Договору.</p>
+<p><b>13.5.</b> Ответственность Исполнителя исключается в случаях, когда достижение надлежащего результата оказания услуги не представилось возможным по причине несоблюдения и (или) неправильного в том числе неполного соблюдения Клиентом рекомендаций по уходу за волосами, изложенных в разделе 4 настоящего Договора.</p>
+<p><b>13.6.</b> Выявление факта, что во время оказания услуги и на месте оказания услуги по настоящему Договору, не удалось достичь надлежащего результата и качества не освобождает Стороны от исполнения обязательств по настоящему Договору - Клиент обязуется оплатить услугу, а Исполнитель обязуется своими силами, средствами и за свой счет устранить выявленные недостатки. О порядке и сроках устранения недостатков Стороны заключают отдельное устное соглашение.</p>
+<p><b>13.6.1.</b> Стороны по настоящему Договору пришли к соглашению, что выявленные Клиентом недостатки должны быть объективными. Субъективная оценка Клиента не может являться основанием для признания услуг Исполнителя некачественными.</p>
+<p><b>13.7.</b> Гарантийный срок на парикмахерские услуги составляет 30 (тридцать) дней.</p>
+<p><b>13.7.1.</b> В случаях, когда в течение 30 (тридцати) календарных дней с момента окончания оказания услуг по Договору, Клиент обнаруживает недостатки, которые не были выявлены при приемке услуг, Клиент уведомляет об этом Исполнителя с указанием выявленных недостатков.</p>
+<p><b>13.7.2.</b> При наступлении обстоятельств, указанных в п. 13.7.1. настоящего Договора, Стороны обязуются согласовать дату, время и место организации и проведения консультации Исполнителя для осуществления диагностики волос и выявленных недостатков. Диагностика организуется и проводится Исполнителем самостоятельно путем мытья и сушки волос Клиента в целях проверки результата оказания услуг по настоящему Договору. В случаях, когда по результатам диагностики - мытья и сушки волос Клиента установлено, что обнаруженные недостатки оказания услуг возникли по вине действий (бездействия) Исполнителя, Исполнитель обязуется своими силами, средствами и за свой счет устранить выявленные недостатки. О порядке и сроках устранения недостатков Стороны заключают отдельное соглашение. В случаях, когда по результатам диагностики - мытья и сушки волос Клиента установлено, что обнаруженные недостатки оказания услуг возникли по вине действий (бездействия) Клиента, ответственность Исполнителя исключается. Стороны по настоящему Договору пришли к соглашению, что выявленные Клиентом недостатки должны быть объективными. Субъективная оценка Клиента не может являться основанием для признания услуг Исполнителя некачественными. В случаях, когда обращение Клиента в адрес Исполнителя в соответствии с п.13.7.1. не содержит объективных свидетельств и (или) материалов, подтверждающих, что услуга оказана с объективными недостатками, Исполнитель вправе отказать Клиенту в организации и проведении Диагностики или совершении иных действий.</p>
+<p><b>13.8.</b> В случаях, когда Клиент обнаруживает недостатки, которые не были выявлены при приемке услуг, позднее 30 (тридцати) календарных дней с момента окончания оказания услуг по Договору и уведомляет о выявленных недостатках Исполнителя, Исполнитель вправе отказаться от осуществления диагностики волос и (или) совершения иных действий по устранению выявленных недостатков.</p>
+<p><b>13.9.</b> Исполнитель не несет ответственности за аллергические реакции и сенсибилизации, которые возникли у Клиента в момент оказания парикмахерских услуг и (или) после оказания парикмахерских услуг вследствие индивидуальной непереносимости химических веществ, которые содержатся в применяемых косметических средствах.</p>
+<p><b>13.10.</b> Не вступая в противоречие с указанным выше, Исполнитель освобождается от ответственности за нарушение условий настоящей Оферты, если такое нарушение вызвано действием обстоятельств непреодолимой силы (форс-мажор), включая: действия органов государственной власти (в т.ч. принятие правовых актов), пожар, наводнение, землетрясение, другие стихийные бедствия, отсутствие электроэнергии и/или сбои работы компьютерной сети, забастовки, гражданские волнения, беспорядки, любые иные обстоятельства, не ограничиваясь перечисленным, которые могут повлиять на исполнение Исполнителем настоящего соглашения.</p>
+<p><b>13.11.</b> Клиент не вправе уступать свои права по Договору третьим лицам без письменного разрешения Исполнителя.</p>
+<p><b>13.12.</b> Любые сообщения и (или) уведомления, связанные с исполнением Договора, могут направляться Сторонами по электронной почте и/или по мессенджерам, привязанным к номеру телефона, а также посредством использования социальных сетей «Instagram», «Телеграмм», «Вконтакте».</p>
+<p><b>13.12.1.</b> Заявления, сообщения, уведомления, связанные с расторжением настоящего Договора и (или) возвратом денежных средств по Договору, должны быть направлены в письменной форме по адресу: город Москва, улица Большая Грузинская 12 строение 1.</p>
+<p><b>13.13.</b> Клиент, являющийся несовершеннолетним в возрасте от 14 (четырнадцати) до 18 (восемнадцати) лет, гарантирует, что им получено письменное согласие своего законного представителя (одного из родителей, усыновителей, попечителя) заключение Договора в соответствии с требованиями статьи 26 ГК РФ.</p>
+<p><b>13.14.</b> Осуществляя Акцепт настоящей Оферты, Клиент выражает согласие на осуществление фото и видеосъемки процесса оказания услуг, а также на использование фотографического и видеографического изображения Клиента, полученного в результате фото и видеосъемки процесса оказания услуг, любым не запрещенным законодательством Российской Федерации способом.</p>
+<p><b>13.15.</b> Предварительная запись в соответствии с условиями данной Оферты означает согласие со всеми условиями (пунктами) перечисленными выше, а также подтверждение того обстоятельства, что Клиент ознакомлен в полном объеме с оказываемыми ему услугами, их характеристиками, способом оказания и стоимостью.</p>
+<h2 id="s14">14. РЕКВИЗИТЫ ИСПОЛНИТЕЛЯ</h2>
+<p>Индивидуальный предприниматель Матковсквая Юлия Владимировна</p>
+<p>ИНН: 774322019399</p>
+<p>ОГРНИП: 323774600619611</p>
+<p>Контактный телефон: +7 (905) 702-56-12</p>
+<p>Официальный сайт: <a class="u" href="https://keratinstories.ru/" target="_blank" rel="noopener">https://keratinstories.ru/</a></p>
+<p>Адрес оказания услуг: город Москва, улица Большая Грузинская дом 12 строение 1, помещ. 67</p>
+</article>
+<button class="totop" type="button" aria-label="Наверх">↑</button>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ИП Матковская Ю. В. · ИНН 774322019399 · ОГРНИП 323774600619611 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+    <nav aria-label="Документы"><a href="../../price/">Прайс</a><a href="../../policy/">Политика конфиденциальности</a><a href="../../offer/">Оферта</a></nav>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// ── типограф: короткие слова (предлоги, союзы) не остаются в конце строки, тире не переносится на новую ──
+const NB = /(^|[\s\u00A0(«„"—–])([а-яё]{1,2}|для|без|при|под|над|про|что|как|или|его|еще|ещё)\s+(?=\S)/gi;
+function typo(root) {
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest('script,style,textarea') ? 2 : 1 });
+  for (let n; (n = w.nextNode());) {
+    let t = n.nodeValue, u;
+    while ((u = t.replace(NB, '$1$2\u00A0')) !== t) t = u;   // подряд идущие короткие слова — за несколько проходов
+    t = t.replace(/\s+([—–])(\s)/g, '\u00A0$1$2').replace(/(\d) (?=\d{3}\b)/g, '$1\u00A0').replace(/(\d) ₽/g, '$1\u00A0₽')
+      .replace(/(\d)([–-])(?=\d)/g, '$1$2\u2060').replace(/ · /g, '\u00A0· ');   // «3–4» и «… · Ботокс» не рвутся
+    if (t !== n.nodeValue) n.nodeValue = t;
+  }
+}
+
+// ── меню ──
+const menu = $('menu'), burger = $('burger');
+const setMenu = o => { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); };
+burger.onclick = () => setMenu(!menu.classList.contains('open'));
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+
+const tt = document.querySelector('.totop');
+addEventListener('scroll', () => tt.classList.toggle('on', scrollY > 900), { passive: true });
+tt.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+</script>
+</body>
+</html>

@@ -329,6 +329,16 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 .docpg a.u { color: var(--tx); border-bottom: 1px solid var(--lav); }
 .docpg .req { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
 .docpg .req p { margin: 0 0 4px; }
+.docpg h1.sm { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25; }
+.docpg .back { display: inline-block; margin-bottom: 14px; font-size: 14px; color: var(--mute); }
+.docpg .note { margin-top: 14px; padding: 12px 16px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; color: var(--mute); }
+.docpg .tail { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.apx { margin-top: 28px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); padding: 18px; }
+.apx h2 { margin: 0 0 12px !important; }
+.apx dl { display: grid; gap: 4px 20px; font-size: 14px; line-height: 1.5; }
+.apx dt { color: var(--mute); margin-top: 8px; } .apx dd { margin: 0; color: #d9d5d0; overflow-wrap: anywhere; }
+.apx ul { margin: 0; padding-left: 18px; } .apx li i { color: var(--mute); font-style: normal; }
+@media (min-width: 760px) { .apx dl { grid-template-columns: 200px 1fr; } .apx dt { margin-top: 0; } }
 .totop { position: fixed; right: 16px; bottom: 16px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(17,17,18,.8); color: var(--tx); box-shadow: inset 0 0 0 1px var(--line); font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s; }
 .totop.on { opacity: 1; pointer-events: auto; }
 </style>
@@ -700,7 +710,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 <p>Адрес эл. почты: <a class="u" href="mailto:keratinstories@yandex.ru">keratinstories@yandex.ru</a></p>
 <p>Официальный сайт: <a class="u" href="https://keratinstories.ru/" target="_blank" rel="noopener">https://keratinstories.ru/</a></p>
 <p>Архив</p>
-<p>Оферта до 1.06.2026</p>
+<p><a class="u" href="archive/">Оферта до 1.06.2026</a></p>
 </div>
 </article>
 <button class="totop" type="button" aria-label="Наверх">↑</button>
@@ -708,7 +718,7 @@ footer nav { display: flex; flex-wrap: wrap; gap: 6px 20px; } footer a:hover { c
 
 <footer>
   <div class="wrap">
-    <span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+    <span>ИП Матковская Ю. В. · ИНН 774322019399 · ОГРНИП 323774600619611 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
     <nav aria-label="Документы"><a href="../price/">Прайс</a><a href="../policy/">Политика конфиденциальности</a><a href="../offer/">Оферта</a></nav>
   </div>
 </footer>

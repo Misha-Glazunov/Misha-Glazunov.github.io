@@ -109,7 +109,7 @@ BODY = ''.join(section(*s) for s in S) + '''<section class="p deal" id="offer-co
 
 MAIN = f'''<main class="wrap">
 <div class="intro">
-  <a class="back" href="../">← На главную</a>
+  <a class="back" href="./../">← На главную</a>
   <h1>Прайс-лист</h1>
   <p class="date">действует с 1 марта 2026 года</p>
   <div class="lead">
@@ -639,10 +639,14 @@ def build_price_v3():
     out.write_text(page, encoding='utf-8')
     print(out, len(page))
 
-# ═══════════ v3: оферта и политика (2026-11-19) ═══════════
-# Тексты — дословно с keratinstories.ru (Михаил скопировал в MAX → ~/Desktop/keratinstories/docs/*.txt).
-# Текст не правим, только разметка: заголовки разделов → h2 + оглавление, номер пункта выделен, ссылки/почта кликабельны.
-DOCS_DIR = Path.home() / 'Desktop' / 'keratinstories' / 'docs'
+# ═══════════ v3: оферта, политика, приложение к политике, архив оферты (2026-11-19) ═══════════
+# Исходники — ~/Desktop/keratinstories/: тексты дословно, не правим (опечатки оригинала тоже), только разметка.
+#   docs/offer.txt — действующая оферта с keratinstories.ru (Михаил скопировал в MAX)
+#   docs/policy-full.txt — политика из «1. Политика защиты и обработки ПД.doc» (textutil); в копии с сайта пропал кусок разд. 8–11
+#   docs/offer-archive.txt — «Оферта до 1.06.2026.docx» (textutil)
+#   1_1_Приложение_№1_Политика_обработки_и_защиты_ПДн.xlsx — приложение № 1, разбирается тут же (zipfile)
+KS = Path.home() / 'Desktop' / 'keratinstories'
+DOCS_DIR = KS / 'docs'
 DOC_CSS = """
 .docpg { padding-top: clamp(110px, 12vw, 150px); padding-bottom: 64px; max-width: 820px; }
 .docpg h1 { font-size: clamp(26px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -.01em; }
@@ -657,6 +661,16 @@ DOC_CSS = """
 .docpg a.u { color: var(--tx); border-bottom: 1px solid var(--lav); }
 .docpg .req { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
 .docpg .req p { margin: 0 0 4px; }
+.docpg h1.sm { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.25; }
+.docpg .back { display: inline-block; margin-bottom: 14px; font-size: 14px; color: var(--mute); }
+.docpg .note { margin-top: 14px; padding: 12px 16px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; color: var(--mute); }
+.docpg .tail { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.apx { margin-top: 28px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); padding: 18px; }
+.apx h2 { margin: 0 0 12px !important; }
+.apx dl { display: grid; gap: 4px 20px; font-size: 14px; line-height: 1.5; }
+.apx dt { color: var(--mute); margin-top: 8px; } .apx dd { margin: 0; color: #d9d5d0; overflow-wrap: anywhere; }
+.apx ul { margin: 0; padding-left: 18px; } .apx li i { color: var(--mute); font-style: normal; }
+@media (min-width: 760px) { .apx dl { grid-template-columns: 200px 1fr; } .apx dt { margin-top: 0; } }
 .totop { position: fixed; right: 16px; bottom: 16px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(17,17,18,.8); color: var(--tx); box-shadow: inset 0 0 0 1px var(--line); font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s; }
 .totop.on { opacity: 1; pointer-events: auto; }
 """
@@ -668,19 +682,31 @@ tt.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
 HEAD_RE = re.compile(r'^(\d+\.\s+)?[А-ЯЁ][А-ЯЁ ,()–«»-]{6,}$')
 NUM_RE = re.compile(r'^(\d+(?:\.\d+)+\.?)\s')
 
-def doc_body(lines):
-    """первая строка — h1; РАЗДЕЛЫ ЗАГЛАВНЫМИ — h2 с якорем; остальное — абзацы"""
-    lines = [l.strip() for l in lines if l.strip()]
-    title, rest = lines[0], lines[1:]
-    toc, out, req = [], [], False
+def clean(l):
+    """служебные коды Word (HYPERLINK "…") и табы — не текст документа"""
+    return re.sub(r' {2,}', ' ', re.sub(r'\s*HYPERLINK "[^"]*"\s*', ' ', l).replace('\t', ' ')).strip()
+
+def doc_body(lines, title_n=1, links=None):
+    """первые title_n строк — h1; РАЗДЕЛЫ ЗАГЛАВНЫМИ — h2 с якорем (подряд идущие склеиваются); остальное — абзацы;
+    links: {строка целиком: href} — строка становится ссылкой"""
+    lines = [c for c in map(clean, lines) if c]
+    title, rest = ' '.join(lines[:title_n]), lines[title_n:]
+    toc, out, req, prev_h = [], [], False, False
     for l in rest:
         if HEAD_RE.match(l):
+            if prev_h:  # заголовок раздела, разбитый на две строки
+                toc[-1] = toc[-1].replace('</a>', f' {esc(l)}</a>'); out[-1] = out[-1].replace('</h2>', f' {esc(l)}</h2>')
+                continue
             sid = f's{len(toc) + 1}'
             toc.append(f'<li><a href="#{sid}">{esc(l)}</a></li>')
             out.append(f'<h2 id="{sid}">{esc(l)}</h2>')
+            prev_h = True
             continue
+        prev_h = False
         if l.startswith('Исполнитель: ') and not req:  # реквизиты в конце оферты
             out.append('<div class="req">'); req = True
+        if links and l in links:
+            out.append(f'<p><a class="u" href="{links[l]}">{esc(l)}</a></p>'); continue
         t = esc(l)
         t = re.sub(r'(https?://[^\s<]+)', r'<a class="u" href="\1" target="_blank" rel="noopener">\1</a>', t)
         t = re.sub(r'([\w.-]+@[\w-]+\.\w+)', r'<a class="u" href="mailto:\1">\1</a>', t)
@@ -689,11 +715,8 @@ def doc_body(lines):
     if req: out.append('</div>')
     return title, toc, out
 
-def build_doc_v3(slug, src, page_title):
-    title, toc, out = doc_body((DOCS_DIR / src).read_text(encoding='utf-8').splitlines())
-    meta = ''
-    if out and out[0].startswith('<p>г. Москва'):  # дата оферты — под заголовком
-        meta, out = out[0].replace('<p>', '<p class="meta">'), out[1:]
+def doc_page(rel, page_title, body):
+    """страница v3/<rel>/ в шапке и подвале главной; ссылки считаются для глубины 1 и сдвигаются для вложенных"""
     main = (ROOT / 'v3' / 'index.html').read_text(encoding='utf-8')
     cut = lambda a, b: main[main.index(a):main.index(b)]
     head = main[:main.index('</head>')].replace('<title>Кератин Сторис — студия выпрямления и реконструкции волос в Москве</title>', f'<title>{page_title} — Кератин Сторис</title>')
@@ -701,16 +724,63 @@ def build_doc_v3(slug, src, page_title):
     header = cut('<header class="nav"', '<main>').replace('href="#hero"', 'href="../"').replace('href="price/"', 'href="../price/"').replace('href="#', 'href="../#')
     footer = cut('<footer>', '<script>').replace('href="price/"', 'href="../price/"').replace('href="policy/"', 'href="../policy/"').replace('href="offer/"', 'href="../offer/"')
     js = cut('const $ = id', '// ── меню ──').split('const DIKIDI')[0] + cut('// ── типограф', '// ── данные')
-    tochtml = f'<details class="toc"><summary>Содержание</summary><ol>{"".join(toc)}</ol></details>' if toc else ''
-    body = f'<article class="wrap docpg"><h1>{esc(title)}</h1>{meta}{tochtml}\n' + '\n'.join(out) + '\n</article>\n<button class="totop" type="button" aria-label="Наверх">↑</button>\n'
-    page = f'{head}</head>\n<body>\n\n{header}<main>\n{body}</main>\n\n{footer}<script>\n{js}{DOC_JS}</script>\n</body>\n</html>\n'
+    page = f'{head}</head>\n<body>\n\n{header}<main>\n{body}<button class="totop" type="button" aria-label="Наверх">↑</button>\n</main>\n\n{footer}<script>\n{js}{DOC_JS}</script>\n</body>\n</html>\n'
     page = page.replace('url(fonts/', 'url(../fonts/').replace('../v2/', '../../v2/')
-    d = ROOT / 'v3' / slug
-    d.mkdir(exist_ok=True)
+    for _ in range(rel.count('/')):  # вложенная страница — на уровень глубже
+        page = page.replace('href="../', 'href="../../').replace('src="../', 'src="../../').replace('url(../', 'url(../../')
+    d = ROOT / 'v3' / rel
+    d.mkdir(parents=True, exist_ok=True)
     (d / 'index.html').write_text(page, encoding='utf-8')
-    print(d / 'index.html', len(page), 'разделов', len(toc))
+    print(d / 'index.html', len(page))
+
+def build_doc_v3(rel, src, page_title, title_n=1, links=None, pre='', tail=''):
+    title, toc, out = doc_body((DOCS_DIR / src).read_text(encoding='utf-8').splitlines(), title_n, links)
+    meta = ''
+    if out and out[0].startswith('<p>г. Москва'):  # дата оферты — под заголовком
+        meta, out = out[0].replace('<p>', '<p class="meta">'), out[1:]
+    tochtml = f'<details class="toc"><summary>Содержание</summary><ol>{"".join(toc)}</ol></details>' if toc else ''
+    doc_page(rel, page_title, f'<article class="wrap docpg">{pre}<h1>{esc(title)}</h1>{meta}{tochtml}\n' + '\n'.join(out) + tail + '\n</article>\n')
+    print('  разделов', len(toc))
+
+def xlsx_rows(path):
+    """ячейки первого листа: {(строка, столбец): текст}"""
+    import zipfile
+    z = zipfile.ZipFile(path)
+    un = lambda s: s.replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '"').replace('&apos;', "'").replace('&amp;', '&')
+    ss = [un(re.sub(r'<[^>]+>', '', x)) for x in re.findall(r'<si>(.*?)</si>', z.read('xl/sharedStrings.xml').decode(), re.S)]
+    cells = {}
+    for c in re.finditer(r'<c ([^>]*?)(?:/>|>(.*?)</c>)', z.read('xl/worksheets/sheet1.xml').decode(), re.S):
+        at = dict(re.findall(r'(\w+)="([^"]*)"', c.group(1))); v = re.search(r'<v>(.*?)</v>', c.group(2) or '')
+        if not v: continue
+        col, row = re.match(r'([A-Z]+)(\d+)', at['r']).groups()
+        val = ss[int(v.group(1))] if at.get('t') == 's' else v.group(1)
+        cells[(int(row), col)] = '\n'.join(re.sub(r'\s+', ' ', x).strip() for x in val.splitlines() if x.strip())
+    return cells
+
+def build_appendix_v3():
+    """Приложение № 1 к политике: таблица 9 столбцов → карточка на каждую цель обработки (на телефоне таблица не читается)"""
+    c = xlsx_rows(KS / '1_1_Приложение_№1_Политика_обработки_и_защиты_ПДн.xlsx')
+    br = lambda t: esc(t).replace('\n', '<br>')
+    lab = {k: c.get((2, k), '') for k in 'ABCDEFGHI'}
+    recs, last = [], max(r for r, _ in c)
+    for r in range(4, last + 1):
+        if (r, 'A') in c: recs.append({'n': c[(r, 'A')], 'v': {k: c.get((r, k), '') for k in 'BCFGHI'}, 'pd': []})
+        if recs and (r, 'D') in c: recs[-1]['pd'].append((c[(r, 'D')], c.get((r, 'E'), '')))
+    cards = ''
+    for x in recs:
+        v = x['v']
+        pd = '<ul>' + ''.join(f'<li>{br(d)} <i>— {br(e)}</i></li>' for d, e in x['pd']) + '</ul>'
+        rows = [(lab['C'], br(v['C'])), (f'{lab["D"]} — {lab["E"]}', pd)] + [(lab[k], br(v[k])) for k in 'FGHI']
+        cards += f'<section class="apx"><h2>{esc(x["n"])}. {br(v["B"])}</h2><dl>' + ''.join(f'<dt>{a}</dt><dd>{b}</dd>' for a, b in rows) + '</dl></section>\n'
+    back = '<a class="back" href="./../">← Политика защиты и обработки персональных данных</a>'
+    doc_page('policy/appendix', 'Приложение № 1 к Политике', f'<article class="wrap docpg">{back}<h1 class="sm">{br(c[(1, "A")])}</h1>\n{cards}</article>\n')
 
 build_price('v2')
 build_price_v3()
-build_doc_v3('policy', 'policy.txt', 'Политика конфиденциальности')
-build_doc_v3('offer', 'offer.txt', 'Оферта')
+build_doc_v3('policy', 'policy-full.txt', 'Политика конфиденциальности',
+             tail='\n<div class="tail"><p><a class="u" href="appendix/">Приложение Политики обработки и защиты</a></p></div>')
+build_doc_v3('offer', 'offer.txt', 'Оферта', links={'Оферта до 1.06.2026': 'archive/'})
+build_doc_v3('offer/archive', 'offer-archive.txt', 'Оферта до 1.06.2026 (архив)', title_n=2,
+             pre='<a class="back" href="./../">← Действующая оферта</a>',
+             links={})
+build_appendix_v3()
