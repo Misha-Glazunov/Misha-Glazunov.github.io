@@ -3,6 +3,8 @@
 Источник цен: ~/Desktop/leadgen/notes/keratin_price_2026-03.md (прайс от 1.03.2026).
 Запуск: python3 build_pages.py  (из любой папки)."""
 from pathlib import Path
+import re
+from html import escape as esc
 
 ROOT = Path(__file__).parent
 DIKIDI = 'https://dikidi.net/1005604'
@@ -244,7 +246,7 @@ for name, v in V.items():
     html = HEAD.format(fonts=faces, base=BASE, skin=v['skin'], img='/img/', home='/', title='Страница не найдена — Кератин Сторис', desc='Страница не найдена', icons=ICONS.format(img='/img/', root='/')) + NF + '\n' + FOOT.replace('../', '/') + '\n</body>\n</html>\n'
     (ROOT / name / '404.html').write_text(html, encoding='utf-8')
     print(ROOT / name / '404.html', len(html))
-    for stub in ('offer', 'policy'):
+    for stub in ('offer', 'policy') if name == 'v2' else ():  # v3 — настоящие тексты, build_doc_v3()
         d = ROOT / name / stub
         d.mkdir(exist_ok=True)
         (d / 'index.html').write_text(html, encoding='utf-8')
@@ -637,5 +639,78 @@ def build_price_v3():
     out.write_text(page, encoding='utf-8')
     print(out, len(page))
 
+# ═══════════ v3: оферта и политика (2026-11-19) ═══════════
+# Тексты — дословно с keratinstories.ru (Михаил скопировал в MAX → ~/Desktop/keratinstories/docs/*.txt).
+# Текст не правим, только разметка: заголовки разделов → h2 + оглавление, номер пункта выделен, ссылки/почта кликабельны.
+DOCS_DIR = Path.home() / 'Desktop' / 'keratinstories' / 'docs'
+DOC_CSS = """
+.docpg { padding-top: clamp(110px, 12vw, 150px); padding-bottom: 64px; max-width: 820px; }
+.docpg h1 { font-size: clamp(26px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -.01em; }
+.docpg .meta { color: var(--mute); margin-top: 10px; font-size: 14px; }
+.docpg .toc { margin: 28px 0 8px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); padding: 4px 18px; }
+.docpg .toc summary { cursor: pointer; padding: 12px 0; font-weight: 500; }
+.docpg .toc ol { list-style: none; padding: 0 0 12px; display: grid; gap: 6px; font-size: 14px; }
+.docpg .toc a { color: var(--mute); } .docpg .toc a:hover { color: var(--tx); }
+.docpg h2 { font: 600 clamp(17px, 1.6vw, 20px)/1.3 'Golos Text', system-ui, sans-serif; letter-spacing: 0; margin: 40px 0 12px; padding: 0; scroll-margin-top: 100px; }
+.docpg p { font-size: 15px; line-height: 1.6; color: #d9d5d0; margin: 0 0 10px; overflow-wrap: anywhere; }
+.docpg p b { color: var(--tx); font-weight: 600; }
+.docpg a.u { color: var(--tx); border-bottom: 1px solid var(--lav); }
+.docpg .req { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.docpg .req p { margin: 0 0 4px; }
+.totop { position: fixed; right: 16px; bottom: 16px; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(17,17,18,.8); color: var(--tx); box-shadow: inset 0 0 0 1px var(--line); font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.totop.on { opacity: 1; pointer-events: auto; }
+"""
+DOC_JS = """
+const tt = document.querySelector('.totop');
+addEventListener('scroll', () => tt.classList.toggle('on', scrollY > 900), { passive: true });
+tt.onclick = () => scrollTo({ top: 0, behavior: 'smooth' });
+"""
+HEAD_RE = re.compile(r'^(\d+\.\s+)?[А-ЯЁ][А-ЯЁ ,()–«»-]{6,}$')
+NUM_RE = re.compile(r'^(\d+(?:\.\d+)+\.?)\s')
+
+def doc_body(lines):
+    """первая строка — h1; РАЗДЕЛЫ ЗАГЛАВНЫМИ — h2 с якорем; остальное — абзацы"""
+    lines = [l.strip() for l in lines if l.strip()]
+    title, rest = lines[0], lines[1:]
+    toc, out, req = [], [], False
+    for l in rest:
+        if HEAD_RE.match(l):
+            sid = f's{len(toc) + 1}'
+            toc.append(f'<li><a href="#{sid}">{esc(l)}</a></li>')
+            out.append(f'<h2 id="{sid}">{esc(l)}</h2>')
+            continue
+        if l.startswith('Исполнитель: ') and not req:  # реквизиты в конце оферты
+            out.append('<div class="req">'); req = True
+        t = esc(l)
+        t = re.sub(r'(https?://[^\s<]+)', r'<a class="u" href="\1" target="_blank" rel="noopener">\1</a>', t)
+        t = re.sub(r'([\w.-]+@[\w-]+\.\w+)', r'<a class="u" href="mailto:\1">\1</a>', t)
+        t = NUM_RE.sub(r'<b>\1</b> ', t)
+        out.append(f'<p>{t}</p>')
+    if req: out.append('</div>')
+    return title, toc, out
+
+def build_doc_v3(slug, src, page_title):
+    title, toc, out = doc_body((DOCS_DIR / src).read_text(encoding='utf-8').splitlines())
+    meta = ''
+    if out and out[0].startswith('<p>г. Москва'):  # дата оферты — под заголовком
+        meta, out = out[0].replace('<p>', '<p class="meta">'), out[1:]
+    main = (ROOT / 'v3' / 'index.html').read_text(encoding='utf-8')
+    cut = lambda a, b: main[main.index(a):main.index(b)]
+    head = main[:main.index('</head>')].replace('<title>Кератин Сторис — студия выпрямления и реконструкции волос в Москве</title>', f'<title>{page_title} — Кератин Сторис</title>')
+    head = head.replace('</style>', DOC_CSS + '</style>')
+    header = cut('<header class="nav"', '<main>').replace('href="#hero"', 'href="../"').replace('href="price/"', 'href="../price/"').replace('href="#', 'href="../#')
+    footer = cut('<footer>', '<script>').replace('href="price/"', 'href="../price/"').replace('href="policy/"', 'href="../policy/"').replace('href="offer/"', 'href="../offer/"')
+    js = cut('const $ = id', '// ── меню ──').split('const DIKIDI')[0] + cut('// ── типограф', '// ── данные')
+    tochtml = f'<details class="toc"><summary>Содержание</summary><ol>{"".join(toc)}</ol></details>' if toc else ''
+    body = f'<article class="wrap docpg"><h1>{esc(title)}</h1>{meta}{tochtml}\n' + '\n'.join(out) + '\n</article>\n<button class="totop" type="button" aria-label="Наверх">↑</button>\n'
+    page = f'{head}</head>\n<body>\n\n{header}<main>\n{body}</main>\n\n{footer}<script>\n{js}{DOC_JS}</script>\n</body>\n</html>\n'
+    page = page.replace('url(fonts/', 'url(../fonts/').replace('../v2/', '../../v2/')
+    d = ROOT / 'v3' / slug
+    d.mkdir(exist_ok=True)
+    (d / 'index.html').write_text(page, encoding='utf-8')
+    print(d / 'index.html', len(page), 'разделов', len(toc))
+
 build_price('v2')
 build_price_v3()
+build_doc_v3('policy', 'policy.txt', 'Политика конфиденциальности')
+build_doc_v3('offer', 'offer.txt', 'Оферта')
