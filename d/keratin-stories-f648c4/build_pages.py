@@ -123,7 +123,7 @@ MAIN = f'''<main class="wrap">
 {BODY}
 </main>'''
 
-FOOT = '''<footer><div class="wrap"><span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+FOOT = '''<footer><div class="wrap"><span>ИП Матковская Ю. В. · ИНН 774322019399 · ОГРНИП 323774600619611 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
 <nav aria-label="Документы"><a href="../">Главная</a><a href="../policy/">Политика конфиденциальности</a><a href="../offer/">Оферта</a></nav></div></footer>'''
 
 HEAD = '''<!doctype html>
@@ -235,6 +235,8 @@ SITEMAP = '''<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>https://www.keratinstories.ru/price/</loc></url>
   <url><loc>https://www.keratinstories.ru/offer/</loc></url>
   <url><loc>https://www.keratinstories.ru/policy/</loc></url>
+  <url><loc>https://www.keratinstories.ru/policy/appendix/</loc></url>
+  <url><loc>https://www.keratinstories.ru/offer/archive/</loc></url>
 </urlset>
 '''
 for name, v in V.items():
@@ -529,7 +531,7 @@ def build_price(name):
 </div>
 </main>
 
-<footer><div class="wrap"><span>ИП Матковская Ю. В. · ИНН 774322019399 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
+<footer><div class="wrap"><span>ИП Матковская Ю. В. · ИНН 774322019399 · ОГРНИП 323774600619611 · <a href="tel:+79057025612">+7 (905) 702-56-12</a></span>
 <nav aria-label="Документы"><a href="../">Главная</a><a href="../policy/">Политика конфиденциальности</a><a href="../offer/">Оферта</a></nav></div></footer>
 <button class="up" id="up" type="button" aria-label="Наверх">↑</button>
 
